@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
 import { BannerWrap, HeaderWrap, HomePageWrapper } from './Home.style';
 import { DownOutlined } from '@ant-design/icons';
+import { IconAppStore, IconGoogleApp } from './svgs';
 
 const Home = () => {
   const onLogoutClick = () => {
@@ -73,47 +74,59 @@ const Home = () => {
   return (
     <HomePageWrapper>
       <HeaderWrap>
-        <Menu mode="horizontal" defaultSelectedKeys={['home']}>
-          <Menu.Item key="home">Home</Menu.Item>
-          <Menu.SubMenu key="practice-lr" title={<>Practice L&R</>}>
-            <Menu.Item key="part-1">Part 1: Photos</Menu.Item>
-            <Menu.Item key="part-2">Part 2: Question - Response</Menu.Item>
-            <Menu.Item key="part-3">Part 3: Conversations</Menu.Item>
-            <Menu.Item key="part-4">Part 4: Short Talks</Menu.Item>
-          </Menu.SubMenu>
-          <Menu.Item key="practice-sw">Practice S&W</Menu.Item>
-          <Menu.SubMenu key="test" title="Test">
-            <Menu.Item key="test-1">Simulation Test</Menu.Item>
-            <Menu.Item key="test-2">Full Test</Menu.Item>
-            <Menu.Item key="test-3">Mini Test</Menu.Item>
-          </Menu.SubMenu>
-          <Menu.Item key="grammar">Grammar</Menu.Item>
-          <Menu.Item key="vocabulary">Vocabulary</Menu.Item>
-          <Menu.Item key="blog">Blog</Menu.Item>
-          <Menu.SubMenu key="toeic-tips" title="TOEIC Tips">
-            <Menu.Item key="test-2">TOEIC Listening Tips</Menu.Item>
-            <Menu.Item key="test-3">TOEIC Reading Tips</Menu.Item>
-          </Menu.SubMenu>
-        </Menu>
-        <span className="btn-login">Login</span>
+        <div className="container heading-wrap">
+          <Menu mode="horizontal" defaultSelectedKeys={['home']}>
+            <Menu.Item key="home">Home</Menu.Item>
+            <Menu.SubMenu key="practice-lr" title={<>Practice L&R</>}>
+              <Menu.Item key="part-1">Part 1: Photos</Menu.Item>
+              <Menu.Item key="part-2">Part 2: Question - Response</Menu.Item>
+              <Menu.Item key="part-3">Part 3: Conversations</Menu.Item>
+              <Menu.Item key="part-4">Part 4: Short Talks</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item key="practice-sw">Practice S&W</Menu.Item>
+            <Menu.SubMenu key="test" title="Test">
+              <Menu.Item key="test-1">Simulation Test</Menu.Item>
+              <Menu.Item key="test-2">Full Test</Menu.Item>
+              <Menu.Item key="test-3">Mini Test</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item key="grammar">Grammar</Menu.Item>
+            <Menu.Item key="vocabulary">Vocabulary</Menu.Item>
+            <Menu.Item key="blog">Blog</Menu.Item>
+            <Menu.SubMenu key="toeic-tips" title="TOEIC Tips">
+              <Menu.Item key="test-2">TOEIC Listening Tips</Menu.Item>
+              <Menu.Item key="test-3">TOEIC Reading Tips</Menu.Item>
+            </Menu.SubMenu>
+          </Menu>
+          <span className="btn-login">Login</span>
+        </div>
       </HeaderWrap>
       <BannerWrap>
-        <div>
-          <div>
-            <div>
-              <img src={'/static/images/app-icon.png'} />
+        <span className="banner-img-wrap">
+          <img src="/static/images/bg-hero-section.webp" alt="toeic-test" className="banner-img" />
+        </span>
+        <div className="container">
+          <div className="banner-content-wrap">
+            <div className="app-info toeic">
+              <img className="app-info-icon" src={'/static/images/app-icon.png'} />
+              <div className="app-info-text">
+                <div className="app-info-title">
+                  <span className="app-info-name">TOEIC</span>
+                  <span className="app-info-name-postfix">Test Pro</span>
+                </div>
+                <div className="app-info-subtitle">An amazing app for TOEIC test-takers</div>
+              </div>
             </div>
-            <div>
-              <div>TOEIC Test Pro</div>
-              <div>An amazing</div>
+            <div className="app-platform">
+              <div className="download-app">
+                <IconGoogleApp />
+                <IconAppStore />
+              </div>
+              <div className="qr-app">
+                <div className="qr-app-container">
+                  <img src={'/static/images/QR.png'} />
+                </div>
+              </div>
             </div>
-          </div>
-          <div>
-            <img src={'/static/images/app-icon.png'} />
-            <img src={'/static/images/app-icon.png'} />
-          </div>
-          <div>
-            <img src={'/static/images/QR.png'} />
           </div>
         </div>
       </BannerWrap>

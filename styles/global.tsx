@@ -1,8 +1,5 @@
 import { css, Global } from '@emotion/core';
 import { colors } from './theme/colors';
-import { mixin } from './theme/mixin';
-import { device } from './theme/device';
-import { theme } from './theme';
 
 export const globalStyles = (
   <Global
@@ -98,34 +95,25 @@ export const globalStyles = (
       }
 
       .container {
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
+        width: 100%;
         margin-left: auto;
+        box-sizing: border-box;
+        margin-right: auto;
+        display: block;
+        padding-left: 16px;
+        padding-right: 16px;
       }
-      @media (min-width: 640px) {
+
+      @media (min-width: 576px) {
         .container {
-          max-width: 640px;
+          padding-left: 24px;
+          padding-right: 24px;
         }
       }
-      @media (min-width: 768px) {
+
+      @media (min-width: 1170px) {
         .container {
-          max-width: 768px;
-        }
-      }
-      @media (min-width: 1024px) {
-        .container {
-          max-width: 1024px;
-        }
-      }
-      @media (min-width: 1280px) {
-        .container {
-          max-width: 1280px;
-        }
-      }
-      @media (min-width: 1536px) {
-        .container {
-          max-width: 1536px;
+          max-width: 1170px;
         }
       }
     `}

@@ -6,6 +6,7 @@ import { MasterContext } from '@contexts';
 import { theme } from '@styles/theme';
 import { globalStyles } from '@styles/global';
 import 'bootstrap-utilities/bootstrap-utilities.css';
+import '@styles/global.css';
 import { BreakpointsContextProvider } from '@contexts/breakpointsContext';
 
 require('@styles/antd.less');
