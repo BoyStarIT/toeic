@@ -1,12 +1,10 @@
 import { ROUTES } from '@constants';
 import Config from '@root/config';
 import { reactLocalStorage } from '@utils';
-import { Menu } from 'antd';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
-import { BannerWrap, HeaderWrap, HomePageWrapper } from './Home.style';
-import { DownOutlined } from '@ant-design/icons';
+import { BannerWrap, HomePageWrapper } from './Home.style';
 import { IconAppStore, IconGoogleApp } from './svgs';
 
 const Home = () => {
@@ -73,33 +71,6 @@ const Home = () => {
 
   return (
     <HomePageWrapper>
-      <HeaderWrap>
-        <div className="container heading-wrap">
-          <Menu mode="horizontal" defaultSelectedKeys={['home']}>
-            <Menu.Item key="home">Home</Menu.Item>
-            <Menu.SubMenu key="practice-lr" title={<>Practice L&R</>}>
-              <Menu.Item key="part-1">Part 1: Photos</Menu.Item>
-              <Menu.Item key="part-2">Part 2: Question - Response</Menu.Item>
-              <Menu.Item key="part-3">Part 3: Conversations</Menu.Item>
-              <Menu.Item key="part-4">Part 4: Short Talks</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.Item key="practice-sw">Practice S&W</Menu.Item>
-            <Menu.SubMenu key="test" title="Test">
-              <Menu.Item key="test-1">Simulation Test</Menu.Item>
-              <Menu.Item key="test-2">Full Test</Menu.Item>
-              <Menu.Item key="test-3">Mini Test</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.Item key="grammar">Grammar</Menu.Item>
-            <Menu.Item key="vocabulary">Vocabulary</Menu.Item>
-            <Menu.Item key="blog">Blog</Menu.Item>
-            <Menu.SubMenu key="toeic-tips" title="TOEIC Tips">
-              <Menu.Item key="test-2">TOEIC Listening Tips</Menu.Item>
-              <Menu.Item key="test-3">TOEIC Reading Tips</Menu.Item>
-            </Menu.SubMenu>
-          </Menu>
-          <span className="btn-login">Login</span>
-        </div>
-      </HeaderWrap>
       <BannerWrap>
         <span className="banner-img-wrap">
           <img src="/static/images/bg-hero-section.webp" alt="toeic-test" className="banner-img" />

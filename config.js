@@ -1,4 +1,4 @@
-const API_URL = 'http://hiconwallet.net:9090/portal/api/';
+const API_URL = 'https://f696-1-55-209-191.ngrok-free.app';
 
 const Config = {
   API_URL,

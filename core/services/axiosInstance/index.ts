@@ -20,7 +20,7 @@ axios.interceptors.request.use(
     ) {
       return config;
     }
-   
+
     config.headers['Content-Type'] = 'application/json';
     config.headers['Access-Control-Allow-Origin'] = '*';
     config.headers['Access-Control-Allow-Headers'] =
@@ -63,10 +63,6 @@ axios.interceptors.response.use(
       cookies.remove(Config.USER_KEY, { path: '/' });
       // Message.error(error.response.data.error);
       Message.error('Authorization failed');
-      setTimeout(() => {
-        const from = window.location.href;
-        window.location.href = `${ROUTES.SIGNIN}?r=${encodeURIComponent(from)}`;
-      }, 500);
     }
     return Promise.reject(error);
   }

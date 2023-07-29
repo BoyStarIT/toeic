@@ -3,41 +3,11 @@ import { styled, theme } from '@styles/theme';
 export const SignInPageWrapper = styled.div`
   // layout
   display: flex;
-  @media (max-width: 769px) {
-    flex-direction: column;
-  }
-  .left-content,
-  .right-content {
-    flex: 0 0 50%;
-  }
-  .left-content {
+  .login-content {
+    flex: 0 0 100%;
     padding: 8vh 8vw 8vh 10vw;
     @media (max-width: 769px) {
       padding-bottom: 75px;
-    }
-  }
-  .right-content {
-    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-    position: relative;
-    min-height: 100vh;
-
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44vw;
-    }
-    @media (max-width: 769px) {
-      min-height: 285px;
-      img {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        left: unset;
-        transform: unset;
-        width: 198px;
-      }
     }
   }
   //end
@@ -45,16 +15,7 @@ export const SignInPageWrapper = styled.div`
   .form-login-wrap {
     max-width: 660px;
     margin: 0 auto;
-    .login-logo {
-      margin-bottom: 64px;
-      @media (max-width: 769px) {
-        margin-bottom: 30px;
-        text-align: center;
-        img {
-          width: 160px;
-        }
-      }
-    }
+
     .header-login-wrap {
       margin-bottom: 64px;
 
@@ -65,13 +26,6 @@ export const SignInPageWrapper = styled.div`
         letter-spacing: 0.3px;
         margin-bottom: 16px;
         color: #272727;
-      }
-      .des-login {
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 23px;
-        letter-spacing: 0.2625px;
-        color: rgba(39, 39, 39, 0.85);
       }
 
       @media (max-width: 769px) {

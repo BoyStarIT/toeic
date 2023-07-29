@@ -3,9 +3,14 @@ import React from 'react';
 import Home from '@containers/Home/Home';
 import Config from '@root/config';
 import { ROUTES } from '@constants';
+import MainLayout from '@ui/MainLayout';
 
 const HomePage = () => {
-  return <Home />;
+  return (
+    <MainLayout>
+      <Home />
+    </MainLayout>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

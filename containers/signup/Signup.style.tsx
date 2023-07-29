@@ -3,40 +3,11 @@ import { styled, theme } from '@styles/theme';
 export const SignUpPageWrapper = styled.div`
   // layout
   display: flex;
-  @media (max-width: 769px) {
-    flex-direction: column;
-  }
-  .left-content,
-  .right-content {
-    flex: 0 0 50%;
-  }
-  .left-content {
+  .register-content {
+    flex: 0 0 100%;
     padding: 10vh 7.3vw 10vh 9.3vw;
     @media (max-width: 769px) {
       padding-bottom: 75px;
-    }
-  }
-  .right-content {
-    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-    position: relative;
-    min-height: 100vh;
-    img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 44vw;
-    }
-    @media (max-width: 769px) {
-      min-height: 285px;
-      img {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        left: unset;
-        transform: unset;
-        width: 198px;
-      }
     }
   }
   //end

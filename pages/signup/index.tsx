@@ -1,10 +1,13 @@
 import SignUp from '@containers/signup/Signup';
+import MainLayout from '@ui/MainLayout';
 
 const SignUpPage = () => {
   return (
-    <div className="sign-up-layout">
-      <SignUp />
-    </div>
+    <MainLayout>
+      <div className="sign-up-layout">
+        <SignUp />
+      </div>
+    </MainLayout>
   );
 };
 

@@ -1,10 +1,13 @@
 import SignIn from '@containers/signin/SignIn';
+import MainLayout from '@ui/MainLayout';
 
 const SignInPage = () => {
   return (
-    <div className="sign-in-layout">
-      <SignIn />
-    </div>
+    <MainLayout>
+      <div className="sign-in-layout">
+        <SignIn />
+      </div>
+    </MainLayout>
   );
 };
 
