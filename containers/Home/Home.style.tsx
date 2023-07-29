@@ -3,7 +3,8 @@ import { styled, theme } from '@styles/theme';
 export const HomePageWrapper = styled.div``;
 export const HeaderWrap = styled.div`
   background-color: #2e72b1;
-
+  display: flex;
+  justify-content: center;
   .heading-wrap {
     display: flex;
     justify-content: space-between;
@@ -11,8 +12,6 @@ export const HeaderWrap = styled.div`
     gap: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    display: flex;
-    justify-content: center;
   }
 
   color: #9bc9ff;
