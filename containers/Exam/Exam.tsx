@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Col, Progress, Row } from 'antd';
 import { ContentWrapper } from './Exam.style';
 import { RightOutlined } from '@ant-design/icons';
 
@@ -110,27 +110,6 @@ const Exam = () => {
                     <div className="question-palette-footer question-palette-footer-custom" />
                   </div>
                 </div>
-                <div style={{ marginBottom: 20 }}>
-                  <ins className="thirdpartyads">
-                    <a
-                      href="/get-pro?from=banner&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content=&utm_content="
-                      target="_self"
-                      rel="nofollow noopener"
-                    >
-                      <img
-                        alt=""
-                        sizes="100vw"
-                        srcSet="/_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=640&q=75 640w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=750&q=75 750w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=828&q=75 828w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=1080&q=75 1080w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=1200&q=75 1200w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=1920&q=75 1920w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=2048&q=75 2048w, /_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=3840&q=75 3840w"
-                        src="/_next/image/?url=%2Fimages%2Fget-pro%2Ftoeic%2Fadvertisement%2Frect.png&w=3840&q=75"
-                        height={250}
-                        decoding="async"
-                        data-nimg="future"
-                        loading="lazy"
-                        style={{ maxWidth: '100%', height: 'auto', width: '100%' }}
-                      />
-                    </a>
-                  </ins>
-                </div>
                 <div className="current-level-list-label">Lessons</div>
                 <div
                   id="current-topic-lesson-list"
@@ -221,379 +200,419 @@ const Exam = () => {
                 </div>
                 <div className="current-level-list-label">Practices</div>
                 <div id="current-topic-list" className="current-topic-list" style={{ height: 130 }}>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-11v3ovr">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="614be60365d71f3a51f67196"
-                        className="topic-level-item current-level after-connector"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 1</span>
-                        </span>
+                  <Row gutter={[8, 8]} className="mb-2">
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
                         <div
-                          className="level-progress current-level"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '33%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="614be60365d71f3a51f67196"
+                          className="topic-level-item current-level after-connector"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 1</span>
+                          </span>
+                          <div
+                            className="level-progress current-level"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '33%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="614be60765d71f3a51f67197"
-                        className="topic-level-item after-connector no-progress after-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 2</span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="614be60765d71f3a51f67197"
+                          className="topic-level-item after-connector no-progress after-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 2</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="614be60d65d71f3a51f67198" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 3 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
+                        <div id="614be60d65d71f3a51f67198" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 3 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row gutter={[8, 8]} className="mb-2 css-8o4imz">
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="614be61765d71f3a51f67199"
+                          className="topic-level-item after-connector-reversed before-connector no-progress after-connector-2 before-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 4</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-8o4imz">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="614be61765d71f3a51f67199"
-                        className="topic-level-item after-connector-reversed before-connector no-progress after-connector-2 before-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 4</span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="614be61f65d71f3a51f6719a"
+                          className="topic-level-item after-connector-reversed no-progress after-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 5 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="614be61f65d71f3a51f6719a"
-                        className="topic-level-item after-connector-reversed no-progress after-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 5 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
+                        <div id="614be62465d71f3a51f6719b" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 6</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row gutter={[8, 8]} className="mb-2">
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="614be62965d71f3a51f6719c"
+                          className="topic-level-item after-connector before-connector no-progress after-connector-2 before-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 7</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="614be62465d71f3a51f6719b" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 6</span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62e9f9865948b5402da82368"
+                          className="topic-level-item after-connector no-progress after-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 8 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-11v3ovr">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="614be62965d71f3a51f6719c"
-                        className="topic-level-item after-connector before-connector no-progress after-connector-2 before-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 7</span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="css-yp9ue7">
+                        <div id="614be63565d71f3a51f6719e" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 9</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row gutter={[8, 8]} className="mb-2 css-8o4imz">
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="614be64865d71f3a51f671a1"
+                          className="topic-level-item after-connector-reversed before-connector no-progress after-connector-2 before-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 10 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62e9f9865948b5402da82368"
-                        className="topic-level-item after-connector no-progress after-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 8 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62ea37995948b5402da824ef"
+                          className="topic-level-item after-connector-reversed no-progress after-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 11 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="614be63565d71f3a51f6719e" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 9</span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
+                        <div id="62ea37b85948b5402da824f1" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 12 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row gutter={[8, 8]} className="mb-2">
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62ea37c15948b5402da824f3"
+                          className="topic-level-item after-connector before-connector no-progress after-connector-2 before-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 13 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-8o4imz">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="614be64865d71f3a51f671a1"
-                        className="topic-level-item after-connector-reversed before-connector no-progress after-connector-2 before-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 10 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62ea37d55948b5402da824f5"
+                          className="topic-level-item after-connector no-progress after-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 14</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62ea37995948b5402da824ef"
-                        className="topic-level-item after-connector-reversed no-progress after-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 11 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
+                        <div id="62ea4c145948b5402da8250f" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 15 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row gutter={[8, 8]} className="mb-2 css-8o4imz">
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62ea4c1c5948b5402da82511"
+                          className="topic-level-item after-connector-reversed before-connector no-progress after-connector-2 before-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 16 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="62ea37b85948b5402da824f1" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 12 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62ea4c235948b5402da82513"
+                          className="topic-level-item after-connector-reversed no-progress after-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 17 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-11v3ovr">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62ea37c15948b5402da824f3"
-                        className="topic-level-item after-connector before-connector no-progress after-connector-2 before-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 13 </span>
-                        </span>
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
+                        <div id="62ea4c295948b5402da82515" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 18 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row gutter={[8, 8]} className="mb-2">
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
                         <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                          id="62ea4c305948b5402da82517"
+                          className="topic-level-item after-connector before-connector no-progress after-connector-2 before-connector-2"
+                        >
+                          <span className="level-wrap">
+                            <span className="level-name">Test 19 </span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62ea37d55948b5402da824f5"
-                        className="topic-level-item after-connector no-progress after-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 14</span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
+                    </Col>
+                    <Col span={8}>
+                      <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
+                        <div id="62ea4c375948b5402da82519" className="topic-level-item no-progress">
+                          <span className="level-wrap">
+                            <span className="level-name">Test 20</span>
+                          </span>
+                          <div
+                            className="level-progress"
+                            style={{
+                              background: 'rgb(255, 255, 255)',
+                              width: '0%',
+                              borderTopRightRadius: 0,
+                              borderBottomRightRadius: 0,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="62ea4c145948b5402da8250f" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 15 </span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-8o4imz">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62ea4c1c5948b5402da82511"
-                        className="topic-level-item after-connector-reversed before-connector no-progress after-connector-2 before-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 16 </span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62ea4c235948b5402da82513"
-                        className="topic-level-item after-connector-reversed no-progress after-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 17 </span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="62ea4c295948b5402da82515" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 18 </span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 topic-levels css-11v3ovr">
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div
-                        id="62ea4c305948b5402da82517"
-                        className="topic-level-item after-connector before-connector no-progress after-connector-2 before-connector-2"
-                      >
-                        <span className="level-wrap">
-                          <span className="level-name">Test 19 </span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-yp9ue7">
-                      <div id="62ea4c375948b5402da82519" className="topic-level-item no-progress">
-                        <span className="level-wrap">
-                          <span className="level-name">Test 20</span>
-                        </span>
-                        <div
-                          className="level-progress"
-                          style={{
-                            background: 'rgb(255, 255, 255)',
-                            width: '0%',
-                            borderTopRightRadius: 0,
-                            borderBottomRightRadius: 0,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                    </Col>
+                  </Row>
                 </div>
                 <div className="sub-list-container">
                   <div id="sub-topic-list" className="">
@@ -602,25 +621,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 1: PHOTOS</div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={6}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-94%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'rgb(98, 185, 102)', marginLeft: 4 }}
-                        >
-                          6%
-                        </div>
+                        <Progress percent={6} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="614be5ef65d71f3a51f67195" className="sub-topic-item">
@@ -628,25 +629,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 2: QUESTION- RESPONSE</div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={8}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-92%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'rgb(98, 185, 102)', marginLeft: 4 }}
-                        >
-                          8%
-                        </div>
+                        <Progress percent={8} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="61123a8c1e6e0c7cbe1059c4" className="sub-topic-item">
@@ -654,25 +637,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 3: CONVERSATIONS</div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={4}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-96%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'rgb(98, 185, 102)', marginLeft: 4 }}
-                        >
-                          4%
-                        </div>
+                        <Progress percent={4} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="6135c39d08e2737191f34a96" className="sub-topic-item">
@@ -680,25 +645,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 4: SHORT TALKS </div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={0}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-100%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'unset', marginLeft: 4 }}
-                        >
-                          0%
-                        </div>
+                        <Progress percent={0} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="613ffc9d65d71f3a51f6282e" className="sub-topic-item">
@@ -708,25 +655,7 @@ const Exam = () => {
                         </div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={4}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-96%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'rgb(98, 185, 102)', marginLeft: 4 }}
-                        >
-                          4%
-                        </div>
+                        <Progress percent={66} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="6140000a65d71f3a51f62a91" className="sub-topic-item">
@@ -734,25 +663,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 6: TEXT COMPLETION </div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={0}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-100%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'unset', marginLeft: 4 }}
-                        >
-                          0%
-                        </div>
+                        <Progress percent={0} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="6140116b65d71f3a51f62c40" className="sub-topic-item">
@@ -760,25 +671,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 7: SINGLE PASSAGES</div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={0}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-100%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'unset', marginLeft: 4 }}
-                        >
-                          0%
-                        </div>
+                        <Progress percent={0} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="6140117865d71f3a51f62c41" className="sub-topic-item">
@@ -786,25 +679,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 7: DOUBLE PASSAGES </div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={0}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-100%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'unset', marginLeft: 4 }}
-                        >
-                          0%
-                        </div>
+                        <Progress percent={0} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                     <div id="6140118465d71f3a51f62c42" className="sub-topic-item">
@@ -812,25 +687,7 @@ const Exam = () => {
                         <div className="sub-topic-item-name dot-1">PART 7: TRIPLE PASSAGES </div>
                       </div>
                       <div className="sub-topic-progress">
-                        <span
-                          className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-determinate sub-topic-progress-bar css-7p5u54"
-                          role="progressbar"
-                          aria-valuenow={0}
-                          aria-valuemin={0}
-                          aria-valuemax={100}
-                          style={{ flex: '1 1 0%' }}
-                        >
-                          <span
-                            className="MuiLinearProgress-bar jss2 MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Determinate css-t752vm"
-                            style={{ transform: 'translateX(-100%)' }}
-                          />
-                        </span>
-                        <div
-                          className="topic-progress-percent"
-                          style={{ color: 'unset', marginLeft: 4 }}
-                        >
-                          0%
-                        </div>
+                        <Progress percent={0} strokeColor={'#4CAF50'} />
                       </div>
                     </div>
                   </div>
@@ -839,18 +696,6 @@ const Exam = () => {
               </div>
             </div>
             <div className="study-layout-item study-layout-mid">
-              <div style={{ marginBottom: 20 }}>
-                <ins
-                  className="adsbygoogle "
-                  data-ad-client="ca-pub-2966340675066013"
-                  data-ad-slot={4755848407}
-                  data-ad-layout=""
-                  data-ad-layout-key=""
-                  data-ad-format=""
-                  data-full-width-responsive="true"
-                  style={{ display: 'block', width: '100%', height: 90 }}
-                />
-              </div>
               <div id="game-view-container" className="game-view-container-main">
                 <div id="main-game-view" className="">
                   <div id="main-game-scroll-panel" className="main-game-object">
@@ -875,11 +720,11 @@ const Exam = () => {
                               <path
                                 className="CircularProgressbar-trail"
                                 d="
-M 50,50
-m 0,-47
-a 47,47 0 1 1 0,94
-a 47,47 0 1 1 0,-94
-    "
+                                  M 50,50
+                                  m 0,-47
+                                  a 47,47 0 1 1 0,94
+                                  a 47,47 0 1 1 0,-94
+                                      "
                                 strokeWidth={6}
                                 fillOpacity={0}
                                 style={{
@@ -891,11 +736,11 @@ a 47,47 0 1 1 0,-94
                               <path
                                 className="CircularProgressbar-path"
                                 d="
-M 50,50
-m 0,-47
-a 47,47 0 1 1 0,94
-a 47,47 0 1 1 0,-94
-    "
+                                M 50,50
+                                m 0,-47
+                                a 47,47 0 1 1 0,94
+                                a 47,47 0 1 1 0,-94
+                                    "
                                 strokeWidth={6}
                                 fillOpacity={0}
                                 style={{
@@ -1992,18 +1837,6 @@ a 47,47 0 1 1 0,-94
                     <hr className="MuiDivider-root MuiDivider-fullWidth css-39bbo6" />
                   </div>
                   <div id="review-614be68d65d71f3a51f671aa">
-                    <div>
-                      <ins
-                        className="adsbygoogle "
-                        data-ad-client="ca-pub-2966340675066013"
-                        data-ad-slot={3713692411}
-                        data-ad-layout=""
-                        data-ad-layout-key=""
-                        data-ad-format=""
-                        data-full-width-responsive="false"
-                        style={{ display: 'block', width: '100%', height: 90 }}
-                      />
-                    </div>
                     <div className="question-index-title">Question 3: </div>
                     <div className="game-object-view-container">
                       <div className="game-object-menu game-object-view-menu">
