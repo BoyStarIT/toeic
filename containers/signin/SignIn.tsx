@@ -66,7 +66,7 @@ const SignIn: React.FC = () => {
       <div className="login-content">
         <div className="form-login-wrap">
           <div className="header-login-wrap">
-            <div className="title-login">Login</div>
+            <div className="title-form">Login</div>
           </div>
           <div className="form-login-content">
             <div className="form-login">

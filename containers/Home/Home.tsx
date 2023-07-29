@@ -38,37 +38,6 @@ const Home = () => {
     router.push(ROUTES.WELCOME);
   };
 
-  const [wallet, setWallet] = useState({ hic: 0, usd: 0, hpoint: 0 });
-  useEffect(() => {
-    // try {
-    //   const resp: any = getWallet();
-    //   const error = resp.data?.error;
-    //   const respData = resp.data?.data;
-    //   if (error) {
-    //     stop();
-    //     Message.error(error?.message ?? 'Something error!');
-    //   } else {
-    //     if (respData != null) {
-    //       setWallet(respData);
-    //     }
-    //   }
-    // } catch (err) {
-    //   stop();
-    //   console.log('onSubmit-error :>> ', err.toString());
-    // } finally {
-    // }
-    // const cookies = new Cookies();
-    // const token = cookies.get(Config.AUTH_TOKEN_KEY);
-    // if (!token) {
-    //   router.push(ROUTES.SIGNIN);
-    // } else {
-    //   const data = reactLocalStorage.getObject(Config.WALLET_KEY, null);
-    //   if (data) {
-    //     setWallet(data);
-    //   }
-    // }
-  }, []);
-
   return (
     <HomePageWrapper>
       <BannerWrap>

@@ -1,6 +1,7 @@
 import { styled } from '@styles/theme';
 
 export const Layout = styled.div``;
+
 export const HeaderWrap = styled.div`
   background-color: #2e72b1;
   display: flex;
@@ -39,6 +40,44 @@ export const HeaderWrap = styled.div`
     .ant-menu-submenu-active,
     .ant-menu-submenu-title:hover {
       color: #ffffff;
+    }
+  }
+`;
+export const FooterWrap = styled.footer`
+  .footer-below {
+    font-size: 18px;
+    font-weight: 500;
+    background: var(--footer2Bg);
+    color: var(--footer2TextColor);
+    .footer-below-wrap {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 10px;
+      .license {
+        font-style: italic;
+        max-width: 60%;
+        font-size: 13px;
+        text-align: justify;
+      }
+      .social-main-panel {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 31px 0;
+      }
+      .social-label {
+        margin-right: 22px;
+      }
+      .social-link-icons {
+        display: flex;
+        align-items: center;
+      }
+      .social-item-icon {
+        margin-left: 10px;
+      }
     }
   }
 `;

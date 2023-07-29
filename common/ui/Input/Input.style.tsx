@@ -3,7 +3,7 @@ import { Input } from 'antd';
 
 export const StyledInput = styled(Input)`
   background: #f5f6f8;
-  border: 1px solid #dedede;
+  border: 1px solid #dedede !important;
   border-radius: 4px;
   height: 56px;
   font-weight: 500;
@@ -12,13 +12,11 @@ export const StyledInput = styled(Input)`
   letter-spacing: 0.4375px;
   color: #272727;
   &:focus,
-  &.ant-input-focused {
-    border-color: ${theme.colors.primary};
-    box-shadow: none;
-  }
+  &.ant-input-focused,
   &:hover {
-    border-color: ${theme.colors.primary};
+    box-shadow: 0 0 3px 1px #dedede;
   }
+
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus {

@@ -11,7 +11,14 @@ export const SignInPageWrapper = styled.div`
     }
   }
   //end
-
+  .title-form {
+    color: #29313a;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 30px;
+    text-transform: uppercase;
+  }
   .form-login-wrap {
     max-width: 660px;
     margin: 0 auto;

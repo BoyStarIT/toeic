@@ -3,6 +3,6 @@ import { ENDPOINTS } from '@constants';
 
 const { get } = API;
 
-export const getWallet = async () => {
-  return get(ENDPOINTS.USER_WALLET);
+export const getheaderInfo = async () => {
+  return get(ENDPOINTS.SKILL_HEADER);
 };

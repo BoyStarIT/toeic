@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
-import { putForgotPassword } from '@api';
-import { PATTERN_VALIDATE, ROUTES, STEP_FORGOT_PASSWORD } from '@constants';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { postForgotPassword } from '@api';
+import { PATTERN_VALIDATE, ROUTES } from '@constants';
 import { useLoading } from '@hooks';
+import { Button } from '@ui/Button';
+import Input from '@ui/Input/Input';
 import { Message } from '@utils';
 import { Form } from 'antd';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { ForgotPasswordPageWrapper } from './ForgotPassword.style';
-import Input from '@ui/Input/Input';
-import { Button } from '@ui/Button';
-import VerificationCode from './VerificationCode';
-import FormChangePassword from './FormChangePassword';
 import Link from 'next/link';
-import { useBreakpoints } from '@contexts/breakpointsContext';
 
 const ForgotPassword: React.FC = () => {
   const [form] = Form.useForm();
-  const { mobileMode, breakpoints, tabletDown } = useBreakpoints();
+  const router = useRouter();
   const [{ isLoading }, { start, stop }] = useLoading();
-  const [email, setEmail] = useState<string>('');
-  const [resetCode, setResetCode] = useState<string>('');
-  const [step, setStep] = useState<string>(STEP_FORGOT_PASSWORD.sendEmail);
 
   const onSubmit = async (data) => {
     start();
     try {
-      const resp: any = await putForgotPassword(data);
+      const params = {
+        email: data.email,
+      };
+      const resp: any = await postForgotPassword(params);
       const error = resp.data.error;
       const respData = resp.data?.data;
       if (error) {
@@ -31,192 +30,68 @@ const ForgotPassword: React.FC = () => {
         Message.error(error?.message ?? 'Something error!');
       } else {
         console.log('respData', respData);
-        setEmail(data.email);
-        setStep(STEP_FORGOT_PASSWORD.verificationCode);
+        router.push(ROUTES.SIGNIN);
       }
     } catch (err) {
       stop();
       console.log('onSubmit-error :>> ', err.toString());
     } finally {
-      setEmail(data.email);
-      setStep(STEP_FORGOT_PASSWORD.verificationCode);
+      stop();
     }
-  };
-
-  const onSetStep = (value) => {
-    setStep(value);
   };
 
   return (
     <ForgotPasswordPageWrapper>
-      {tabletDown ? (
-        <>
-          <div className="right-content login-right-content">
-            <div className="right-bg-wrap">
-              <img src={'/static/images/login-right-bg.png'} />
+      <div className="forgot-password-content ">
+        <div className="form-login-wrap">
+          <div className="title-form">Reset your password</div>
+          <div className="header-login-wrap">
+            <Button className="btn-back">
+              <Link href={ROUTES.SIGNIN}>
+                <span>
+                  <ArrowLeftOutlined />
+                  Back
+                </span>
+              </Link>
+            </Button>
+            <div className="des-login">
+              Lost your password? Please enter your email address. You will receive a link to create
+              a new password via email.
             </div>
           </div>
-          <div className="left-content login-left-content">
-            <div className="form-login-wrap">
-              <div className="logo login-logo">
-                <img src={'/static/images/Logo.png'} />
-              </div>
+          <div className="form-login-content">
+            <div className="form-login">
+              <Form
+                form={form}
+                name="login"
+                layout={'vertical'}
+                onFinish={onSubmit}
+                autoComplete="off"
+                requiredMark={false}
+              >
+                <Form.Item
+                  name="email"
+                  rules={[
+                    { required: true, message: 'Please input your email address!' },
+                    {
+                      pattern: PATTERN_VALIDATE.email.value,
+                      message: PATTERN_VALIDATE.email.message,
+                    },
+                  ]}
+                >
+                  <Input placeholder="Email Address" />
+                </Form.Item>
 
-              {step === STEP_FORGOT_PASSWORD.sendEmail && (
-                <>
-                  <div className="header-login-wrap">
-                    <div className="title-login">Forgot Password?</div>
-                  </div>
-                  <div className="header-login-wrap-mobile">
-                    <div className="des-login">
-                      Enter the email address associated with your account
-                    </div>
-                  </div>
-                  <div className="form-login-content">
-                    <div className="form-login">
-                      <Form
-                        form={form}
-                        name="login"
-                        layout={'vertical'}
-                        onFinish={onSubmit}
-                        autoComplete="off"
-                        requiredMark={false}
-                      >
-                        <Form.Item
-                          name="email"
-                          rules={[
-                            { required: true, message: 'Please input your email address!' },
-                            {
-                              pattern: PATTERN_VALIDATE.email.value,
-                              message: PATTERN_VALIDATE.email.message,
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Email Address" />
-                        </Form.Item>
-
-                        <div className="action-wrap">
-                          <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="btn-signin"
-                            loading={isLoading}
-                          >
-                            Submit
-                          </Button>
-                        </div>
-                      </Form>
-                    </div>
-                  </div>
-                </>
-              )}
-              {step === STEP_FORGOT_PASSWORD.verificationCode && (
-                <VerificationCode email={email} onSetStep={onSetStep} setResetCode={setResetCode} />
-              )}
-              {step === STEP_FORGOT_PASSWORD.changePassword && (
-                <FormChangePassword email={email} onSetStep={onSetStep} resetCode={resetCode} />
-              )}
-              {step === STEP_FORGOT_PASSWORD.success && (
-                <>
-                  <div className="header-login-wrap">
-                    <div className="title-login">Forgot Password?</div>
-                  </div>
-                  <div className="register-success-wrap">
-                    <div className="register-success-title">
-                      Congratulations, you have changed your password!
-                    </div>
-                    <div className="btn-to-login ">
-                      <Link href={ROUTES.SIGNIN}>
-                        <span className="btn-to-login-text"> Go to wallet</span>
-                      </Link>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="left-content login-left-content">
-            <div className="form-login-wrap">
-              <div className="logo login-logo">
-                <img src={'/static/images/Logo.png'} />
-              </div>
-              {step === STEP_FORGOT_PASSWORD.sendEmail && (
-                <>
-                  <div className="header-login-wrap">
-                    <div className="title-login">Forgot Password?</div>
-                    <div className="des-login">
-                      Enter the email address associated with your account
-                    </div>
-                  </div>
-                  <div className="form-login-content">
-                    <div className="form-login">
-                      <Form
-                        form={form}
-                        name="login"
-                        layout={'vertical'}
-                        onFinish={onSubmit}
-                        autoComplete="off"
-                        requiredMark={false}
-                      >
-                        <Form.Item
-                          name="email"
-                          rules={[
-                            { required: true, message: 'Please input your email address!' },
-                            {
-                              pattern: PATTERN_VALIDATE.email.value,
-                              message: PATTERN_VALIDATE.email.message,
-                            },
-                          ]}
-                        >
-                          <Input placeholder="Email Address" />
-                        </Form.Item>
-
-                        <div className="action-wrap">
-                          <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="btn-signin"
-                            loading={isLoading}
-                          >
-                            Submit
-                          </Button>
-                        </div>
-                      </Form>
-                    </div>
-                  </div>
-                </>
-              )}
-              {step === STEP_FORGOT_PASSWORD.verificationCode && (
-                <VerificationCode email={email} onSetStep={onSetStep} setResetCode={setResetCode} />
-              )}
-              {step === STEP_FORGOT_PASSWORD.changePassword && (
-                <FormChangePassword email={email} onSetStep={onSetStep} resetCode={resetCode} />
-              )}
-              {step === STEP_FORGOT_PASSWORD.success && (
-                <div className="register-success-wrap">
-                  <div className="register-success-title">
-                    {' '}
-                    Congratulations, you have changed your password!
-                  </div>
-                  <div className="btn-to-login ">
-                    <Link href={ROUTES.SIGNIN}>
-                      <span className="btn-to-login-text"> Go to wallet</span>
-                    </Link>
-                  </div>
+                <div className="action-wrap">
+                  <Button htmlType="submit" className="btn-signin" loading={isLoading}>
+                    Reset password
+                  </Button>
                 </div>
-              )}
+              </Form>
             </div>
           </div>
-          <div className="right-content login-right-content">
-            <div className="right-bg-wrap">
-              <img src={'/static/images/login-right-bg.png'} />
-            </div>
-          </div>
-        </>
-      )}
+        </div>
+      </div>
     </ForgotPasswordPageWrapper>
   );
 };

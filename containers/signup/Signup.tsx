@@ -23,20 +23,20 @@ const SignUp: React.FC = () => {
     start();
     try {
       const params = {
-        email: data.username,
+        email: data.email,
         password: data.password,
         firstName: data.username,
         lastName: data.username,
-        address: 'Da Ton, Gia Lam, Ha Noi',
-        phone: '+84900000008',
+        // address: 'Da Ton, Gia Lam, Ha Noi',
+        // phone: '+84900000008',
         role: 'User',
-        dob: '10/12/2000',
-        gender: 'Male',
-        key: '03AAYGu2Tg3TiiW61K3go8fg87EYW_tMUVOkCbPA6UGOi3t14UxjQ7FRds4LlmZ_bW4JONKhiFblVAe5RWjJrmkq7wSPIAQ17xEtDVH5-ukwSeBKYx-0nQwzMhr_C8xVOGMX9l8pjpkeYiNreUGR1zTtKh1ULAVhOTg2exw0WwjUoNWhboDIIMJUgqgD34xrPesoocbKo3MxPP_-6iIfI8UAHaL97PzMQ0WxLF3s9scPbfcDDn5P-ooVdLMtDpvtNreo2Nqev1JTtaXUevQH9gUfEi4U5ICJSFInXytWHIR3ZusOUPFNizjdOi9N7AxNa1rTtHHgaskeGH84bGoM9JL4_Gn6Gtp9kxPoLTzE0I83MGnR4yqeuSypTe0X-vr0u5K21-xw-SeJ2AGLt-WDi5ia4GRjW08J-UOQ_ZixylGXi8DGpfdXN7Kquqcb3XCsyJWhIuX0l2Ys39SA1-DSpzp1F7-DYqmiWj9gEuGERd3_C57KQFx3EDg32HNA11vc0a9WVHP9FKjEMiRxIMkdRn2S1qdx9gMw7TV07dNkI-RrmITEWm9onOldDp87M9Re3doOUVhoiJT8NLY74GFSYYhbDKggFCzsA3d3BxzSgSEZDn4oCMrBSQ7vHS6JwIX6FcLabpIOSNGWXj5hq57YSipXbZPla4uyodcMoizd7kSywLc2pWTUUyMQOAUUxxbPPht-zVO7DLlPI5zX6RRt6uEA3QYTJIRkQ0j6gOc7EVsg8jpy9iPXWBSzaOt0UY9T4qFqyjSxAQeaUfemU0d4NSzZssl0vsV5ouu6xLCoOZ-hDyvqoubdS1XmgjkkrYkSrf-EpWe_b69EVifomyRYUzYSLWaIdM4cELEMjlgD4z7uD4ikxLXGfTWbKf6axl2jw3nnnArtLnr4avHnyX9fkQDgfEtI3HwQ-5erauKally5noR5nZDncMuJgIlyNmlDSE0K9rN8jfyxpOdLTLMrJg5JASN6gFp9ukE0GSRPIeOfW1bcDb0k_0DPNOxcNVpY4D3cmERC-hucTEqxzn1ZLxmsCZKri2R5VVOaiJhEKZ23f-sWBfQLtJavOpXa8miig8O2y8xy6V8NsVAcV7cbgKrLOxcjNmaBMLOOZj4sJNUpODI0I6o5MX8Uzxh8ExadnmYU8NwKPZqdB8f32s0lTBaRBxPykOw7tVwfZVt0zqzQ_-VUb2ZaUYDM9DjCEkJbjRPErjpoI9GyWG8ChXYHKFyilW_XvWVNapfDlJf8aATupSgtkkZdWEiEWtWOaFudO9K5W_mMJBi7C6l6aQsBSUUBdGSbJyG3SWdbzy3_cfiIA9VMboL2v5lPZeGVZKbHOOZzqKFpKAhmnC1ewaThwaVNGNE_xcZ3diclqDHfJMhTptG6cmsPXKcSi5XEwZP5Vs7985OS8MkiG3XnTDQztrm8rNz01kFhr1NlOn7Jqi6i-xSax5kYaH6cZZZ0HLBwJMVpm3EPb-Ci3sj5-aPDA3LxyS14MLRP9sgY8OKgvxgneMX5OrEvTje2w',
+        // dob: '10/12/2000',
+        // gender: 'Male',
       };
+
       const resp: any = await postRegister(params);
       const error = resp.data.error;
-      const respData = resp.data?.data;
+      const respData = resp.data?.responseData;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');

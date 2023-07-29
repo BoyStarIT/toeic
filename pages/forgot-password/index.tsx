@@ -1,10 +1,13 @@
 import ForgotPassword from '@containers/forgot-password/ForgotPassword';
+import MainLayout from '@ui/MainLayout';
 
 const ForgotPasswordPage = () => {
   return (
-    <div className="forgot-password-layout">
-      <ForgotPassword />
-    </div>
+    <MainLayout>
+      <div className="forgot-password-layout">
+        <ForgotPassword />
+      </div>
+    </MainLayout>
   );
 };
 

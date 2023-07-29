@@ -2,9 +2,9 @@ export const ENDPOINTS = {
   LOGIN: `app/login`,
   LOGOUT: `logout`,
   REGISTER: `public/register/user`,
-  ACTIVATE: `user/activate`,
+  SKILL_HEADER: `skill/header`,
   VERIFY: `user/resetpassword/verify`,
-  FORGOTPASS: `user/forgotpassword`,
-  RESETPASS: `user/resetpassword`,
+  FORGOTPASS: `user/pwd/forgot`,
+  RESETPASS: `user/pwd/reset`,
   CHANGEPASS: `user/changepassword`,
 };

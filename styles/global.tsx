@@ -9,8 +9,13 @@ export const globalStyles = (
       }
 
       body {
-        font-size: 0.875rem;
+        margin: 0;
+        color: rgba(0, 0, 0, 0.87);
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 1rem;
         line-height: 1.5;
+        background-color: #fff;
         overflow-x: hidden;
       }
       #main-app {
@@ -59,10 +64,30 @@ export const globalStyles = (
         line-height: 1;
       }
 
+      h2 {
+        display: block;
+        font-size: 1.5em;
+        margin-block-start: 0.83em;
+        margin-block-end: 0.83em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+      }
+      h3 {
+        display: block;
+        font-size: 1.17em;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+      }
       p {
-        font-size: 1rem;
-        line-height: 1;
-        margin-bottom: 0.5rem;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
       }
 
       a {
@@ -84,16 +109,36 @@ export const globalStyles = (
         max-width: 100%;
       }
 
-      ul,
+      /* ul,
       ol {
         list-style: none;
         margin: 0;
         padding: 0;
-      }
+      } */
       figure {
         outline: none;
       }
+      .container-wide {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+        display: block;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
 
+      @media (min-width: 576px) {
+        .container-wide {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+      }
+
+      @media (min-width: 1536px) {
+        .container-wide {
+          max-width: 1536px;
+        }
+      }
       .container {
         width: 100%;
         margin-left: auto;
