@@ -2,7 +2,7 @@ import Exam from '@containers/Exam/Exam';
 import MainLayout from '@ui/MainLayout';
 import { GetServerSideProps } from 'next';
 
-const ExamLayout = ({ topicCode, examCode }) => {
+const ExamPage = ({ topicCode, examCode }) => {
   console.log('1111', {
     topicCode,
     examCode,
@@ -23,4 +23,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   };
 };
-export default ExamLayout;
+export default ExamPage;

@@ -1334,6 +1334,7 @@ export const ContentWrapper = styled.div`
 
   .game-object-question-sound {
     margin-bottom: 10px;
+    text-align: center;
   }
 
   @media (max-width: 768px) {
@@ -3397,10 +3398,6 @@ export const ContentWrapper = styled.div`
     margin-right: 12px;
   }
 
-  #main-game-view .main-game-object-buttons {
-    display: flex;
-  }
-
   #main-game-view .main-game-object-button {
     margin-top: 10px;
     text-transform: none;
@@ -4771,6 +4768,7 @@ export const ContentWrapper = styled.div`
     margin-bottom: 5px;
     background-color: #f2f3f7;
     height: 36px;
+    border-color: transparent;
   }
   .question-palette-root .question-palette-body .p-bookmark-icon {
     top: -6px;
@@ -5326,5 +5324,57 @@ export const ContentWrapper = styled.div`
       border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     color: rgb(25, 118, 210);
+  }
+  .css-bktioj {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    border: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-family: inherit;
+    text-transform: unset;
+    line-height: 1.75;
+    min-width: 64px;
+    padding: 6px 8px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    margin: 0px auto;
+    width: 170px;
+    height: 45px;
+    border-radius: 50px;
+    box-shadow: rgb(211, 217, 229) 0px 2px 6px 0px;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(255, 255, 255) !important;
+    background: linear-gradient(rgb(44, 225, 193) 0%, rgb(35, 202, 239) 100%) !important;
+  }
+  .slide-button-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &.first-question {
+      justify-content: end;
+    }
+    &.last-question {
+      justify-content: start;
+    }
+    > button {
+      border-radius: 25px;
+      > .anticon {
+        font-size: 14px;
+      }
+    }
   }
 `;

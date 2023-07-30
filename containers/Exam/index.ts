@@ -1,1 +1,1 @@
-export { default as Practice } from './Exam';
+export { default as ExamResult } from './ExamResult';

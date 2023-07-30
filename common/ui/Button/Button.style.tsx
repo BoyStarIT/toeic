@@ -1,17 +1,20 @@
-import { styled, theme } from "@styles/theme";
-import { Button as AntButton } from "antd";
+import { styled, theme } from '@styles/theme';
+import { Button as AntButton } from 'antd';
 
 export const StyledButton = styled((props) => <AntButton {...props} />)`
   height: 2.75rem;
   font-size: 1rem;
   line-height: 1;
   font-weight: 700;
+  color: #fff !important;
+  border-color: #2f9a4c !important;
+  background: #2f9a4c !important;
   @media ${theme.device.maxMd} {
     font-size: 0.875rem;
     padding: 0;
   }
 
-  &.public-btn{
+  &.public-btn {
     border-radius: 20px;
   }
 
@@ -22,17 +25,18 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
       transform: translateX(-50%) translateY(-50%);
     }
   }
-  .text-red{
+  .text-red {
     color: ${theme.colors.primary};
   }
 
-  ${(props) => props.shape && props.shape != "circle" && theme.mixin.borderRadius("3px")};
+  ${(props) => props.shape && props.shape != 'circle' && theme.mixin.borderRadius('3px')};
 
-  ${(props) => props.shadow && theme.mixin.boxShadow("0 0.1875rem 0.375rem rgba(0,0,0,0.16) !important")}
+  ${(props) =>
+    props.shadow && theme.mixin.boxShadow('0 0.1875rem 0.375rem rgba(0,0,0,0.16) !important')}
 
-  ${theme.mixin.transition("opacity 0.3s linear")};
+  ${theme.mixin.transition('opacity 0.3s linear')};
   &:hover:not(.not-hover) {
-    opacity: 0.8;
+    opacity: 0.6;
   }
   &.ant-btn-lg {
     min-width: 12.5rem;
@@ -67,15 +71,16 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
       position: absolute;
       top: 50%;
       left: 50%;
-      ${theme.mixin.translate("-50%", "-50%")};
+      ${theme.mixin.translate('-50%', '-50%')};
     }
   }
-  ${(props) => props.isShadow && theme.mixin.boxShadow("0 0.1875rem 0.375rem rgba(0,0,0,0.16) !important")}
+  ${(props) =>
+    props.isShadow && theme.mixin.boxShadow('0 0.1875rem 0.375rem rgba(0,0,0,0.16) !important')}
 
   ${(props) => props.height && `height: ${props.height};`}
   &.btn-outline {
     padding: 0.625rem 1.25rem;
-    ${theme.mixin.borderRadius("3px")};
+    ${theme.mixin.borderRadius('3px')};
     background: transparent;
     border-color: #fff;
   }
@@ -83,9 +88,9 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
     color: ${theme.colors.black} !important;
     border-color: ${theme.colors.black} !important;
     background: transparent;
-    ${theme.mixin.borderRadius("3px")};
+    ${theme.mixin.borderRadius('3px')};
   }
-  &.welcome-btn{
+  &.welcome-btn {
     border-radius: 20px;
   }
   &.btn-ok-channel {
@@ -109,7 +114,7 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
       width: 100px;
     }
   }
-  &.btn-submit-channel{
+  &.btn-submit-channel {
     height: 48px;
     padding: 12px 48px;
   }

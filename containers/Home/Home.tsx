@@ -5,7 +5,7 @@ import router from 'next/router';
 import { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
 import { BannerWrap, HomePageWrapper } from './Home.style';
-import { IconAppStore, IconGoogleApp } from './svgs';
+import { IconAppStore, IconGoogleApp } from '@ui/Svgs';
 
 const Home = () => {
   const onLogoutClick = () => {
