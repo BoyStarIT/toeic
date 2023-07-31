@@ -199,6 +199,15 @@ export const globalStyles = (
       .sub-title {
         font-size: 1rem;
       }
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+      .ant-input {
+        font-size: 14px;
+      }
+      .user-page {
+        background-color: rgb(242, 246, 252) !important;
+      }
     `}
   />
 );

@@ -2,12 +2,7 @@ import { styled, theme } from '@styles/theme';
 
 export const UserPageWrapper = styled.div`
   .css-wzp03g {
-    width: 100%;
-    margin: 50px auto;
-    box-sizing: border-box;
-    display: block;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-top: 50px;
   }
   .css-1aw1ced {
     margin: 0px;
@@ -118,11 +113,35 @@ export const UserPageWrapper = styled.div`
     font-size: 16px;
     font-weight: 600;
     background-color: var(--menuBackground) !important;
-    color: var(--menuTextColor) !important;
+    color: #fff;
     margin-top: auto;
     display: inline-flex;
+    &:focus,
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+  .form-input {
+    border: 1px solid #dae0ea;
+    height: 55px;
+    padding-left: 15px;
+    border-radius: 10px;
+    padding-right: 15px;
+  }
+  .form-datepicker {
+    border: 1px solid #dae0ea;
+    height: 55px;
+    padding-left: 40px;
+    border-radius: 10px;
+    padding-right: 15px;
+    vertical-align: middle;
+    width: 100%;
+  }
+  .icon-date {
     position: absolute;
-    bottom: 40px;
-    right: 60px;
+    z-index: 1;
+    top: 50%;
+    left: 18px;
+    transform: translateY(-50%);
   }
 `;

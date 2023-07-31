@@ -1,11 +1,11 @@
 import UserPage from '@containers/user';
 import MainLayout from '@ui/MainLayout';
 
-const ExamPage = () => {
+const UserProfilePage = () => {
   return (
-    <MainLayout>
+    <MainLayout className="user-page">
       <UserPage />
     </MainLayout>
   );
 };
-export default ExamPage;
+export default UserProfilePage;

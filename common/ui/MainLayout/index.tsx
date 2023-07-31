@@ -13,7 +13,7 @@ import { isEmpty } from 'lodash';
 import { Cookies } from 'react-cookie';
 import { mock_FetchHeaderInfo } from '@root/common/constants/mockData';
 
-const MainLayout: React.FC = (props) => {
+const MainLayout = (props) => {
   const router = useRouter();
   const [topics, setTopics] = useState([]);
   const UserData = reactLocalStorage.getObject(Config.USER_KEY);
@@ -134,7 +134,7 @@ const MainLayout: React.FC = (props) => {
           )}
         </div>
       </HeaderWrap>
-      <main className="main-content-layout">{props.children}</main>
+      <main className={`main-content-layout ${props?.className ?? ''}`}>{props.children}</main>
       <FooterWrap>
         <div className="footer-below ">
           <div className="container footer-below-wrap ">
