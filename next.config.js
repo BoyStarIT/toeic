@@ -41,11 +41,6 @@ module.exports = withPlugins(
       withTM,
       {
         reactStrictMode: true,
-        output: 'export',
-        distDir: '_static',
-        images: {
-          unoptimized: true,
-        },
       },
     ],
   ],

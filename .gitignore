@@ -8,3 +8,4 @@ node_modules
 !.elasticbeanstalk/*.global.yml
 
 .DS_Store
+yarn.lock
