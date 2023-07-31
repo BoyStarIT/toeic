@@ -4,6 +4,7 @@ const Config = {
   API_URL,
   AUTH_TOKEN_KEY: 'authentication',
   USER_KEY: 'user',
+  EXAM_KEY: 'exam',
   WALLET_KEY: 'wallet',
 };
 

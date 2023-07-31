@@ -5,6 +5,8 @@ import ExamResult from './ExamResult';
 import ExamStart from './ExamStart';
 import ExamView from './ExamView';
 import { listQuestions } from './mockData';
+import Config from '@root/config';
+import { reactLocalStorage } from '@utils';
 
 type ExamStatusType = 'initial' | 'starting' | 'reviewing';
 const Exam = ({ topicCode, examCode }) => {
@@ -79,9 +81,11 @@ const Exam = ({ topicCode, examCode }) => {
 
   const onUpdateListQuestion = (questions) => {
     setListQuestion(questions);
+    reactLocalStorage.setObject(Config.EXAM_KEY, questions);
   };
   useEffect(() => {
     setListQuestion(listQuestions);
+    reactLocalStorage.setObject(Config.EXAM_KEY, listQuestions);
   }, []);
   return (
     <div className="main-exam">
