@@ -5,7 +5,7 @@ import TopicListView from './TopicListView';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 
-const ExamStart = ({ listQuestion, onUpdateListQuestion }) => {
+const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const onUpdateQuestion = (newQuestion, index) => {
     const newListQuestion = [...listQuestion];
@@ -14,7 +14,11 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion }) => {
   };
 
   const onNextQuestion = () => {
-    setCurrentQuestionIndex((prev) => (prev === listQuestion.length - 1 ? prev : prev + 1));
+    if (currentQuestionIndex !== listQuestion.length - 1) {
+      setCurrentQuestionIndex((prev) => (prev === listQuestion.length - 1 ? prev : prev + 1));
+      return;
+    }
+    onSetExamStatus('reviewing');
   };
   const onPreviousQuestion = () => {
     setCurrentQuestionIndex((prev) => (prev === 0 ? prev : prev - 1));
@@ -36,20 +40,19 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion }) => {
               <div
                 className={`slide-button-box ${
                   currentQuestionIndex === 0 ? 'first-question' : ''
-                } ${currentQuestionIndex === listQuestion.length - 1 ? 'last-question' : ''}`}
+                } `}
               >
                 {currentQuestionIndex !== 0 && (
-                  <Button shape="round" onClick={onPreviousQuestion}>
+                  <Button shape="round" onClick={onPreviousQuestion} className="btn-previous">
                     <LeftOutlined />
                     {' Previous'}
                   </Button>
                 )}
-                {currentQuestionIndex !== listQuestion.length - 1 && (
-                  <Button shape="round" onClick={onNextQuestion}>
-                    {'Next '}
-                    <RightOutlined />
-                  </Button>
-                )}
+
+                <Button shape="round" onClick={onNextQuestion} className="btn-next">
+                  {currentQuestionIndex !== listQuestion.length - 1 ? 'Next ' : 'View Result '}
+                  <RightOutlined />
+                </Button>
               </div>
             )}
           </div>

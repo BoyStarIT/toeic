@@ -5,40 +5,87 @@ import { HeaderWrap, Layout, FooterWrap } from './index.style';
 import { Menu } from 'antd';
 import { getheaderInfo } from '@api';
 import { Message } from '@utils';
+import { useRouter } from 'next/router';
 
 const MainLayout: React.FC = (props) => {
+  const router = useRouter();
   const [topics, setTopics] = useState([]);
 
   const fetchHeaderInfo = async () => {
     try {
-      const resp = await getheaderInfo();
-      const error = resp.data?.error;
-      const respData = resp.data?.responseData;
-      if (error) {
-        stop();
-        Message.error(error?.message ?? 'Something error! Try again later');
-      } else {
-        console.log('respData', respData);
-        setTopics(respData);
-      }
+      // const resp = await getheaderInfo();
+      // const error = resp.data?.error;
+      // const respData = resp.data?.responseData;
+      const mockData = {
+        responseData: [
+          {
+            id: '64ba2d0f5b34203f21ffa6d8',
+            name: 'Practice Listening',
+            topics: [
+              {
+                topicId: '64ba2d0f5b34203f21ffa6db',
+                topicName: 'Part 1: Photos',
+                // slug: 'part-1-photos',
+              },
+              {
+                topicId: '64ba2d0f5b34203f21ffa6dc',
+                topicName: 'Part 2: Question - Response',
+                // slug: 'part-2-question-response',
+              },
+            ],
+          },
+          {
+            id: '64ba2d0f5b34203f21ffa6d9',
+            name: 'Practice Reading',
+            topics: [],
+          },
+        ],
+      };
+      setTopics(mockData.responseData);
+
+      // if (error) {
+      //   stop();
+      //   Message.error(error?.message ?? 'Something error! Try again later');
+      // } else {
+      //   console.log('respData', respData);
+      //   setTopics(respData);
+      // }
     } catch (error) {}
   };
   useEffect(() => {
-    void fetchHeaderInfo();
+    fetchHeaderInfo();
   }, []);
+  const onClickMenu = (topic) => {
+    router.push(`/practice/${topic.topicId}`);
+  };
   return (
     <Layout>
       <HeaderWrap>
         <div className="container heading-wrap">
-          <Menu mode="horizontal" defaultSelectedKeys={['home']}>
+          <Menu className="heading-menu" mode="horizontal" defaultSelectedKeys={['home']}>
             <Menu.Item key="home">Home</Menu.Item>
-            <Menu.SubMenu key="practice-lr" title={<>Practice L&R</>}>
+            {topics.map((topic) => (
+              <Menu.SubMenu key={topic.id} title={topic.name}>
+                {topic?.topics?.map((item) => (
+                  <Menu.Item key={item.topicId}>
+                    <span onClick={() => onClickMenu(item)}>{item.topicName}</span>
+                  </Menu.Item>
+                ))}
+              </Menu.SubMenu>
+            ))}
+            {/* <Menu.SubMenu key="practice-lr" title={<>Practice L&R</>}>
               <Menu.Item key="part-1">
                 <Link href={ROUTES.PRACTICE1}>Part 1: Photos</Link>
               </Menu.Item>
-              <Menu.Item key="part-2">Part 2: Question - Response</Menu.Item>
-              <Menu.Item key="part-3">Part 3: Conversations</Menu.Item>
-              <Menu.Item key="part-4">Part 4: Short Talks</Menu.Item>
+              <Menu.Item key="part-2">
+                <Link href={ROUTES.PRACTICE1}>Part 2: Question - Response</Link>
+              </Menu.Item>
+              <Menu.Item key="part-3">
+                <Link href={ROUTES.PRACTICE1}>Part 3: Conversations</Link>
+              </Menu.Item>
+              <Menu.Item key="part-4">
+                <Link href={ROUTES.PRACTICE1}>Part 4: Short Talks</Link>
+              </Menu.Item>
             </Menu.SubMenu>
             <Menu.Item key="practice-sw">Practice S&W</Menu.Item>
             <Menu.SubMenu key="test" title="Test">
@@ -52,14 +99,14 @@ const MainLayout: React.FC = (props) => {
             <Menu.SubMenu key="toeic-tips" title="TOEIC Tips">
               <Menu.Item key="test-2">TOEIC Listening Tips</Menu.Item>
               <Menu.Item key="test-3">TOEIC Reading Tips</Menu.Item>
-            </Menu.SubMenu>
+            </Menu.SubMenu> */}
           </Menu>
           <span className="btn-login">
             <Link href={ROUTES.SIGNIN}>Login</Link>
           </span>
         </div>
       </HeaderWrap>
-      <main>{props.children}</main>
+      <main className="main-content-layout">{props.children}</main>
       <FooterWrap>
         <div className="footer-below ">
           <div className="container footer-below-wrap ">

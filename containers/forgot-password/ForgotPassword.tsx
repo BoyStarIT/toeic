@@ -46,14 +46,12 @@ const ForgotPassword: React.FC = () => {
         <div className="form-login-wrap">
           <div className="title-form">Reset your password</div>
           <div className="header-login-wrap">
-            <Button className="btn-back">
-              <Link href={ROUTES.SIGNIN}>
-                <span>
-                  <ArrowLeftOutlined />
-                  Back
-                </span>
-              </Link>
-            </Button>
+            <Link href={ROUTES.SIGNIN}>
+              <Button className="btn-back">
+                <ArrowLeftOutlined />
+                <span>Back</span>
+              </Button>
+            </Link>
             <div className="des-login">
               Lost your password? Please enter your email address. You will receive a link to create
               a new password via email.

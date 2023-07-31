@@ -5,7 +5,7 @@ import Config from '@root/config';
 import { Button } from '@ui/Button';
 import Input, { InputPassword } from '@ui/Input/Input';
 import { Message, reactLocalStorage } from '@utils';
-import { Form } from 'antd';
+import { Divider, Form } from 'antd';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -115,32 +115,24 @@ const SignIn: React.FC = () => {
                     Sign in
                   </Button>
                 </div>
-                <div className="divider">
-                  <div
-                    className="MuiDivider-root MuiDivider-fullWidth MuiDivider-withChildren css-etlyi9"
-                    role="separator"
-                  >
-                    <span className="MuiDivider-wrapper css-c1ovea">Or Login with</span>
-                  </div>
+
+                {/* <div className="divider">
+                  <Divider plain>Or Login with</Divider>
                 </div>
                 <div
                   id="login-with-google-button"
                   className="auth-login-with-google auth-login-sso-button"
                 >
                   Sign in with Google
-                </div>
+                </div> */}
                 <div className="auth-form-nav">
-                  <span>Do you have any accounts?</span>
-                  <span style={{ cursor: 'pointer', color: 'rgb(80, 125, 212)' }}>
-                    <Link href={ROUTES.SIGNUP}>Sign up</Link>
+                  Do you have any accounts?{' '}
+                  <span>
+                    <Link href={ROUTES.SIGNUP}>
+                      <span className="link-to">Sign up</span>
+                    </Link>
                   </span>
                 </div>
-                {/* <div className="other-login-social">
-                  <span className="text-orlogin">Or login with</span>
-                  <span className="login-w-gg">Google</span>
-                  <span className="login-w-fb">Facebook</span>
-                  <span className="login-w-tw">Twitter</span>
-                </div> */}
               </Form>
             </div>
           </div>

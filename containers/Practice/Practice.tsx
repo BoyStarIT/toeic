@@ -1,8 +1,74 @@
 import { Col, Row } from 'antd';
 import { ContentWrapper, IntroWrap, TestWrap } from './Practice.style';
 import { RightOutlined } from '@ant-design/icons';
+import { useEffect, useState } from 'react';
+import { getListExam, putDeleteSkill } from '@api';
+import { useLoading } from '@hooks';
+import { Message } from '@utils';
+import { useRouter } from 'next/router';
 
 const Practice = () => {
+  const router = useRouter();
+  const topicId = router.query.slugTopic;
+  const [{ isLoading }, { start, stop }] = useLoading();
+
+  const [listTest, setListTest] = useState([]);
+  const fetchListExam = async () => {
+    start();
+    try {
+      const mockData = {
+        responseData: {
+          id: '64ba2d0f5b34203f21ffa6db',
+          name: 'Phần 1:Mô Tả Tranh',
+          exams: [
+            {
+              version: '1.0',
+              createdDate: 1690569192929,
+              lastModifiedDate: 1690661291227,
+              deleted: false,
+              id: '64c409e8861e6a27b44a0bf9',
+              name: 'Test 3',
+              topicId: '64ba2d0f5b34203f21ffa6db',
+              percent: '17',
+              participants: '22.8K',
+              cardIds: [
+                '64c57166220fb8269b7d07c6',
+                '64c57166220fb8269b7d07c7',
+                '64c57166220fb8269b7d07c8',
+                '64c57166220fb8269b7d07c9',
+                '64c57166220fb8269b7d07ca',
+                '64c57166220fb8269b7d07cb',
+              ],
+            },
+          ],
+        },
+      };
+      setListTest(mockData.responseData.exams);
+
+      // const resp: any = await getListExam(topicId);
+      // const error = resp.data.error;
+      // const respData = resp.data?.responseData;
+      // if (error) {
+      //   stop();
+      //   Message.error(error?.message ?? 'Something error!');
+      // } else {
+      //   console.log('respData', respData);
+      //   Message.success('Successfully!');
+      //   setListTest(respData);
+      // }
+    } catch (err) {
+      console.log('onSubmit-error :>> ', err.toString());
+    } finally {
+      stop();
+    }
+  };
+  const onClickRouterPush = (exam) => {
+    router.push(`/study/${topicId}/${exam.id}`);
+  };
+
+  useEffect(() => {
+    fetchListExam();
+  }, [router]);
   return (
     <ContentWrapper className="container">
       <div id="practice-list-view" className="practice-detail-view">
@@ -38,6 +104,27 @@ const Practice = () => {
                     </div>
                     <TestWrap>
                       <Row gutter={[16, 16]}>
+                        {listTest.map((item) => (
+                          <Col
+                            className="gutter-row"
+                            span={6}
+                            key={item.id}
+                            onClick={() => onClickRouterPush(item)}
+                          >
+                            <div className="practice-list-box">
+                              <div className="practice-list-box-item--progress progress-none">
+                                {item.percent ?? 0}%
+                              </div>
+                              <div className="practice-list-box-item--content">{item.name}</div>
+                              <div className="practice-list-box-item--participants">
+                                <span>{item.participants}</span>
+                                <div className="line"></div>
+                                <span>Participants</span>
+                              </div>
+                            </div>
+                          </Col>
+                        ))}
+
                         <Col className="gutter-row" span={6}>
                           <div className="practice-list-box">
                             <div className="practice-list-box-item--progress progress-none">0%</div>

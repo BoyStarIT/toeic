@@ -24,8 +24,6 @@ export const SignInPageWrapper = styled.div`
     margin: 0 auto;
 
     .header-login-wrap {
-      margin-bottom: 64px;
-
       .title-login {
         font-weight: 700;
         font-size: 36px;
@@ -34,72 +32,8 @@ export const SignInPageWrapper = styled.div`
         margin-bottom: 16px;
         color: #272727;
       }
-
-      @media (max-width: 769px) {
-        margin-bottom: unset;
-        position: absolute;
-        top: 175px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 400px;
-        max-width: 92vw;
-        .title-login {
-          font-size: 30px;
-          line-height: 44px;
-          color: #ffffff;
-          margin-bottom: unset;
-        }
-        .des-login {
-          font-size: 16px;
-          color: #ffffff;
-        }
-      }
     }
     .form-login-content {
-      .form-header {
-        border-bottom: 2px solid #dedede;
-        padding-bottom: 6px;
-        margin-bottom: 37px;
-        width: max-content;
-      }
-      .active-form-signin {
-        color: #6220d4;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 20px;
-        letter-spacing: 0.4375px;
-        margin-right: 25px;
-        border-bottom: 3px solid #6220d4;
-        padding-bottom: 7px;
-      }
-      .link-to-signup-title {
-        color: rgba(102, 90, 225, 0.64);
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 20px;
-        letter-spacing: 0.4375px;
-      }
-      .action-wrap {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 32px;
-        align-items: center;
-        .btn-signin {
-          background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-          border-radius: 4px;
-          border: none;
-          outline: none;
-          width: 180px;
-          height: 56px;
-        }
-        .link-to-forgotpassword a {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 20px;
-          letter-spacing: 0.2625px;
-          color: rgba(39, 39, 39, 0.85);
-        }
-      }
       .action-hidden-pass,
       .action-show-pass,
       .link-to-signup,
@@ -121,27 +55,75 @@ export const SignInPageWrapper = styled.div`
       color: #cd0000;
       margin-top: 5px;
     }
-    .other-login-social {
-      margin-top: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .text-orlogin {
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.2625px;
-        color: rgba(39, 39, 39, 0.85);
-      }
-      .login-w-gg,
-      .login-w-fb,
-      .login-w-tw {
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.2625px;
-        color: #6220d4;
-      }
+  }
+  .link-to-forgotpassword {
+    color: #5d87f1;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 24px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .action-login {
+    text-align: center;
+  }
+  .btn-signin {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    margin: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-family: inherit;
+    text-transform: unset;
+    line-height: 1.75;
+    min-width: 64px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border: 1px solid rgba(25, 118, 210, 0.5);
+
+    background: #656ef1;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 7px 40px;
+  }
+  .divider {
+    padding: 20px 50px;
+
+    .ant-divider-inner-text {
+      display: inline-block;
+      padding-left: calc(9.6px);
+      padding-right: calc(9.6px);
+      color: #898989;
+      font-size: 18px;
+      font-weight: 400;
+    }
+  }
+  .auth-form-nav {
+    text-align: center;
+    margin-top: 40px;
+    .link-to {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.2625px;
+      color: #6220d4;
+      cursor: pointer;
     }
   }
 `;

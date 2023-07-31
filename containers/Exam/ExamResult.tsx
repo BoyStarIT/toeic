@@ -13,6 +13,18 @@ const ExamResult = ({ listQuestion }) => {
       behavior: 'smooth',
     });
   };
+
+  const onClickContinue = () => {
+    console.log('onClickContinue', onClickContinue);
+  };
+
+  const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
+  const correctAnswerCount = listQuestion.filter(
+    (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+  ).length;
+  const incorrectAnswerCount =
+    listQuestion.filter((question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0])
+      .length - newAnswerCount ?? 0;
   return (
     <ExamLayout listQuestion={listQuestion}>
       <div id="game-view-container" className="game-view-container-main">
@@ -68,11 +80,7 @@ const ExamResult = ({ listQuestion }) => {
                         >
                           <circle cx="6.28342" cy="6.48361" r="5.68967" fill="#82BC24" />
                         </svg>
-                        {
-                          listQuestion.filter(
-                            (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-                          ).length
-                        }
+                        {correctAnswerCount}
                       </div>
                       <div className="questions-stat-item-label">Correct</div>
                     </div>
@@ -90,24 +98,32 @@ const ExamResult = ({ listQuestion }) => {
                         >
                           <circle cx="6.28342" cy="6.48361" r="5.68967" fill="#FF5454" />
                         </svg>
-                        {
-                          listQuestion.filter(
-                            (question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0]
-                          ).length
-                        }
+                        {incorrectAnswerCount}
                       </div>
                       <div className="questions-stat-item-label">Incorrect</div>
                     </div>
                   </div>
                   <div className="main-statistics-questions-button">
-                    <button
-                      className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1bya90x"
-                      tabIndex={0}
-                      type="button"
-                      onClick={onClickReview}
-                    >
-                      REVIEW
-                    </button>
+                    {newAnswerCount > 0 ? (
+                      <button
+                        className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1bya90x"
+                        tabIndex={0}
+                        type="button"
+                        onClick={onClickReview}
+                      >
+                        REVIEW
+                      </button>
+                    ) : (
+                      <button
+                        className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1bya90x"
+                        tabIndex={0}
+                        type="button"
+                        onClick={onClickContinue}
+                      >
+                        CONTINUE
+                      </button>
+                    )}
+
                     <button
                       className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-lv9ort"
                       tabIndex={0}
@@ -158,7 +174,7 @@ const ExamResult = ({ listQuestion }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        {listQuestion.filter((question) => !question?.userAnswer?.[0]).length}
+                        {newAnswerCount}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-ivwblt">New</span>
@@ -186,11 +202,7 @@ const ExamResult = ({ listQuestion }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        {
-                          listQuestion.filter(
-                            (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-                          ).length
-                        }
+                        {correctAnswerCount}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-6kw39w">
@@ -220,11 +232,7 @@ const ExamResult = ({ listQuestion }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        {
-                          listQuestion.filter(
-                            (question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0]
-                          ).length
-                        }
+                        {incorrectAnswerCount}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-js2k7p">

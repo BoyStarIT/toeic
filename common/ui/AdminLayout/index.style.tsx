@@ -1,8 +1,28 @@
 import { styled } from '@styles/theme';
 
-export const Layout = styled.div`
+export const AdminLayoutWrap = styled.div`
   .main-content-layout {
-    min-height: calc(100vh - 181px);
+    position: relative;
+    padding-left: 220px;
+    .left-content-wrap {
+      position: fixed;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      color: rgba(255, 255, 255, 0.65);
+      background: #001529;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .right-content-wrap {
+      width: 100%;
+      position: relative;
+    }
   }
 `;
 
@@ -50,41 +70,4 @@ export const HeaderWrap = styled.div`
     }
   }
 `;
-export const FooterWrap = styled.footer`
-  .footer-below {
-    font-size: 18px;
-    font-weight: 500;
-    background: var(--footer2Bg);
-    color: var(--footer2TextColor);
-    .footer-below-wrap {
-      padding-top: 7px;
-      padding-bottom: 7px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      column-gap: 10px;
-      .license {
-        font-style: italic;
-        max-width: 60%;
-        font-size: 13px;
-        text-align: justify;
-      }
-      .social-main-panel {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        padding: 31px 0;
-      }
-      .social-label {
-        margin-right: 22px;
-      }
-      .social-link-icons {
-        display: flex;
-        align-items: center;
-      }
-      .social-item-icon {
-        margin-left: 10px;
-      }
-    }
-  }
-`;
+export const LeftContentWrap = styled.div``;

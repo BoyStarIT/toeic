@@ -4,8 +4,10 @@ import { reactLocalStorage } from '@utils';
 import router from 'next/router';
 import { useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
-import { BannerWrap, HomePageWrapper } from './Home.style';
+import { BannerWrap, HomeContentWrap, HomePageWrapper } from './Home.style';
 import { IconAppStore, IconGoogleApp } from '@ui/Svgs';
+import { Col, Row } from 'antd';
+import Link from 'next/link';
 
 const Home = () => {
   const onLogoutClick = () => {
@@ -22,21 +24,21 @@ const Home = () => {
     //   console.log('logout-error :>> ', err.toString());
     // } finally {
     // }
-    onLogoutSuccess();
+    // onLogoutSuccess();
   };
 
-  const onLogoutSuccess = () => {
-    reactLocalStorage.clear();
-    const cookies = new Cookies();
-    const accessToken = null;
-    // cookies.set(Config.AUTH_TOKEN_KEY, accessToken, {
-    //   expires: moment().add(60, 'day').toDate(),
-    //   path: '/',
-    // });
+  // const onLogoutSuccess = () => {
+  //   reactLocalStorage.clear();
+  //   const cookies = new Cookies();
+  //   const accessToken = null;
+  //   // cookies.set(Config.AUTH_TOKEN_KEY, accessToken, {
+  //   //   expires: moment().add(60, 'day').toDate(),
+  //   //   path: '/',
+  //   // });
 
-    cookies.remove(Config.AUTH_TOKEN_KEY);
-    router.push(ROUTES.WELCOME);
-  };
+  //   cookies.remove(Config.AUTH_TOKEN_KEY);
+  //   router.push(ROUTES.WELCOME);
+  // };
 
   return (
     <HomePageWrapper>
@@ -70,6 +72,514 @@ const Home = () => {
           </div>
         </div>
       </BannerWrap>
+      <HomeContentWrap className="container mb-5">
+        <div className="toeic-subjects-tab-pane-wrap">
+          <div className="toeic-subjects-tab-pane-item">
+            <div className="toeic-subject-item mb-3">
+              <h3 className="toeic-subject-item-title">Listening</h3>
+              <div>
+                <Row gutter={[16, 16]}>
+                  <Col span={6} className="cursor-point">
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col span={6}>
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col span={6}>
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col span={6}>
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+            <div className="toeic-subject-item mb-3">
+              <h3 className="toeic-subject-item-title">Reading</h3>
+              <div>
+                <Row gutter={[16, 16]}>
+                  <Col span={6} className="cursor-point">
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col span={6}>
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col span={6}>
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                  <Col span={6}>
+                    <Link href={'#'}>
+                      <div
+                        className="part-item-data"
+                        title="Part 1 - Photos: Four short statements regarding a photograph will be spoken only one time. Of these four statements, select the one. that best describes the photograph."
+                      >
+                        <div className="part-item-data-avatar-wrap">
+                          <span
+                            style={{
+                              boxSizing: 'border-box',
+                              display: 'block',
+                              overflow: 'hidden',
+                              width: 'initial',
+                              height: 'initial',
+                              background: 'none',
+                              opacity: 1,
+                              border: 0,
+                              margin: 0,
+                              padding: 0,
+                              position: 'absolute',
+                              inset: 0,
+                            }}
+                          >
+                            <img
+                              alt="Part 1"
+                              src="/static/images/home-part-1.webp"
+                              decoding="async"
+                              data-nimg="fill"
+                              className="part-item-data-avatar"
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                boxSizing: 'border-box',
+                                padding: 0,
+                                border: 'none',
+                                margin: 'auto',
+                                display: 'block',
+                                width: 0,
+                                height: 0,
+                                minWidth: '100%',
+                                maxWidth: '100%',
+                                minHeight: '100%',
+                                maxHeight: '100%',
+                                objectFit: 'cover',
+                              }}
+                              sizes="75vw"
+                            />
+                          </span>
+                        </div>
+                        <div className="part-item-data-content">
+                          <div className="part-item-data-short-name dot-1">Part 1</div>
+                          <div className="part-item-data-name dot-2">Photos</div>
+                          <div className="part-item-data-desc dot-6">
+                            Four short statements regarding a photograph will be spoken only one
+                            time. Of these four statements, select the one. that best describes the
+                            photograph.
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </div>
+        </div>
+      </HomeContentWrap>
     </HomePageWrapper>
   );
 };

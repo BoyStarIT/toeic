@@ -1,7 +1,7 @@
 import { Practice } from '@containers/Practice';
 import MainLayout from '@ui/MainLayout';
 
-const Practice1 = () => {
+const PracticePage = () => {
   return (
     <MainLayout>
       <Practice />
@@ -9,4 +9,4 @@ const Practice1 = () => {
   );
 };
 
-export default Practice1;
+export default PracticePage;

@@ -3,13 +3,9 @@ import MainLayout from '@ui/MainLayout';
 import { GetServerSideProps } from 'next';
 
 const ExamPage = ({ topicCode, examCode }) => {
-  console.log('1111', {
-    topicCode,
-    examCode,
-  });
   return (
     <MainLayout>
-      <Exam />
+      <Exam topicCode={topicCode} examCode={examCode} />
     </MainLayout>
   );
 };

@@ -91,23 +91,41 @@ export const SignUpPageWrapper = styled.div`
       }
       .action-wrap {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         margin-top: 24px;
         align-items: center;
-        .btn-signin {
-          background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-          border-radius: 4px;
-          border: none;
-          outline: none;
-          width: 180px;
-          height: 56px;
-        }
-        .link-to-forgotpassword a {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 20px;
-          letter-spacing: 0.2625px;
-          color: rgba(39, 39, 39, 0.85);
+        .btn-register {
+          display: inline-flex;
+          -webkit-box-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          justify-content: center;
+          position: relative;
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: transparent;
+          outline: 0px;
+          margin: 0px;
+          cursor: pointer;
+          user-select: none;
+          vertical-align: middle;
+          appearance: none;
+          text-decoration: none;
+          font-family: inherit;
+          text-transform: unset;
+          line-height: 1.75;
+          min-width: 64px;
+          transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+            box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+            border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+            color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+          border: 1px solid rgba(25, 118, 210, 0.5);
+
+          background: #656ef1;
+          color: #fff;
+          font-size: 20px;
+          font-weight: 700;
+          border-radius: 20px;
+          padding: 7px 40px;
         }
       }
       .action-hidden-pass,
@@ -131,28 +149,7 @@ export const SignUpPageWrapper = styled.div`
       color: #cd0000;
       margin-top: 5px;
     }
-    .other-login-social {
-      margin-top: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .text-orlogin {
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.2625px;
-        color: rgba(39, 39, 39, 0.85);
-      }
-      .login-w-gg,
-      .login-w-fb,
-      .login-w-tw {
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        letter-spacing: 0.2625px;
-        color: #6220d4;
-      }
-    }
+
     .check-validate-pass-box {
       font-weight: 400;
       font-size: 18px;
@@ -178,33 +175,7 @@ export const SignUpPageWrapper = styled.div`
         margin-bottom: 18px;
       }
     }
-    .noti-agree-term {
-      font-weight: 400;
-      font-size: 18px;
-      line-height: 30px;
-      letter-spacing: 0.2625px;
-      color: rgba(39, 39, 39, 0.85);
-      margin-bottom: 24px;
-      .link-to-term {
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 30px;
-        letter-spacing: 0.2625px;
-        color: #6220d4;
-        cursor: pointer;
-      }
-    }
-    .btn-register {
-      background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-      border-radius: 4px;
-      border: none;
-      height: 56px;
-      width: 178px;
-      cursor: pointer;
-      @media (max-width: 769px) {
-        width: 100%;
-      }
-    }
+
     .already-account {
       font-weight: 400;
       font-size: 18px;
@@ -212,6 +183,7 @@ export const SignUpPageWrapper = styled.div`
       letter-spacing: 0.2625px;
       color: rgba(39, 39, 39, 0.85);
       margin-top: 56px;
+      text-align: center;
       .link-to-login {
         font-weight: 500;
         font-size: 18px;
@@ -221,44 +193,18 @@ export const SignUpPageWrapper = styled.div`
         cursor: pointer;
       }
     }
-    .register-success-wrap {
-      margin-top: 245px;
-      .register-success-title {
-        font-weight: 700;
-        font-size: 36px;
-        line-height: 44px;
-        letter-spacing: 0.3px;
-        color: #272727;
-      }
-      .register-success-des {
-        font-size: 18px;
-        line-height: 23px;
-        letter-spacing: 0.2625px;
-        color: rgba(39, 39, 39, 0.85);
-        margin-top: 12px;
-      }
-      .btn-to-login {
-        background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-        border-radius: 4px;
-        text-align: center;
-        width: 178px;
-        height: 56px;
-        margin-top: 26px;
-        cursor: pointer;
-        .btn-to-login-text {
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 56px;
-          letter-spacing: 0.5px;
-          color: #ffffff;
-        }
-      }
-      @media (max-width: 769px) {
-        margin-top: 0;
-        .btn-to-login {
-          width: 100%;
-        }
-      }
+  }
+
+  .divider {
+    padding: 20px 50px;
+
+    .ant-divider-inner-text {
+      display: inline-block;
+      padding-left: calc(9.6px);
+      padding-right: calc(9.6px);
+      color: #898989;
+      font-size: 18px;
+      font-weight: 400;
     }
   }
 `;

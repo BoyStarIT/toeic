@@ -11,7 +11,7 @@ export const globalStyles = (
       body {
         margin: 0;
         color: rgba(0, 0, 0, 0.87);
-        font-family: inherit;
+        font-family: SVN-Poppins, sans-serif;
         font-weight: 400;
         font-size: 1rem;
         line-height: 1.5;
@@ -160,6 +160,28 @@ export const globalStyles = (
         .container {
           max-width: 1170px;
         }
+      }
+      .ant-modal-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #282828;
+      }
+      .btn-add {
+        color: #000 !important;
+        border-color: #000 !important;
+        background: transparent;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        &:hover,
+        &:focus {
+          background: #000 !important;
+          color: #fff !important;
+        }
+      }
+      .cursor-pointer {
+        cursor: pointer;
       }
     `}
   />

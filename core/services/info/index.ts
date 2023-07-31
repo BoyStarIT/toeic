@@ -6,3 +6,11 @@ const { get } = API;
 export const getheaderInfo = async () => {
   return get(ENDPOINTS.SKILL_HEADER);
 };
+
+export const getListExam = async (id) => {
+  return get(`${ENDPOINTS.TOPIC_EXAM}/${id}`);
+};
+
+export const getListCard = async (id) => {
+  return get(`${ENDPOINTS.EXAM_CARD}/${id}`);
+};

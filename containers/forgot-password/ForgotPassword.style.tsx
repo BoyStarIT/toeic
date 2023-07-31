@@ -74,9 +74,7 @@ export const ForgotPasswordPageWrapper = styled.div`
   .btn-back {
     box-shadow: none;
     display: inline-flex;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
     position: relative;
     box-sizing: border-box;
@@ -93,7 +91,7 @@ export const ForgotPasswordPageWrapper = styled.div`
     font-family: inherit;
     text-transform: unset;
     font-weight: 500;
-    font-size: 0.9375rem;
+    font-size: 18px;
     line-height: 1.75;
     min-width: 64px;
     padding: 8px 11px;
@@ -106,6 +104,10 @@ export const ForgotPasswordPageWrapper = styled.div`
     &:hover {
       text-decoration: none;
       background-color: rgba(0, 0, 0, 0.04);
+    }
+    .anticon {
+      font-size: 13px;
+      margin-right: 5px;
     }
   }
 `;

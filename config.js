@@ -1,4 +1,4 @@
-const API_URL = 'https://79a1-1-55-209-191.ngrok-free.app/';
+const API_URL = 'http://171.244.63.124:8080/';
 
 const Config = {
   API_URL,
