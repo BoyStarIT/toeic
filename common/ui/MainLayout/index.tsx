@@ -116,8 +116,6 @@ const MainLayout = (props) => {
               </Menu.SubMenu>
             ))}
             <Menu.SubMenu key="test" title="Test">
-              <Menu.Item key="test-1">Simulation Test</Menu.Item>
-              <Menu.Item key="test-2">Full Test</Menu.Item>
               <Menu.Item key="test-3">
                 <Link href={ROUTES.MINI_TEST}>{'Mini Test'}</Link>
               </Menu.Item>

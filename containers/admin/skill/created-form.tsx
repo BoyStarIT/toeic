@@ -22,12 +22,11 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
 
       const resp: any = await postCreatedSkill(params);
       const error = resp.data.error;
-      const respData = resp.data?.responseData;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        console.log('respData', respData);
+        Message.success('Successfully!');
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());

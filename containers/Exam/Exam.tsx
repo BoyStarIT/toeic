@@ -6,40 +6,43 @@ import ExamStart from './ExamStart';
 import ExamView from './ExamView';
 import { listQuestions } from './mockData';
 import Config from '@root/config';
-import { reactLocalStorage } from '@utils';
+import { Message, reactLocalStorage } from '@utils';
+import { getListCard } from '@api';
 
 type ExamStatusType = 'initial' | 'starting' | 'reviewing';
 const Exam = ({ topicCode, examCode }) => {
   const router = useRouter();
   const [{ isLoading }, { start, stop }] = useLoading();
 
-  const [listData, setListData] = useState([]);
+  const [examStatus, setExamStatus] = useState<ExamStatusType>('initial');
+  const [listQuestion, setListQuestion] = useState([]);
 
   const fetchListCard = async () => {
     start();
     try {
-      const _listData = listQuestions.map((question) => {
-        return {
-          ...question,
-          answer: {
-            ...question.answer,
-            allAnswer: [...question.answer.choices, ...question.answer.texts].sort(sortAnswer),
-          },
-        };
-      });
-      setListData(_listData);
+      const resp: any = await getListCard(examCode);
+      const error = resp.data.error;
+      const respData = resp.data?.responseData;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error!');
+      } else {
+        const localStorageExam = reactLocalStorage.getObject(Config.EXAM_KEY);
+        const _listData = respData?.cards?.map((question) => {
+          const userAnswer = localStorageExam?.find((exam) => exam.id === question.id) ?? [];
+          return {
+            ...question,
+            answer: {
+              ...question.answer,
+              allAnswer: [...question.answer.choices, ...question.answer.texts].sort(sortAnswer),
+            },
+            ...(userAnswer?.length > 0 ? { userAnswer: userAnswer } : {}),
+          };
+        });
 
-      //   const resp: any = await getListCard(examCode);
-      //   const error = resp.data.error;
-      //   const respData = resp.data?.responseData;
-      //   if (error) {
-      //     stop();
-      //     Message.error(error?.message ?? 'Something error!');
-      //   } else {
-      //     console.log('respData', respData);
-      //     Message.success('Successfully!');
-      //     setListData(respData);
-      //   }
+        setListQuestion(_listData);
+        reactLocalStorage.setObject(Config.EXAM_KEY, _listData);
+      }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
     } finally {
@@ -62,8 +65,6 @@ const Exam = ({ topicCode, examCode }) => {
     }
   };
 
-  console.log('listData', listData);
-
   // const onClickRouterPush = (exam) => {
   //   router.push(`/study/${topicId}/${exam.id}`);
   // };
@@ -71,9 +72,6 @@ const Exam = ({ topicCode, examCode }) => {
   useEffect(() => {
     fetchListCard();
   }, [router]);
-
-  const [examStatus, setExamStatus] = useState<ExamStatusType>('initial');
-  const [listQuestion, setListQuestion] = useState([]);
 
   const onSetExamStatus = (status: ExamStatusType) => {
     setExamStatus(status);
@@ -83,13 +81,16 @@ const Exam = ({ topicCode, examCode }) => {
     setListQuestion(questions);
     reactLocalStorage.setObject(Config.EXAM_KEY, questions);
   };
-  useEffect(() => {
-    setListQuestion(listQuestions);
-    reactLocalStorage.setObject(Config.EXAM_KEY, listQuestions);
-  }, []);
+
   return (
     <div className="main-exam">
-      {examStatus === 'reviewing' && <ExamResult listQuestion={listQuestion} />}
+      {examStatus === 'reviewing' && (
+        <ExamResult
+          listQuestion={listQuestion}
+          onUpdateListQuestion={onUpdateListQuestion}
+          onSetExamStatus={onSetExamStatus}
+        />
+      )}
       {examStatus === 'initial' && (
         <ExamView listQuestion={listQuestion} onSetExamStatus={onSetExamStatus} />
       )}

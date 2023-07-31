@@ -7,20 +7,6 @@ type QuestionPaletteRootProps = {
 const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
   listQuestion,
 }: QuestionPaletteRootProps) => {
-  const getCountNumber = (status: 'correct' | 'incorrect'): number => {
-    if (status === 'correct') {
-      return listQuestion?.filter(
-        (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-      ).length;
-    }
-    if (status === 'incorrect') {
-      return listQuestion?.filter(
-        (question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0]
-      ).length;
-    }
-
-    return 0;
-  };
   const goToQuestion = (id) => {
     const question = document.getElementById(`review-${id}`);
     if (!question) return;
@@ -29,6 +15,14 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
       behavior: 'smooth',
     });
   };
+
+  const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
+  const correctAnswerCount = listQuestion.filter(
+    (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+  ).length;
+  const incorrectAnswerCount =
+    listQuestion.filter((question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0])
+      .length - newAnswerCount ?? 0;
   return (
     <div className="jss27 question-palette-root">
       <div className="current-topic-label question-palette-game-title">Test 1</div>
@@ -71,7 +65,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   <rect y="0.5" width={10} height={10} rx={3} fill="#4caf50" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {getCountNumber('correct')}/{listQuestion?.length} Correct
+                  {correctAnswerCount}/{listQuestion?.length} Correct
                 </span>
               </div>
               <div className="questions-stat-item">
@@ -85,7 +79,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   <rect y="0.5" width={10} height={10} rx={3} fill="#FF5252" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {getCountNumber('incorrect')}/{listQuestion?.length} Incorrect
+                  {incorrectAnswerCount}/{listQuestion?.length} Incorrect
                 </span>
               </div>
             </div>

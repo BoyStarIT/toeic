@@ -1,9 +1,8 @@
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button } from '@ui';
+import { useState } from 'react';
 import ExamLayout from './ExamLayout';
 import QuestionCard from './QuestionCard';
-import TopicListView from './TopicListView';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
-import { useState } from 'react';
 
 const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -58,7 +57,7 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
           </div>
         </div>
       </div>
-      <TopicListView />
+      {/* <TopicListView /> */}
     </ExamLayout>
   );
 };

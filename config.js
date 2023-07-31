@@ -1,4 +1,4 @@
-const API_URL = 'https://171.244.63.124/';
+const API_URL = 'https://funnyclass.cloud/';
 
 const Config = {
   API_URL,

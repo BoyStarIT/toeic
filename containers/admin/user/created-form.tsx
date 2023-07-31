@@ -38,7 +38,7 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        console.log('respData', respData);
+        Message.success('Successfully!');
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());

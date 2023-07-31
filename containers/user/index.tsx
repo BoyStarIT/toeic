@@ -31,12 +31,11 @@ const UserPage: React.FC = () => {
 
       const resp: any = await postRegister(params);
       const error = resp.data.error;
-      const respData = resp.data?.responseData;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        console.log('respData', respData);
+        Message.success('Successfully!');
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());

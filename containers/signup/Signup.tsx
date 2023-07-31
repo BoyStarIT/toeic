@@ -41,7 +41,6 @@ const SignUp: React.FC = () => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        console.log('respData', respData);
         onSuccess(data);
       }
     } catch (err) {

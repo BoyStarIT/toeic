@@ -24,12 +24,10 @@ const ForgotPassword: React.FC = () => {
       };
       const resp: any = await postForgotPassword(params);
       const error = resp.data.error;
-      const respData = resp.data?.data;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        console.log('respData', respData);
         router.push(ROUTES.SIGNIN);
       }
     } catch (err) {

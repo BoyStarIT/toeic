@@ -21,31 +21,31 @@ export default function QuestionCard({ question, onUpdateQuestion }) {
           <div className="question-index-container">
             <div className="question-index-wrap">
               <div className="game-object-question quiz-game-object-question">
-                {question.question.sound && (
+                {question?.question?.sound && (
                   <div className="game-object-question-sound">
                     <ReactAudioPlayer
-                      src={`${'http://171.244.63.124:8080'}/${question.question.sound}`}
+                      src={`${'http://171.244.63.124:8080'}/${question?.question?.sound}`}
                       autoPlay={false}
                       controls
                     />
                   </div>
                 )}
-                {question.question.image && (
+                {question?.question?.image && (
                   <div className="game-object-question-image">
                     <div className="game-image-widget-container" style={{ width: 300 }}>
                       <img
-                        src={`${'http://171.244.63.124:8080'}${question.question.image}`}
+                        src={`${'http://171.244.63.124:8080'}${question?.question?.image}`}
                         alt={`${'http://171.244.63.124:8080'}/kstoeic/images/5911589_1562638438001.png`}
                         style={{ width: '100%' }}
                       />
                     </div>
                   </div>
                 )}
-                {question.question.text && (
+                {question?.question?.text && (
                   <div className="game-object-question-image">
                     <div className="game-image-widget-container" style={{ width: 300 }}>
                       <img
-                        src={`${'http://171.244.63.124:8080'}${question.question.image}`}
+                        src={`${'http://171.244.63.124:8080'}${question?.question?.image}`}
                         alt={`${'http://171.244.63.124:8080'}/kstoeic/images/5911589_1562638438001.png`}
                         style={{ width: '100%' }}
                       />
@@ -56,8 +56,8 @@ export default function QuestionCard({ question, onUpdateQuestion }) {
             </div>
           </div>
           <QuizPlayZone
-            answer={question.answer}
-            userAnswer={question.userAnswer}
+            answer={question?.answer}
+            userAnswer={question?.userAnswer}
             onChoice={onChoice}
           />
         </div>

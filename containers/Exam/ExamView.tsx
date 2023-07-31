@@ -4,6 +4,13 @@ import { Progress } from 'antd';
 import TopicListView from './TopicListView';
 
 const ExamView = ({ listQuestion, onSetExamStatus }) => {
+  const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
+  const correctAnswerCount = listQuestion.filter(
+    (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+  ).length;
+  const incorrectAnswerCount =
+    listQuestion.filter((question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0])
+      .length - newAnswerCount ?? 0;
   return (
     <ExamLayout listQuestion={listQuestion}>
       <div id="game-view-container" className="game-view-container-main">
@@ -59,7 +66,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         >
                           <circle cx="6.28342" cy="6.48361" r="5.68967" fill="#82BC24" />
                         </svg>
-                        0
+                        {correctAnswerCount}
                       </div>
                       <div className="questions-stat-item-label">Correct</div>
                     </div>
@@ -77,7 +84,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         >
                           <circle cx="6.28342" cy="6.48361" r="5.68967" fill="#FF5454" />
                         </svg>
-                        0
+                        {incorrectAnswerCount}
                       </div>
                       <div className="questions-stat-item-label">Incorrect</div>
                     </div>
@@ -134,7 +141,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        0
+                        {newAnswerCount}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-ivwblt">New</span>
@@ -162,7 +169,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        0
+                        {correctAnswerCount}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-6kw39w">
@@ -192,7 +199,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        0
+                        {incorrectAnswerCount}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-js2k7p">
@@ -205,7 +212,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
           </div>
         </div>
       </div>
-      <TopicListView />
+      {/* <TopicListView /> */}
     </ExamLayout>
   );
 };

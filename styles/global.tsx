@@ -208,6 +208,9 @@ export const globalStyles = (
       .user-page {
         background-color: rgb(242, 246, 252) !important;
       }
+      .exam-page {
+        background-color: #f2f3f7 !important;
+      }
     `}
   />
 );

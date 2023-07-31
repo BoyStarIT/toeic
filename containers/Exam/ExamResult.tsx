@@ -4,7 +4,7 @@ import ExamLayout from './ExamLayout';
 import QuizPlayZone from './QuizPlayZone';
 import { Progress } from 'antd';
 
-const ExamResult = ({ listQuestion }) => {
+const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   const onClickReview = () => {
     const question = document.getElementById(`review-${listQuestion?.[0]._id}`);
     if (!question) return;
@@ -15,7 +15,15 @@ const ExamResult = ({ listQuestion }) => {
   };
 
   const onClickContinue = () => {
-    console.log('onClickContinue', onClickContinue);
+    onSetExamStatus('starting');
+  };
+  const onClickAgain = () => {
+    const newListQuestion = listQuestion.map((question) => {
+      delete question.userAnswer;
+      return question;
+    });
+    onUpdateListQuestion(newListQuestion);
+    onSetExamStatus('starting');
   };
 
   const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
@@ -25,6 +33,7 @@ const ExamResult = ({ listQuestion }) => {
   const incorrectAnswerCount =
     listQuestion.filter((question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0])
       .length - newAnswerCount ?? 0;
+  const percent = (correctAnswerCount / listQuestion.length) * 100;
   return (
     <ExamLayout listQuestion={listQuestion}>
       <div id="game-view-container" className="game-view-container-main">
@@ -43,7 +52,12 @@ const ExamResult = ({ listQuestion }) => {
                   <div className="main-progress-box" />
                   <div className="box-layer-2" />
                   <div className="box-layer-3">
-                    <Progress type="circle" percent={30} width={130} />
+                    <Progress
+                      type="circle"
+                      percent={percent}
+                      width={130}
+                      format={(percent) => <span>{percent.toFixed(0)}%</span>}
+                    />
                   </div>
                 </div>
                 <div className="main-statistics">
@@ -104,7 +118,7 @@ const ExamResult = ({ listQuestion }) => {
                     </div>
                   </div>
                   <div className="main-statistics-questions-button">
-                    {newAnswerCount > 0 ? (
+                    {newAnswerCount === 0 ? (
                       <button
                         className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1bya90x"
                         tabIndex={0}
@@ -128,6 +142,7 @@ const ExamResult = ({ listQuestion }) => {
                       className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-lv9ort"
                       tabIndex={0}
                       type="button"
+                      onClick={onClickAgain}
                     >
                       TRY AGAIN
                     </button>
@@ -259,7 +274,7 @@ const ExamResult = ({ listQuestion }) => {
                         <div className="game-object-question quiz-game-object-question">
                           <div className="game-object-question-sound">
                             <ReactAudioPlayer
-                              src={`https://storage.googleapis.com/${question.question.sound}`}
+                              src={`https://storage.googleapis.com/${question?.question?.sound}`}
                               autoPlay={false}
                               controls
                             />
@@ -267,7 +282,7 @@ const ExamResult = ({ listQuestion }) => {
                           <div className="game-object-question-image">
                             <div className="game-image-widget-container" style={{ width: 300 }}>
                               <img
-                                src={`https://storage.googleapis.com${question.question.image}`}
+                                src={`https://storage.googleapis.com${question?.question?.image}`}
                                 alt="https://storage.googleapis.com/kstoeic/images/5911589_1562638438001.png"
                                 style={{ width: '100%' }}
                               />
