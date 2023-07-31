@@ -1,4 +1,4 @@
-const mock_FetchHeaderInfo = [
+export const mock_FetchHeaderInfo = [
   {
     id: '64ba2d0f5b34203f21ffa6d8',
     name: 'Practice Listening',

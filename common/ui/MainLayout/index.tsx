@@ -11,6 +11,7 @@ import Icon from '@ant-design/icons/lib/components/Icon';
 import { IconUser } from '@ui/Svgs';
 import { isEmpty } from 'lodash';
 import { Cookies } from 'react-cookie';
+import { mock_FetchHeaderInfo } from '@root/common/constants/mockData';
 
 const MainLayout: React.FC = (props) => {
   const router = useRouter();
