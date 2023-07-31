@@ -1,14 +1,16 @@
-import { postCreatedSkill } from '@api';
+import { postCreatedSkill, putEditSkill } from '@api';
 import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import { styled } from '@styles/theme';
 import { Button } from '@ui';
 import { Message } from '@utils';
 import { Col, Form, Input, Row } from 'antd';
+import { useEffect } from 'react';
 type CreatedFormProps = {
   onClose: () => void;
+  formData?: any;
 };
-const CreatedForm = ({ onClose }: CreatedFormProps) => {
+const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
   const [form] = Form.useForm();
 
   const [{ isLoading }, { start, stop }] = useLoading();
@@ -18,15 +20,17 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
     try {
       const params = {
         name: data.name,
+        ...(formData ? { id: formData.id } : {}),
       };
 
-      const resp: any = await postCreatedSkill(params);
+      const resp: any = formData ? await putEditSkill(params) : await postCreatedSkill(params);
       const error = resp.data.error;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
         Message.success('Successfully!');
+        onClose();
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -34,6 +38,14 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
       stop();
     }
   };
+
+  useEffect(() => {
+    if (formData) {
+      form.setFieldsValue(formData);
+    } else {
+      form.resetFields();
+    }
+  }, [formData]);
 
   return (
     <CreatedFromWrap>
@@ -83,7 +95,7 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
                       className="btn-loading btn-edit-talent-profile"
                       loading={isLoading}
                     >
-                      Save
+                      {formData ? 'Update' : 'Add'}
                     </Button>
                   </Col>
                 </Row>

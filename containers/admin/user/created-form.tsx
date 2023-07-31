@@ -1,17 +1,19 @@
-import { postRegister } from '@api';
+import { postRegister, putEditUser } from '@api';
 import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import { Button } from '@ui';
 import { InputPassword } from '@ui/Input/Input';
 import { Message } from '@utils';
-import { Col, Form, Input, Modal, Row, Select } from 'antd';
+import { Col, DatePicker, Form, Input, Modal, Row, Select } from 'antd';
 import { Option } from 'antd/lib/mentions';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, theme } from '@styles/theme';
+import moment from 'moment';
 type CreatedFormProps = {
   onClose: () => void;
+  formData?: any;
 };
-const CreatedForm = ({ onClose }: CreatedFormProps) => {
+const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
   const [form] = Form.useForm();
 
   const [{ isLoading }, { start, stop }] = useLoading();
@@ -27,18 +29,19 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
         // address: 'Da Ton, Gia Lam, Ha Noi',
         phone: data.phone,
         role: 'User',
-        // dob: '10/12/2000',
+        dob: moment(data?.dob).format('DD/MM/YYYY'),
         gender: data.gender,
+        ...(formData ? { userId: formData.userId } : {}),
       };
 
-      const resp: any = await postRegister(params);
+      const resp: any = formData ? await putEditUser(params) : await postRegister(params);
       const error = resp.data.error;
-      const respData = resp.data?.responseData;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
         Message.success('Successfully!');
+        onClose();
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -46,6 +49,21 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
       stop();
     }
   };
+
+  useEffect(() => {
+    if (formData) {
+      form.setFieldsValue({
+        email: formData.email,
+        password: '',
+        username: formData.displayName,
+        phone: formData.phone,
+        dob: moment(formData?.dob ?? '10/12/2000'),
+        gender: formData.gender,
+      });
+    } else {
+      form.resetFields();
+    }
+  }, [formData]);
 
   return (
     <CreatedFromWrap>
@@ -62,7 +80,7 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
             return (
               <>
                 <Row gutter={[8, 8]}>
-                  <Col span={24}>
+                  <Col span={12}>
                     <Form.Item
                       name="username"
                       label="User Name"
@@ -77,8 +95,7 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
                       <Input placeholder="Enter your name" />
                     </Form.Item>
                   </Col>
-
-                  <Col span={24}>
+                  <Col span={12}>
                     <Form.Item
                       name="email"
                       label="Email"
@@ -93,24 +110,10 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
                         },
                       ]}
                     >
-                      <Input placeholder="Email (Account)" />
+                      <Input placeholder="Email (Account)" readOnly />
                     </Form.Item>
                   </Col>
-                  <Col span={24}>
-                    <Form.Item
-                      name={'password'}
-                      label="Password"
-                      rules={[
-                        {
-                          required: true,
-                          message: 'Please input your password!',
-                        },
-                      ]}
-                    >
-                      <Input placeholder="Enter your password" />
-                    </Form.Item>
-                  </Col>
-                  <Col span={24}>
+                  <Col span={12}>
                     <Form.Item
                       name="phone"
                       label="Phone"
@@ -128,7 +131,21 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
                       <Input placeholder="Phone" />
                     </Form.Item>
                   </Col>
-                  <Col span={24}>
+                  <Col span={12}>
+                    <Form.Item
+                      name="dob"
+                      label="Date of Birth"
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please input your date of birth!',
+                        },
+                      ]}
+                    >
+                      <DatePicker className="form-datepicker" format={'DD-MM-YYYY'} />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
                     <Form.Item name="gender" label="Gender">
                       <Select placeholder="Select a option and change input text above">
                         <Option value="male">Male</Option>
@@ -155,7 +172,7 @@ const CreatedForm = ({ onClose }: CreatedFormProps) => {
                       className="btn-loading btn-edit-talent-profile"
                       loading={isLoading}
                     >
-                      Save
+                      {formData ? 'Update' : 'Add'}
                     </Button>
                   </Col>
                 </Row>

@@ -3,7 +3,7 @@ import MainLayout from '@ui/MainLayout';
 
 const PracticePage = () => {
   return (
-    <MainLayout>
+    <MainLayout className={'bg-gray'}>
       <Practice />
     </MainLayout>
   );

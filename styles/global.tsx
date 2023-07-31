@@ -206,10 +206,24 @@ export const globalStyles = (
         font-size: 14px;
       }
       .user-page {
-        background-color: rgb(242, 246, 252) !important;
+        background-color: #f2f6fc !important;
+      }
+      .bg-gray {
+        background-color: #f6f7fb !important;
       }
       .exam-page {
         background-color: #f2f3f7 !important;
+      }
+      .form-datepicker {
+        width: 100%;
+      }
+      .cms-page-title {
+        font-size: 28px;
+        font-weight: bold;
+        padding-left: 24px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        background: #f5f6f8;
       }
     `}
   />

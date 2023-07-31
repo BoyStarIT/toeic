@@ -70,4 +70,8 @@ export const HeaderWrap = styled.div`
     }
   }
 `;
-export const LeftContentWrap = styled.div``;
+export const LeftContentWrap = styled.div`
+  .ant-menu-title-content {
+    font-size: 1rem;
+  }
+`;

@@ -6,9 +6,12 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
   font-size: 1rem;
   line-height: 1;
   font-weight: 700;
-  /* color: #fff !important;
-  border-color: #2f9a4c !important;
-  background: #2f9a4c !important; */
+  &:hover,
+  &:focus {
+    color: #fff;
+    border-color: #2f9a4c;
+    background: #2f9a4c;
+  }
   @media ${theme.device.maxMd} {
     font-size: 0.875rem;
     padding: 0;

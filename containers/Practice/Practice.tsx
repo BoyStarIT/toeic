@@ -52,7 +52,7 @@ const Practice = () => {
                 <div className="part-contents">
                   <div className="practice-name">PART 1: PHOTOS</div>
                   <div className="practice-list">
-                    <div className="practice-list-box-box">
+                    {/* <div className="practice-list-box-box">
                       <div className="practice-list-item">
                         <div className="practice-item-name">
                           Lesson 1: Predict what you will hear
@@ -73,7 +73,7 @@ const Practice = () => {
                         </div>
                         <div className="practice-item-progress-lesson"></div>
                       </div>
-                    </div>
+                    </div> */}
                     <TestWrap>
                       <Row gutter={[16, 16]}>
                         {listTest.map((item) => (
@@ -186,7 +186,7 @@ const Practice = () => {
           </div>
         </div>
       </div>
-      <IntroWrap id="introduction">
+      {/* <IntroWrap id="introduction">
         <div className="css-1ll7j1d">
           <div className="list-intro read-more">
             <div
@@ -316,7 +316,7 @@ const Practice = () => {
           </div>
           <div className="btn-show-content">Xem thêm</div>
         </div>
-      </IntroWrap>
+      </IntroWrap> */}
     </ContentWrapper>
   );
 };

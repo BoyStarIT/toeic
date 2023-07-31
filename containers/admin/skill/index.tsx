@@ -1,48 +1,49 @@
-import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, FormOutlined, PlusOutlined } from '@ant-design/icons';
+import { getListSkillAdmin, putDeleteSkill } from '@api';
 import { useLoading } from '@hooks';
+import { Message } from '@utils';
 import { Button, Modal, Spin, Table } from 'antd';
 import Column from 'antd/lib/table/Column';
 import React, { useEffect, useState } from 'react';
 import CreatedForm from './created-form';
 import { PageWrapper } from './index.style';
-import { putDeleteSkill } from '@api';
-import { Message } from '@utils';
 
 const CMSSkill: React.FC = () => {
   const [{ isLoading }, { start, stop }] = useLoading();
   const [dataList, setDataList] = useState<any[]>([]);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModalConfirm, setShowModalConfirm] = useState<boolean>(false);
+  const [selectedRow, setSelectedRow] = useState<any>(undefined);
+
+  const fetchDataList = async () => {
+    start();
+    try {
+      const resp: any = await getListSkillAdmin();
+      const error = resp.data.error;
+      const respData = resp.data?.responseData;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error!');
+      } else {
+        setDataList(respData.skills);
+      }
+    } catch (err) {
+      console.log('onSubmit-error :>> ', err.toString());
+    } finally {
+      stop();
+    }
+  };
 
   useEffect(() => {
-    setDataList([
-      {
-        id: 1,
-        name: 'Luyện Nghe',
-      },
-      {
-        id: 2,
-        name: 'Luyện Viết',
-      },
-      {
-        id: 3,
-        name: 'Luyện Nói',
-      },
-      {
-        id: 4,
-        name: 'Luyện Đọc',
-      },
-      {
-        id: 5,
-        name: 'Luyện Nghe',
-      },
-    ]);
+    fetchDataList();
   }, []);
 
   const onDeleteRecord = async (record) => {
     start();
     try {
+      onCancelConfirm();
       const params = {
-        ids: record.id,
+        ids: [record.id],
       };
 
       const resp: any = await putDeleteSkill(params);
@@ -52,6 +53,7 @@ const CMSSkill: React.FC = () => {
         Message.error(error?.message ?? 'Something error!');
       } else {
         Message.success('Successfully!');
+        fetchDataList();
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -59,16 +61,35 @@ const CMSSkill: React.FC = () => {
       stop();
     }
   };
+  const onClickDelete = (record) => {
+    setShowModalConfirm(true);
+    setSelectedRow(record);
+  };
+
+  const onClickEdit = (record) => {
+    setShowModal(true);
+    setSelectedRow(record);
+  };
+
+  const onCancelConfirm = () => {
+    setShowModalConfirm(false);
+    setSelectedRow(undefined);
+  };
+
+  const onCloseCreatedForm = () => {
+    setShowModal(false);
+    fetchDataList();
+  };
 
   return (
     <PageWrapper>
+      <div className="cms-page-title">Manager Skill</div>
       <div className="btn-action-box">
         <Button onClick={() => setShowModal(true)} className="btn-add">
           <PlusOutlined /> Add Skill
         </Button>
       </div>
       <Table
-        // rowSelection={rowSelection}
         dataSource={dataList}
         pagination={false}
         rowKey={(obj) => obj.id}
@@ -83,15 +104,15 @@ const CMSSkill: React.FC = () => {
           title="Action"
           key="action"
           dataIndex=""
-          width="4rem"
+          width="6rem"
           render={(record) => (
-            // <CmsAction
-            //   category={mediaType === MEDIA_TYPE.VIDEO ? CONTENT_TYPE.VIDEO : CONTENT_TYPE.AUDIO}
-            //   id={record.id}
-            //   status={record.status}
-            // />
-            <div onClick={() => onDeleteRecord(record)} className="cursor-pointer">
-              <CloseCircleOutlined />
+            <div className="cursor-pointer">
+              <CloseCircleOutlined
+                className="mr-3"
+                alt="Delete"
+                onClick={() => onClickDelete(record)}
+              />
+              <FormOutlined alt="Edit" onClick={() => onClickEdit(record)} />
             </div>
           )}
         />
@@ -99,6 +120,7 @@ const CMSSkill: React.FC = () => {
           title="ID"
           key="id"
           className="column-id"
+          width="6rem"
           render={(record) => <div>{record.id}</div>}
         />
         <Column
@@ -112,7 +134,7 @@ const CMSSkill: React.FC = () => {
       <Modal
         width={755}
         bodyStyle={{ height: 'max-content' }}
-        title={'Add Skill'}
+        title={selectedRow ? 'Edit Skill' : 'Add Skill'}
         maskClosable={false}
         visible={showModal}
         onCancel={() => setShowModal(false)}
@@ -120,7 +142,20 @@ const CMSSkill: React.FC = () => {
         footer={null}
         className="edit-profile-modal"
       >
-        <CreatedForm onClose={() => setShowModal(false)} />
+        <CreatedForm formData={selectedRow} onClose={onCloseCreatedForm} />
+      </Modal>
+      <Modal
+        width={755}
+        bodyStyle={{ height: 'max-content' }}
+        title={'Confirm Delete'}
+        maskClosable={false}
+        visible={showModalConfirm}
+        onCancel={onCancelConfirm}
+        onOk={() => onDeleteRecord(selectedRow)}
+        destroyOnClose
+        className="edit-profile-modal"
+      >
+        Are you sure?
       </Modal>
     </PageWrapper>
   );

@@ -31,8 +31,12 @@ export const postForgotPassword = async (data) => {
   return post(ENDPOINTS.FORGOTPASS, data);
 };
 
-export const postVerify = async (data) => {
-  return post(`${ENDPOINTS.VERIFY}`, data);
+export const postBlockUser = async (data) => {
+  return post(`${ENDPOINTS.USER_BLOCK}`, data);
+};
+
+export const postUnblockUser = async (data) => {
+  return post(`${ENDPOINTS.USER_UNBLOCK}`, data);
 };
 
 export const putResetPassword = async (data) => {
@@ -53,4 +57,20 @@ export const putDeleteTopic = async (putData: any) => {
 
 export const putDeleteExam = async (putData: any) => {
   return put(ENDPOINTS.EXAM_DELETE_MULTIPLE, putData);
+};
+
+export const putEditExam = async (putData: any) => {
+  return put(ENDPOINTS.EXAM, putData);
+};
+
+export const putEditSkill = async (putData: any) => {
+  return put(ENDPOINTS.EXAM, putData);
+};
+
+export const putEditTopic = async (putData: any) => {
+  return put(ENDPOINTS.TOPIC, putData);
+};
+
+export const putEditUser = async (putData: any) => {
+  return put(ENDPOINTS.ADMIN_EDIT_USERS, putData);
 };
