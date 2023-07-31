@@ -2,108 +2,135 @@ import { ROUTES } from '@constants';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { HeaderWrap, Layout, FooterWrap } from './index.style';
-import { Menu } from 'antd';
-import { getheaderInfo } from '@api';
-import { Message } from '@utils';
+import { Dropdown, Menu, MenuProps, Space } from 'antd';
+import { doLogout, getheaderInfo } from '@api';
+import { Message, reactLocalStorage } from '@utils';
 import { useRouter } from 'next/router';
+import Config from '@root/config';
+import Icon from '@ant-design/icons/lib/components/Icon';
+import { IconUser } from '@ui/Svgs';
+import { isEmpty } from 'lodash';
+import { Cookies } from 'react-cookie';
 
 const MainLayout: React.FC = (props) => {
   const router = useRouter();
   const [topics, setTopics] = useState([]);
+  const UserData = reactLocalStorage.getObject(Config.USER_KEY);
 
   const fetchHeaderInfo = async () => {
     try {
-      // const resp = await getheaderInfo();
-      // const error = resp.data?.error;
-      // const respData = resp.data?.responseData;
-      const mockData = {
-        responseData: [
-          {
-            id: '64ba2d0f5b34203f21ffa6d8',
-            name: 'Practice Listening',
-            topics: [
-              {
-                topicId: '64ba2d0f5b34203f21ffa6db',
-                topicName: 'Part 1: Photos',
-                // slug: 'part-1-photos',
-              },
-              {
-                topicId: '64ba2d0f5b34203f21ffa6dc',
-                topicName: 'Part 2: Question - Response',
-                // slug: 'part-2-question-response',
-              },
-            ],
-          },
-          {
-            id: '64ba2d0f5b34203f21ffa6d9',
-            name: 'Practice Reading',
-            topics: [],
-          },
-        ],
-      };
-      setTopics(mockData.responseData);
-
-      // if (error) {
-      //   stop();
-      //   Message.error(error?.message ?? 'Something error! Try again later');
-      // } else {
-      //   console.log('respData', respData);
-      //   setTopics(respData);
-      // }
+      const resp = await getheaderInfo();
+      const error = resp.data?.error;
+      const respData = resp.data?.responseData;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error! Try again later');
+      } else {
+        setTopics(respData ?? mock_FetchHeaderInfo);
+      }
     } catch (error) {}
   };
   useEffect(() => {
     fetchHeaderInfo();
   }, []);
-  const onClickMenu = (topic) => {
-    router.push(`/practice/${topic.topicId}`);
+  const onLogoutClick = async () => {
+    try {
+      const resp: any = await doLogout();
+      const error = resp.data?.error;
+      if (error) {
+        Message.error(error?.message ?? 'Something error!');
+      } else {
+        onLogoutSuccess();
+      }
+    } catch (err) {
+      console.log('logout-error :>> ', err.toString());
+    } finally {
+    }
+    onLogoutSuccess();
   };
+  const onLogoutSuccess = () => {
+    reactLocalStorage.clear();
+    const cookies = new Cookies();
+    cookies.remove(Config.AUTH_TOKEN_KEY);
+    router.push(ROUTES.HOME);
+  };
+
+  const onRouterPush = (route) => {
+    router.push(route);
+  };
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: '1',
+          label: <span className="sub-title">Hello, {UserData?.displayName}</span>,
+        },
+        {
+          key: '2',
+          label: (
+            <span>
+              <Link href={`${ROUTES.USER}/${UserData?.userId}`}>
+                <span className="sub-title">View Profile</span>
+              </Link>
+            </span>
+          ),
+        },
+        {
+          key: '3',
+          label: (
+            <span>
+              <Link href={'#'}>
+                <span className="sub-title">My Learning</span>
+              </Link>
+            </span>
+          ),
+        },
+        {
+          key: '3',
+          label: (
+            <span className="sub-title" onClick={onLogoutClick}>
+              Logout
+            </span>
+          ),
+        },
+      ]}
+    />
+  );
+
   return (
     <Layout>
       <HeaderWrap>
         <div className="container heading-wrap">
-          <Menu className="heading-menu" mode="horizontal" defaultSelectedKeys={['home']}>
-            <Menu.Item key="home">Home</Menu.Item>
+          <Menu className="heading-menu" mode="horizontal">
+            <Menu.Item key="home" onClick={() => onRouterPush(ROUTES.HOME)}>
+              Home
+            </Menu.Item>
             {topics.map((topic) => (
               <Menu.SubMenu key={topic.id} title={topic.name}>
                 {topic?.topics?.map((item) => (
                   <Menu.Item key={item.topicId}>
-                    <span onClick={() => onClickMenu(item)}>{item.topicName}</span>
+                    <Link href={`/practice/${item?.topicId}`}>{item.topicName}</Link>
                   </Menu.Item>
                 ))}
               </Menu.SubMenu>
             ))}
-            {/* <Menu.SubMenu key="practice-lr" title={<>Practice L&R</>}>
-              <Menu.Item key="part-1">
-                <Link href={ROUTES.PRACTICE1}>Part 1: Photos</Link>
-              </Menu.Item>
-              <Menu.Item key="part-2">
-                <Link href={ROUTES.PRACTICE1}>Part 2: Question - Response</Link>
-              </Menu.Item>
-              <Menu.Item key="part-3">
-                <Link href={ROUTES.PRACTICE1}>Part 3: Conversations</Link>
-              </Menu.Item>
-              <Menu.Item key="part-4">
-                <Link href={ROUTES.PRACTICE1}>Part 4: Short Talks</Link>
-              </Menu.Item>
-            </Menu.SubMenu>
-            <Menu.Item key="practice-sw">Practice S&W</Menu.Item>
             <Menu.SubMenu key="test" title="Test">
               <Menu.Item key="test-1">Simulation Test</Menu.Item>
               <Menu.Item key="test-2">Full Test</Menu.Item>
-              <Menu.Item key="test-3">Mini Test</Menu.Item>
+              <Menu.Item key="test-3">
+                <Link href={ROUTES.MINI_TEST}>{'Mini Test'}</Link>
+              </Menu.Item>
             </Menu.SubMenu>
-            <Menu.Item key="grammar">Grammar</Menu.Item>
-            <Menu.Item key="vocabulary">Vocabulary</Menu.Item>
-            <Menu.Item key="blog">Blog</Menu.Item>
-            <Menu.SubMenu key="toeic-tips" title="TOEIC Tips">
-              <Menu.Item key="test-2">TOEIC Listening Tips</Menu.Item>
-              <Menu.Item key="test-3">TOEIC Reading Tips</Menu.Item>
-            </Menu.SubMenu> */}
           </Menu>
-          <span className="btn-login">
-            <Link href={ROUTES.SIGNIN}>Login</Link>
-          </span>
+          {!isEmpty(UserData) ? (
+            <Dropdown overlay={menu}>
+              <Icon component={IconUser} />
+            </Dropdown>
+          ) : (
+            <span className="btn-login">
+              <Link href={ROUTES.SIGNIN}>Login</Link>
+            </span>
+          )}
         </div>
       </HeaderWrap>
       <main className="main-content-layout">{props.children}</main>
@@ -117,11 +144,7 @@ const MainLayout: React.FC = (props) => {
             <div className="social-main-panel">
               <div className="social-label">Connect with us</div>
               <div className="social-link-icons">
-                <a
-                  href="https://www.facebook.com/toeictestonline"
-                  rel="nofollow noopener"
-                  target="_blank"
-                >
+                <a href="https://www.facebook.com/#" rel="nofollow noopener" target="_blank">
                   <svg
                     className="social-item-icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -147,11 +170,7 @@ const MainLayout: React.FC = (props) => {
                     />
                   </svg>
                 </a>
-                <a
-                  href="https://www.tiktok.com/@toeictestpro"
-                  rel="nofollow noopener"
-                  target="_blank"
-                >
+                <a href="https://www.tiktok.com/#" rel="nofollow noopener" target="_blank">
                   <svg
                     className="social-item-icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -177,11 +196,7 @@ const MainLayout: React.FC = (props) => {
                     />
                   </svg>
                 </a>
-                <a
-                  href="https://www.youtube.com/channel/UCGG5IGBgkchine0n0OpmFWQ"
-                  rel="nofollow noopener"
-                  target="_blank"
-                >
+                <a href="https://www.youtube.com/#" rel="nofollow noopener" target="_blank">
                   <svg
                     className="social-item-icon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +232,7 @@ const MainLayout: React.FC = (props) => {
                     />
                   </svg>
                 </a>
-                <a href="https://twitter.com/toeictestpro" rel="nofollow noopener" target="_blank">
+                <a href="https://twitter.com/#" rel="nofollow noopener" target="_blank">
                   <svg
                     className="social-item-icon"
                     xmlns="http://www.w3.org/2000/svg"

@@ -1,6 +1,5 @@
 import { forIn, isEmpty } from 'lodash';
 
-
 export const reactLocalStorage = {
   set: function (key: any, value: any) {
     window.localStorage[key] = value;
@@ -13,14 +12,14 @@ export const reactLocalStorage = {
     window.localStorage[key] = JSON.stringify(value);
     return window.localStorage[key];
   },
-  getObject: function (key: any, value: any) {
+  getObject: function (key: any) {
     if (typeof window !== 'undefined') {
       return JSON.parse(window?.localStorage[key] || '{}');
     }
   },
   clear: function () {
     forIn(window.localStorage, (value: string, objKey: string) => {
-      if (objKey.startsWith('eko-') || objKey.startsWith('audio-')) {
+      if (objKey.startsWith('toeic-')) {
         window.localStorage.removeItem(objKey);
       }
     });

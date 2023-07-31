@@ -1,45 +1,9 @@
-import { ROUTES } from '@constants';
-import Config from '@root/config';
-import { reactLocalStorage } from '@utils';
-import router from 'next/router';
-import { useEffect, useState } from 'react';
-import { Cookies } from 'react-cookie';
-import { BannerWrap, HomeContentWrap, HomePageWrapper } from './Home.style';
 import { IconAppStore, IconGoogleApp } from '@ui/Svgs';
 import { Col, Row } from 'antd';
 import Link from 'next/link';
+import { BannerWrap, HomeContentWrap, HomePageWrapper } from './Home.style';
 
 const Home = () => {
-  const onLogoutClick = () => {
-    // try {
-    //   const resp: any = doLogout();
-    //   const error = resp.data?.error;
-    //   const respData = resp.data?.data;
-    //   if (error) {
-    //     Message.error(error?.message ?? 'Something error!');
-    //   } else {
-    //     onLogoutSuccess();
-    //   }
-    // } catch (err) {
-    //   console.log('logout-error :>> ', err.toString());
-    // } finally {
-    // }
-    // onLogoutSuccess();
-  };
-
-  // const onLogoutSuccess = () => {
-  //   reactLocalStorage.clear();
-  //   const cookies = new Cookies();
-  //   const accessToken = null;
-  //   // cookies.set(Config.AUTH_TOKEN_KEY, accessToken, {
-  //   //   expires: moment().add(60, 'day').toDate(),
-  //   //   path: '/',
-  //   // });
-
-  //   cookies.remove(Config.AUTH_TOKEN_KEY);
-  //   router.push(ROUTES.WELCOME);
-  // };
-
   return (
     <HomePageWrapper>
       <BannerWrap>
@@ -79,7 +43,7 @@ const Home = () => {
               <h3 className="toeic-subject-item-title">Listening</h3>
               <div>
                 <Row gutter={[16, 16]}>
-                  <Col span={6} className="cursor-point">
+                  <Col span={6} className="cursor-pointer">
                     <Link href={'#'}>
                       <div
                         className="part-item-data"
@@ -330,7 +294,7 @@ const Home = () => {
               <h3 className="toeic-subject-item-title">Reading</h3>
               <div>
                 <Row gutter={[16, 16]}>
-                  <Col span={6} className="cursor-point">
+                  <Col span={6} className="cursor-pointer">
                     <Link href={'#'}>
                       <div
                         className="part-item-data"

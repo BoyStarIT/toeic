@@ -22,9 +22,8 @@ axios.interceptors.request.use(
     }
     config.headers['Content-Type'] = 'application/json';
     config.headers['Access-Control-Allow-Origin'] = '*';
-    config.headers['ngrok-skip-browser-warning'] = 'true';
     config.headers['Access-Control-Allow-Credentials'] = 'true';
-    config.headers['Access-Control-Allow-Methods'] = 'GET,HEAD,OPTIONS,POST,PUT';
+    config.headers['Access-Control-Allow-Methods'] = 'POST, PUT, PATCH, GET, DELETE, OPTIONS';
     config.headers['Access-Control-Allow-Headers'] =
       'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers';
     //if token is passed in server side
