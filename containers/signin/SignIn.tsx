@@ -1,5 +1,5 @@
 import { doLogin } from '@api';
-import { PATTERN_VALIDATE, ROUTES } from '@constants';
+import { PATTERN_VALIDATE, ROLE, ROUTES } from '@constants';
 import { useLoading } from '@hooks';
 import Config from '@root/config';
 import { Button } from '@ui/Button';
@@ -42,6 +42,7 @@ const SignIn: React.FC = () => {
   const onLoginSuccess = (data) => {
     const cookies = new Cookies();
     const user = data.examUser;
+    const roles = data.roles;
     const accessToken = data.access_token;
 
     if (accessToken && typeof accessToken === 'string') {
@@ -50,7 +51,11 @@ const SignIn: React.FC = () => {
         path: '/',
       });
       reactLocalStorage.setObject(Config.USER_KEY, user);
-      router.push(ROUTES.HOME);
+      if (user.roles.includes(ROLE.ADMIN)) {
+        router.push(ROUTES.ADMIN_USER);
+      } else {
+        router.push(ROUTES.HOME);
+      }
     }
   };
 
