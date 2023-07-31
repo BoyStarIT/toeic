@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
-import ExamLayout from './ExamLayout';
 import { Progress } from 'antd';
-import TopicListView from './TopicListView';
+import ExamLayout from './ExamLayout';
 
 const ExamView = ({ listQuestion, onSetExamStatus }) => {
   const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
   const correctAnswerCount = listQuestion.filter(
-    (question) => question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+    (question) =>
+      question?.userAnswer?.[0] && question?.userAnswer?.[0] === question?.answer?.texts?.[0]
   ).length;
-  const incorrectAnswerCount =
-    listQuestion.filter((question) => question?.userAnswer?.[0] !== question?.answer?.texts?.[0])
-      .length - newAnswerCount ?? 0;
+  const incorrectAnswerCount = listQuestion.length - newAnswerCount - correctAnswerCount;
+
   return (
     <ExamLayout listQuestion={listQuestion}>
       <div id="game-view-container" className="game-view-container-main">

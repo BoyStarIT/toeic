@@ -1,11 +1,11 @@
-import { Col, Row } from 'antd';
-import { ContentWrapper, IntroWrap, TestWrap } from './Practice.style';
 import { RightOutlined } from '@ant-design/icons';
-import { useEffect, useState } from 'react';
-import { getListExam, putDeleteSkill } from '@api';
+import { getListExam } from '@api';
 import { useLoading } from '@hooks';
 import { Message } from '@utils';
+import { Col, Row } from 'antd';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { ContentWrapper, IntroWrap, TestWrap } from './Practice.style';
 
 const Practice = () => {
   const router = useRouter();
@@ -14,6 +14,9 @@ const Practice = () => {
 
   const [listTest, setListTest] = useState([]);
   const fetchListExam = async () => {
+    if (!topicId) {
+      return;
+    }
     start();
     try {
       const resp: any = await getListExam(topicId);

@@ -21,11 +21,11 @@ axios.interceptors.request.use(
       return config;
     }
     config.headers['Content-Type'] = 'application/json';
-    config.headers['Access-Control-Allow-Origin'] = '*';
-    config.headers['Access-Control-Allow-Credentials'] = 'true';
-    config.headers['Access-Control-Allow-Methods'] = 'POST, PUT, PATCH, GET, DELETE, OPTIONS';
-    config.headers['Access-Control-Allow-Headers'] =
-      'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers';
+    // config.headers['Access-Control-Allow-Origin'] = '*';
+    // config.headers['Access-Control-Allow-Credentials'] = 'true';
+    // config.headers['Access-Control-Allow-Methods'] = 'POST, PUT, PATCH, GET, DELETE, OPTIONS';
+    // config.headers['Access-Control-Allow-Headers'] =
+    //   'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers';
     //if token is passed in server side
     if (config && config.token) {
       //modify header here to include token

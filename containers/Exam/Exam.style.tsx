@@ -1593,16 +1593,18 @@ export const ContentWrapper = styled.div`
   }
 
   .game-object-explanation.quiz-explanation
-    .quiz-explanation-button:not(.game-object-explanation.quiz-explanation
-      .quiz-explanation-button.default) {
+    .quiz-explanation-button:not(
+      .game-object-explanation.quiz-explanation .quiz-explanation-button.default
+    ) {
     font-weight: 500;
     font-size: 16px;
     padding-left: 0;
   }
 
   .game-object-explanation.quiz-explanation
-    .quiz-explanation-button:not(.game-object-explanation.quiz-explanation
-      .quiz-explanation-button.default)
+    .quiz-explanation-button:not(
+      .game-object-explanation.quiz-explanation .quiz-explanation-button.default
+    )
     .game-object-explanation-content {
     color: #777;
     font-size: small;
@@ -4620,7 +4622,7 @@ export const ContentWrapper = styled.div`
       .question-palette-body {
         .questions-list {
           width: 100%;
-          height: 111px;
+          min-height: 111px;
           margin-top: 16px;
           .question-list-row {
             grid-template-columns: repeat(8, 1fr);
@@ -4749,11 +4751,6 @@ export const ContentWrapper = styled.div`
   }
   .question-palette-root .question-palette-footer .button-restart-game:hover {
     color: #007aff;
-  }
-  .question-palette-root .question-palette-body .questions-list {
-    width: 100%;
-    height: 111px;
-    margin-top: 16px;
   }
   .question-palette-root .question-palette-body .question-item {
     color: #777777;

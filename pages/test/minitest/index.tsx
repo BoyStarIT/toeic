@@ -1,7 +1,12 @@
+import ExamMiniTest from '@containers/Exam/ExamMiniTest';
 import MainLayout from '@ui/MainLayout';
 
 const MiniTestPage = () => {
-  return <MainLayout>Mini Test</MainLayout>;
+  return (
+    <MainLayout className={'exam-page'}>
+      <ExamMiniTest />
+    </MainLayout>
+  );
 };
 
 export default MiniTestPage;

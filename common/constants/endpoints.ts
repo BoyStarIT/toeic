@@ -10,6 +10,7 @@ export const ENDPOINTS = {
   EXAM_DELETE_MULTIPLE: `exam/delete/multiple`,
   SKILL_HEADER: `skill/header`,
   TOPIC_EXAM: `topic/exam`,
+  MINI_TEST_CARD: `mini-test`,
   EXAM_CARD: `exam/card`,
   VERIFY: `user/resetpassword/verify`,
   FORGOTPASS: `user/pwd/forgot`,

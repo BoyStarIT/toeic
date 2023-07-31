@@ -14,3 +14,6 @@ export const getListExam = async (id) => {
 export const getListCard = async (id) => {
   return get(`${ENDPOINTS.EXAM_CARD}/${id}`);
 };
+export const getListCardMiniTest = async () => {
+  return get(ENDPOINTS.MINI_TEST_CARD);
+};

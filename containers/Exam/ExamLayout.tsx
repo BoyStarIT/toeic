@@ -21,6 +21,9 @@ const ExamLayout: React.FC<ExamLayoutProps> = (props: ExamLayoutProps) => {
 
   const fetchListExam = async () => {
     const topicId = router.query.topicCode;
+    if (!topicId) {
+      return;
+    }
     const resp: any = await getListExam(topicId);
     const error = resp.data.error;
     const respData = resp.data?.responseData;
