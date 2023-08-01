@@ -33,7 +33,6 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
               onUpdateQuestion={(newQuestion) =>
                 onUpdateQuestion(newQuestion, currentQuestionIndex)
               }
-              index={currentQuestionIndex + 1}
               key={`QuestionCard-${listQuestion[currentQuestionIndex]?._id}`}
             />
             <div

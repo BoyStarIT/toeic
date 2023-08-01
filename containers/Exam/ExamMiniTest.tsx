@@ -36,14 +36,17 @@ const ExamMiniTest = () => {
           if (isQuestionGroup) {
             const _childCards = card?.childCards.map((childCard) => {
               const localExamChildCard = localExamCard?.childCards?.find(
-                (exam) => exam.id === childCard.id
+                (exam) => exam.id === childCard?.id
               );
               questionNo = questionNo + 1;
               return {
                 ...childCard,
                 answer: {
-                  ...card.answer,
-                  allAnswer: [...card.answer.choices, ...card.answer.texts].sort(sortAnswer),
+                  ...childCard?.answer,
+                  allAnswer: [
+                    ...(childCard?.answer?.choices ?? []),
+                    ...(childCard?.answer?.texts ?? []),
+                  ].sort(sortAnswer),
                 },
                 questionNo: questionNo,
                 ...(localExamChildCard?.userAnswer?.length > 0
@@ -61,8 +64,10 @@ const ExamMiniTest = () => {
             return {
               ...card,
               answer: {
-                ...card.answer,
-                allAnswer: [...card.answer.choices, ...card.answer.texts].sort(sortAnswer),
+                ...card?.answer,
+                allAnswer: [...(card?.answer?.choices ?? []), ...(card?.answer?.texts ?? [])].sort(
+                  sortAnswer
+                ),
               },
               questionNo: questionNo,
               ...(localExamCard?.userAnswer?.length > 0
