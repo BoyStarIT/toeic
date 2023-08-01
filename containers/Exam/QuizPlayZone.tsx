@@ -7,6 +7,7 @@ import QuizPlayItem from './QuizPlayItem';
 type QuizPlayZoneProps = {
   userAnswer: string[];
   answer: {
+    allAnswer: any[];
     texts: string[];
     choices: string[];
     image?: string;
@@ -14,34 +15,23 @@ type QuizPlayZoneProps = {
     hint: string;
   };
   onChoice?: (choice) => void;
+  index: number;
 };
 export default function QuizPlayZone(props: QuizPlayZoneProps) {
   const [choices, setChoices] = useState([]);
 
   useEffect(() => {
-    let data = [
-      {
-        text: '(A)',
+    const listAnswer =
+      props?.answer?.allAnswer?.length > 0
+        ? props?.answer?.allAnswer
+        : ['(A)', '(B)', '(C)', '(D)'];
+    let data = listAnswer.map((answer) => {
+      return {
+        text: answer,
         isChecked: false,
         isAnswer: false,
-      },
-      {
-        text: '(B)',
-        isChecked: false,
-        isAnswer: false,
-      },
-      {
-        text: '(C)',
-        isChecked: false,
-        isAnswer: false,
-      },
-      {
-        text: '(D)',
-        isChecked: false,
-        isAnswer: false,
-      },
-    ];
-
+      };
+    });
     data = data.map((choice) => {
       let _choice = choice;
       if (props?.answer?.texts?.includes(choice.text)) {
@@ -71,6 +61,11 @@ export default function QuizPlayZone(props: QuizPlayZoneProps) {
 
   return (
     <div className="game-object-quiz-playzone">
+      <div className="question-index-wrap">
+        <div className="game-object-view-question-index">
+          <span>{props.index}.</span>
+        </div>
+      </div>
       <div className="game-object-quiz-choices">
         {choices.length > 0 &&
           choices.map((choice) => (

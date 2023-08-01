@@ -28,17 +28,48 @@ const ExamMiniTest = () => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        const localStorageExam = reactLocalStorage.getObject(Config.EXAM_KEY);
-        const _listData = respData?.cards?.map((question) => {
-          const userAnswer = localStorageExam?.find((exam) => exam.id === question.id) ?? [];
-          return {
-            ...question,
-            answer: {
-              ...question.answer,
-              allAnswer: [...question.answer.choices, ...question.answer.texts].sort(sortAnswer),
-            },
-            ...(userAnswer?.length > 0 ? { userAnswer: userAnswer } : {}),
-          };
+        const localStorageExam = reactLocalStorage.getArray(Config.EXAM_KEY);
+        let questionNo = 0;
+        const _listData = respData?.cards?.map((card) => {
+          const localExamCard = localStorageExam?.find((exam) => exam?.id === card?.id);
+          const isQuestionGroup = card?.answer?.choices?.length === 0;
+          if (isQuestionGroup) {
+            const _childCards = card?.childCards.map((childCard) => {
+              const localExamChildCard = localExamCard?.childCards?.find(
+                (exam) => exam.id === childCard.id
+              );
+              questionNo = questionNo + 1;
+              return {
+                ...childCard,
+                answer: {
+                  ...card.answer,
+                  allAnswer: [...card.answer.choices, ...card.answer.texts].sort(sortAnswer),
+                },
+                questionNo: questionNo,
+                ...(localExamChildCard?.userAnswer?.length > 0
+                  ? { userAnswer: localExamChildCard?.userAnswer }
+                  : {}),
+              };
+            });
+            return {
+              ...card,
+              childCards: _childCards,
+              isQuestionGroup: true,
+            };
+          } else {
+            questionNo = questionNo + 1;
+            return {
+              ...card,
+              answer: {
+                ...card.answer,
+                allAnswer: [...card.answer.choices, ...card.answer.texts].sort(sortAnswer),
+              },
+              questionNo: questionNo,
+              ...(localExamCard?.userAnswer?.length > 0
+                ? { userAnswer: localExamCard?.userAnswer }
+                : {}),
+            };
+          }
         });
 
         setListQuestion(_listData);

@@ -33,27 +33,24 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
               onUpdateQuestion={(newQuestion) =>
                 onUpdateQuestion(newQuestion, currentQuestionIndex)
               }
+              index={currentQuestionIndex + 1}
               key={`QuestionCard-${listQuestion[currentQuestionIndex]?._id}`}
             />
-            {listQuestion[currentQuestionIndex]?.userAnswer?.length > 0 && (
-              <div
-                className={`slide-button-box ${
-                  currentQuestionIndex === 0 ? 'first-question' : ''
-                } `}
-              >
-                {currentQuestionIndex !== 0 && (
-                  <Button shape="round" onClick={onPreviousQuestion} className="btn-previous">
-                    <LeftOutlined />
-                    {' Previous'}
-                  </Button>
-                )}
-
-                <Button shape="round" onClick={onNextQuestion} className="btn-next">
-                  {currentQuestionIndex !== listQuestion.length - 1 ? 'Next ' : 'View Result '}
-                  <RightOutlined />
+            <div
+              className={`slide-button-box ${currentQuestionIndex === 0 ? 'first-question' : ''} `}
+            >
+              {currentQuestionIndex !== 0 && (
+                <Button shape="round" onClick={onPreviousQuestion} className="btn-previous">
+                  <LeftOutlined />
+                  {' Previous'}
                 </Button>
-              </div>
-            )}
+              )}
+
+              <Button shape="round" onClick={onNextQuestion} className="btn-next">
+                {currentQuestionIndex !== listQuestion.length - 1 ? 'Next ' : 'View Result '}
+                <RightOutlined />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

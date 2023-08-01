@@ -1698,7 +1698,7 @@ export const ContentWrapper = styled.div`
     cursor: pointer;
   }
 
-  .game-object-quiz-choices {
+  .game-object-quiz-playzone {
     margin-top: 28px;
     margin-bottom: 28px;
   }
