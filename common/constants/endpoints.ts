@@ -1,6 +1,7 @@
 export const ENDPOINTS = {
   LOGIN: `app/login`,
   LOGOUT: `app/logout`,
+  USER_INFO: `user/info`,
   REGISTER: `public/register/user`,
   SKILL: `skill`,
   TOPIC: `topic`,

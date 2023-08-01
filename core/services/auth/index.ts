@@ -74,3 +74,7 @@ export const putEditTopic = async (putData: any) => {
 export const putEditUser = async (putData: any) => {
   return put(ENDPOINTS.ADMIN_EDIT_USERS, putData);
 };
+
+export const putUpdateUser = async (putData: any) => {
+  return put(ENDPOINTS.USER_INFO, putData);
+};

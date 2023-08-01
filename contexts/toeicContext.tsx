@@ -1,6 +1,9 @@
 import { getheaderInfo } from '@api';
+import { ROUTES } from '@constants';
+import Config from '@root/config';
+import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
-
+import { Cookies } from 'react-cookie';
 interface ToeicContextProps {
   topics: Array<TopicType>;
 }
@@ -20,6 +23,7 @@ export const ToeicContext = React.createContext<ToeicContextProps>({
 });
 
 export const ToeicContextProvider = (props) => {
+  const router = useRouter();
   const [topics, setTopics] = useState([]);
 
   const fetchHeaderInfo = async () => {
@@ -38,6 +42,15 @@ export const ToeicContextProvider = (props) => {
   useEffect(() => {
     fetchHeaderInfo();
   }, []);
+  useEffect(() => {
+    const publicRouter = [ROUTES.WELCOME, ROUTES.SIGNIN, ROUTES.SIGNUP, ROUTES.FORGOTPASSWORD];
+    const cookies = new Cookies();
+    const accessToken = cookies.get(Config.AUTH_TOKEN_KEY);
+    if (!publicRouter.includes(router.pathname) && !accessToken) {
+      router.push(ROUTES.WELCOME);
+      return;
+    }
+  });
   return (
     <ToeicContext.Provider
       value={{

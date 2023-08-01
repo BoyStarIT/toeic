@@ -64,6 +64,10 @@ axios.interceptors.response.use(
       cookies.remove(Config.USER_KEY, { path: '/' });
       // Message.error(error.response.data.error);
       Message.error('Authorization failed');
+      // setTimeout(() => {
+      //   const from = window.location.href;
+      //   window.location.href = `${ROUTES.SIGNIN}?r=${encodeURIComponent(from)}`;
+      // }, 500);
     }
     return Promise.reject(error);
   }

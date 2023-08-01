@@ -43,9 +43,7 @@ const SignIn: React.FC = () => {
   const onLoginSuccess = (data) => {
     const cookies = new Cookies();
     const user = data.examUser;
-    const roles = data.roles;
     const accessToken = data.access_token;
-
     if (accessToken && typeof accessToken === 'string') {
       cookies.set(Config.AUTH_TOKEN_KEY, accessToken, {
         expires: moment().add(60, 'day').toDate(),
