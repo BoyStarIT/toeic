@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { CookiesProvider } from 'react-cookie';
 import NextNprogress from 'nextjs-progressbar';
-import { MasterContext } from '@contexts';
+import { MasterContext, ToeicContextProvider } from '@contexts';
 import { theme } from '@styles/theme';
 import { globalStyles } from '@styles/global';
 import 'bootstrap-utilities/bootstrap-utilities.css';
@@ -16,7 +16,12 @@ const MyApp = ({ Component, pageProps, user, router }) => {
   return (
     <>
       <MasterContext
-        components={[[CookiesProvider], [ThemeProvider, { theme }], [BreakpointsContextProvider]]}
+        components={[
+          [CookiesProvider],
+          [ThemeProvider, { theme }],
+          [ToeicContextProvider],
+          [BreakpointsContextProvider],
+        ]}
       >
         <div id="main-app">
           <main>

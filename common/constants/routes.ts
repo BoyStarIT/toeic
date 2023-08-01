@@ -4,7 +4,7 @@ export const ROUTES = {
   SIGNUP: '/signup',
   USER: '/user',
   FORGOTPASSWORD: '/forgot-password',
-  PRACTICE1: '/practice/part-1-photos',
+  WELCOME: '/welcome',
   MINI_TEST: '/test/minitest',
   ADMIN_EXAM: '/admin/exam',
   ADMIN_TOPIC: '/admin/topic',

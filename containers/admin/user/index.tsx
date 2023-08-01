@@ -19,7 +19,6 @@ const CMSUser: React.FC = () => {
     start();
     try {
       const resp: any = await getListUser();
-      console.log('resp', resp);
       const error = resp.data.error;
       const respData = resp.data?.data;
       if (error) {

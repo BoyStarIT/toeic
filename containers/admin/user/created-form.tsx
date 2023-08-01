@@ -23,15 +23,12 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
     try {
       const params = {
         email: data.email,
-        password: data.password,
         firstName: data.username,
-        lastName: data.username,
-        // address: 'Da Ton, Gia Lam, Ha Noi',
         phone: data.phone,
         role: 'User',
         dob: moment(data?.dob).format('DD/MM/YYYY'),
         gender: data.gender,
-        ...(formData ? { userId: formData.userId } : {}),
+        ...(formData ? { userId: formData.userId } : { password: 'abcd1234@' }),
       };
 
       const resp: any = formData ? await putEditUser(params) : await postRegister(params);
@@ -110,7 +107,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                         },
                       ]}
                     >
-                      <Input placeholder="Email (Account)" readOnly />
+                      <Input placeholder="Email (Account)" readOnly={!!formData} />
                     </Form.Item>
                   </Col>
                   <Col span={12}>

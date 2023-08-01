@@ -64,7 +64,7 @@ export const putEditExam = async (putData: any) => {
 };
 
 export const putEditSkill = async (putData: any) => {
-  return put(ENDPOINTS.EXAM, putData);
+  return put(ENDPOINTS.SKILL, putData);
 };
 
 export const putEditTopic = async (putData: any) => {

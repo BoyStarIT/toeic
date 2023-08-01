@@ -11,29 +11,13 @@ import Icon from '@ant-design/icons/lib/components/Icon';
 import { IconUser } from '@ui/Svgs';
 import { isEmpty } from 'lodash';
 import { Cookies } from 'react-cookie';
-import { mock_FetchHeaderInfo } from '@root/common/constants/mockData';
+import { useToeicContext } from '@contexts/toeicContext';
 
 const MainLayout = (props) => {
   const router = useRouter();
-  const [topics, setTopics] = useState([]);
   const UserData = reactLocalStorage.getObject(Config.USER_KEY);
+  const { topics } = useToeicContext();
 
-  const fetchHeaderInfo = async () => {
-    try {
-      const resp = await getheaderInfo();
-      const error = resp.data?.error;
-      const respData = resp.data?.responseData;
-      if (error) {
-        stop();
-        Message.error(error?.message ?? 'Something error! Try again later');
-      } else {
-        setTopics(respData ?? mock_FetchHeaderInfo);
-      }
-    } catch (error) {}
-  };
-  useEffect(() => {
-    fetchHeaderInfo();
-  }, []);
   const onLogoutClick = async () => {
     try {
       const resp: any = await doLogout();
@@ -53,7 +37,7 @@ const MainLayout = (props) => {
     reactLocalStorage.clear();
     const cookies = new Cookies();
     cookies.remove(Config.AUTH_TOKEN_KEY);
-    router.push(ROUTES.HOME);
+    router.push(ROUTES.WELCOME);
   };
 
   const onRouterPush = (route) => {
@@ -62,10 +46,6 @@ const MainLayout = (props) => {
   const menu = (
     <Menu
       items={[
-        {
-          key: '1',
-          label: <span className="sub-title">Hello, {UserData?.displayName}</span>,
-        },
         {
           key: '2',
           label: (
@@ -76,18 +56,18 @@ const MainLayout = (props) => {
             </span>
           ),
         },
+        // {
+        //   key: '3',
+        //   label: (
+        //     <span>
+        //       <Link href={'#'}>
+        //         <span className="sub-title">My Learning</span>
+        //       </Link>
+        //     </span>
+        //   ),
+        // },
         {
-          key: '3',
-          label: (
-            <span>
-              <Link href={'#'}>
-                <span className="sub-title">My Learning</span>
-              </Link>
-            </span>
-          ),
-        },
-        {
-          key: '3',
+          key: '4',
           label: (
             <span className="sub-title" onClick={onLogoutClick}>
               Logout
@@ -123,7 +103,9 @@ const MainLayout = (props) => {
           </Menu>
           {!isEmpty(UserData) ? (
             <Dropdown overlay={menu}>
-              <Icon component={IconUser} />
+              <span className="user-dropdown-title">
+                <Icon component={IconUser} className="mr-2" /> Hello, {UserData?.displayName}
+              </span>
             </Dropdown>
           ) : (
             <span className="btn-login">

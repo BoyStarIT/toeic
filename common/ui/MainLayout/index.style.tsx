@@ -10,6 +10,10 @@ export const HeaderWrap = styled.div`
   background-color: #2e72b1;
   display: flex;
   justify-content: center;
+  color: #9bc9ff;
+  font-size: 16px;
+  height: 60px;
+  padding-bottom: 3px;
   .heading-wrap {
     display: flex;
     justify-content: space-between;
@@ -21,11 +25,13 @@ export const HeaderWrap = styled.div`
       min-width: 870px;
     }
   }
-
-  color: #9bc9ff;
-  font-size: 16px;
-  height: 60px;
-  padding-bottom: 3px;
+  .user-dropdown-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 250px;
+    font-size: 14px;
+  }
   .ant-menu.ant-menu-root {
     background-color: transparent;
     color: #9bc9ff;
