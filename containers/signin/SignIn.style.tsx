@@ -41,6 +41,22 @@ export const SignInPageWrapper = styled.div`
         cursor: pointer;
       }
     }
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(
+        .ant-input-affix-wrapper-borderless
+      ).ant-input-affix-wrapper,
+    .ant-input-affix-wrapper-status-error:not(.ant-input-affix-wrapper-disabled):not(
+        .ant-input-affix-wrapper-borderless
+      ).ant-input-affix-wrapper:hover {
+      background: #f5f6f8;
+    }
+    .ant-input {
+      background: #f5f6f8;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.4375px;
+      color: #272727;
+    }
     .ant-form-item-label > label {
       font-size: 18px;
       line-height: 23px;
