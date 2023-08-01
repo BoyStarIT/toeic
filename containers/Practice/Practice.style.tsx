@@ -45,6 +45,7 @@ export const ContentWrapper = styled.div`
         color: #333;
         font-weight: 700;
         font-size: 20px;
+        text-transform: uppercase;
       }
       .practice-list {
         margin-top: 12px;

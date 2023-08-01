@@ -40,7 +40,7 @@ const LeftContent: React.FC = () => {
     reactLocalStorage.clear();
     const cookies = new Cookies();
     cookies.remove(Config.AUTH_TOKEN_KEY);
-    router.push(ROUTES.HOME);
+    router.push(ROUTES.WELCOME);
   };
 
   return (
@@ -70,8 +70,8 @@ const LeftContent: React.FC = () => {
         <Menu.Item key="card">
           <Link href={ROUTES.ADMIN_CARD}>Card</Link>
         </Menu.Item>
-        <Menu.Item key="logout">
-          <span onClick={onLogoutClick}>
+        <Menu.Item key="logout" onClick={onLogoutClick}>
+          <span>
             Logout <LogoutOutlined className="ml-1" style={{ fontSize: '15px' }} />
           </span>
         </Menu.Item>

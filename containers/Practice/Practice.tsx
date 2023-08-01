@@ -12,7 +12,7 @@ const Practice = () => {
   const topicId = router.query.slugTopic;
   const [{ isLoading }, { start, stop }] = useLoading();
 
-  const [listTest, setListTest] = useState([]);
+  const [examData, setExamData] = useState(undefined);
   const fetchListExam = async () => {
     if (!topicId) {
       return;
@@ -26,7 +26,7 @@ const Practice = () => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        setListTest(respData.exams);
+        setExamData(respData);
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -50,33 +50,11 @@ const Practice = () => {
             <Row gutter={[16, 0]}>
               <Col span={18}>
                 <div className="part-contents">
-                  <div className="practice-name">PART 1: PHOTOS</div>
+                  <div className="practice-name">{examData?.name}</div>
                   <div className="practice-list">
-                    {/* <div className="practice-list-box-box">
-                      <div className="practice-list-item">
-                        <div className="practice-item-name">
-                          Lesson 1: Predict what you will hear
-                        </div>
-                        <div className="practice-item-progress-lesson"></div>
-                      </div>
-                      <div className="practice-list-item">
-                        <div className="practice-item-name">Lesson 2: Listen for correct verb</div>
-                        <div className="practice-item-progress-lesson"></div>
-                      </div>
-                      <div className="practice-list-item">
-                        <div className="practice-item-name">Lesson 3: Listen for details </div>
-                        <div className="practice-item-progress-lesson"></div>
-                      </div>
-                      <div className="practice-list-item">
-                        <div className="practice-item-name">
-                          Lesson 4: Listen for prepositions and similar sounds{' '}
-                        </div>
-                        <div className="practice-item-progress-lesson"></div>
-                      </div>
-                    </div> */}
                     <TestWrap>
                       <Row gutter={[16, 16]}>
-                        {listTest.map((item) => (
+                        {examData?.exams?.map((item) => (
                           <Col
                             className="gutter-row"
                             span={6}
