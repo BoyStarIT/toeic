@@ -6,7 +6,7 @@ import { Progress } from 'antd';
 
 const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   const onClickReview = () => {
-    const question = document.getElementById(`review-${listQuestion?.[0]._id}`);
+    const question = document.getElementById(`review-${listQuestion?.[0]?._id}`);
     if (!question) return;
     window.scrollTo({
       top: question.offsetTop,
@@ -260,7 +260,7 @@ const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => 
         </div>
         <div id="main-game-review-section" className="">
           {listQuestion.map((question, index) => (
-            <div id={`review-${question._id}`} key={question._id}>
+            <div id={`review-${question?._id}`} key={question?._id}>
               <div className="question-index-title">Question {index + 1}</div>
               <div className="game-object-view-container">
                 <div className="normal-root-container">

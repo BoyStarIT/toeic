@@ -17,6 +17,11 @@ export const reactLocalStorage = {
       return JSON.parse(window?.localStorage[key] || '{}');
     }
   },
+  getArray: function (key: any) {
+    if (typeof window !== 'undefined') {
+      return JSON.parse(window?.localStorage[key] || '[]');
+    }
+  },
   clear: function () {
     forIn(window.localStorage, (value: string, objKey: string) => {
       if (objKey.startsWith('toeic-')) {

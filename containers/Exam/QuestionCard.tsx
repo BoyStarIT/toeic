@@ -24,7 +24,7 @@ export default function QuestionCard({ question, onUpdateQuestion }) {
                 {question?.question?.sound && (
                   <div className="game-object-question-sound">
                     <ReactAudioPlayer
-                      src={`${'http://171.244.63.124:8080'}/${question?.question?.sound}`}
+                      src={`${Config.IMAGE_HOST}/${question?.question?.sound}`}
                       autoPlay={false}
                       controls
                     />
@@ -34,8 +34,8 @@ export default function QuestionCard({ question, onUpdateQuestion }) {
                   <div className="game-object-question-image">
                     <div className="game-image-widget-container" style={{ width: 300 }}>
                       <img
-                        src={`${'http://171.244.63.124:8080'}${question?.question?.image}`}
-                        alt={`${'http://171.244.63.124:8080'}/kstoeic/images/5911589_1562638438001.png`}
+                        src={`${Config.IMAGE_HOST}${question?.question?.image}`}
+                        alt={`${Config.IMAGE_HOST}/kstoeic/images/5911589_1562638438001.png`}
                         style={{ width: '100%' }}
                       />
                     </div>
@@ -45,8 +45,8 @@ export default function QuestionCard({ question, onUpdateQuestion }) {
                   <div className="game-object-question-image">
                     <div className="game-image-widget-container" style={{ width: 300 }}>
                       <img
-                        src={`${'http://171.244.63.124:8080'}${question?.question?.image}`}
-                        alt={`${'http://171.244.63.124:8080'}/kstoeic/images/5911589_1562638438001.png`}
+                        src={`${Config.IMAGE_HOST}${question?.question?.image}`}
+                        alt={`${Config.IMAGE_HOST}/kstoeic/images/5911589_1562638438001.png`}
                         style={{ width: '100%' }}
                       />
                     </div>

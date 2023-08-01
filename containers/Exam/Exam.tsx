@@ -27,9 +27,9 @@ const Exam = ({ topicCode, examCode }) => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        const localStorageExam = reactLocalStorage.getObject(Config.EXAM_KEY);
+        const localStorageExam = reactLocalStorage.getArray(Config.EXAM_KEY);
         const _listData = respData?.cards?.map((question) => {
-          const userAnswer = localStorageExam?.find((exam) => exam.id === question.id) ?? [];
+          const userAnswer = localStorageExam?.find((exam) => exam.id === question.id);
           return {
             ...question,
             answer: {

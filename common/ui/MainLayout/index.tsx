@@ -49,11 +49,11 @@ const MainLayout = (props) => {
         {
           key: '2',
           label: (
-            <span>
-              <Link href={`${ROUTES.USER}/${UserData?.userId}`}>
+            <Link href={`${ROUTES.USER}/${UserData?.userId}`}>
+              <div>
                 <span className="sub-title">View Profile</span>
-              </Link>
-            </span>
+              </div>
+            </Link>
           ),
         },
         // {
@@ -69,9 +69,9 @@ const MainLayout = (props) => {
         {
           key: '4',
           label: (
-            <span className="sub-title" onClick={onLogoutClick}>
+            <div className="sub-title" onClick={onLogoutClick}>
               Logout
-            </span>
+            </div>
           ),
         },
       ]}

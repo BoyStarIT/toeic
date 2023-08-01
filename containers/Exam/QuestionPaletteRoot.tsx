@@ -43,8 +43,8 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   }`}
                   tabIndex={0}
                   type="button"
-                  id={`pallete-item-${question._id}`}
-                  onClick={() => goToQuestion(question._id)}
+                  id={`pallete-item-${question?._id}`}
+                  onClick={() => goToQuestion(question?._id)}
                 >
                   {index + 1}
                 </button>

@@ -33,7 +33,7 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
               onUpdateQuestion={(newQuestion) =>
                 onUpdateQuestion(newQuestion, currentQuestionIndex)
               }
-              key={`QuestionCard-${listQuestion[currentQuestionIndex]._id}`}
+              key={`QuestionCard-${listQuestion[currentQuestionIndex]?._id}`}
             />
             {listQuestion[currentQuestionIndex]?.userAnswer?.length > 0 && (
               <div
