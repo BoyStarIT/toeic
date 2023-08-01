@@ -1,11 +1,11 @@
-import { postCreatedExam, putEditExam } from '@api';
+import { getAdminListCard, postCreatedExam, putEditExam } from '@api';
 import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import { styled } from '@styles/theme';
 import { Button } from '@ui';
 import { Message } from '@utils';
-import { Col, Form, Input, Row } from 'antd';
-import { useEffect } from 'react';
+import { Col, Form, Input, Row, Select } from 'antd';
+import { useEffect, useState } from 'react';
 type CreatedFormProps = {
   onClose: () => void;
   formData?: any;
@@ -15,11 +15,39 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
 
   const [{ isLoading }, { start, stop }] = useLoading();
 
+  const [dataList, setDataList] = useState<any[]>([]);
+
+  const fetchDataList = async () => {
+    start();
+    try {
+      const resp: any = await getAdminListCard();
+      const error = resp.data.error;
+      const respData = resp.data?.responseData;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error!');
+      } else {
+        const listData = respData.cards.map((card) => {
+          return {
+            label: card.id,
+            value: card.id,
+          };
+        });
+        setDataList(listData);
+      }
+    } catch (err) {
+      console.log('onSubmit-error :>> ', err.toString());
+    } finally {
+      stop();
+    }
+  };
+
   const onSubmit = async (data) => {
     start();
     try {
       const params = {
         name: data.name,
+        cardIds: data.cardIds,
         ...(formData ? { id: formData.id } : {}),
       };
 
@@ -30,6 +58,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
         Message.error(error?.message ?? 'Something error!');
       } else {
         Message.success('Successfully!');
+        form.resetFields();
         onClose();
       }
     } catch (err) {
@@ -41,12 +70,18 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
 
   useEffect(() => {
     if (formData) {
-      form.setFieldsValue(formData);
+      form.setFieldsValue({
+        name: formData.name,
+        cardIds: formData.cardIds,
+      });
     } else {
       form.resetFields();
     }
   }, [formData]);
 
+  useEffect(() => {
+    fetchDataList();
+  }, []);
   return (
     <CreatedFromWrap>
       <div className="form-register">
@@ -75,6 +110,17 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                       ]}
                     >
                       <Input placeholder="Enter exam name" />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item name="cardIds" label="List card">
+                      <Select
+                        mode="multiple"
+                        allowClear
+                        style={{ width: '100%' }}
+                        placeholder="Please select"
+                        options={dataList}
+                      />
                     </Form.Item>
                   </Col>
                 </Row>

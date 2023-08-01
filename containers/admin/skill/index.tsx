@@ -79,6 +79,7 @@ const CMSSkill: React.FC = () => {
   const onCloseCreatedForm = () => {
     setShowModal(false);
     fetchDataList();
+    setSelectedRow(undefined);
   };
 
   return (
@@ -130,6 +131,13 @@ const CMSSkill: React.FC = () => {
           className="column-name"
           render={(record) => <div>{record.name}</div>}
         />
+        <Column
+          title="Topic count"
+          key="topic-count"
+          dataIndex=""
+          className="column-name"
+          render={(record) => <div>{record.topicIds.length}</div>}
+        />
       </Table>
       <Modal
         width={755}
@@ -137,7 +145,7 @@ const CMSSkill: React.FC = () => {
         title={selectedRow ? 'Edit Skill' : 'Add Skill'}
         maskClosable={false}
         visible={showModal}
-        onCancel={() => setShowModal(false)}
+        onCancel={onCloseCreatedForm}
         destroyOnClose
         footer={null}
         className="edit-profile-modal"

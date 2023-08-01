@@ -6,8 +6,8 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
   font-size: 1rem;
   line-height: 1;
   font-weight: 700;
-  &:hover,
-  &:focus {
+  &.ant-btn-default:hover,
+  &.ant-btn-default:focus {
     color: #fff;
     border-color: #2f9a4c;
     background: #2f9a4c;
@@ -102,7 +102,7 @@ export const StyledButton = styled((props) => <AntButton {...props} />)`
   &.btn-cancel {
     color: ${theme.colors.black} !important;
     border-color: ${theme.colors.black} !important;
-    background: transparent;
+    background: transparent !important;
     ${theme.mixin.borderRadius('3px')};
   }
   &.welcome-btn {

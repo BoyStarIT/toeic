@@ -79,6 +79,7 @@ const CMSExam: React.FC = () => {
   const onCloseCreatedForm = () => {
     setShowModal(false);
     fetchDataList();
+    setSelectedRow(undefined);
   };
 
   return (
@@ -130,6 +131,13 @@ const CMSExam: React.FC = () => {
           className="column-name"
           render={(record) => <div>{record.name}</div>}
         />
+        <Column
+          title="Card count"
+          key="card-count"
+          dataIndex=""
+          className="column-name"
+          render={(record) => <div>{record.cardIds.length}</div>}
+        />
       </Table>
       <Modal
         width={755}
@@ -137,7 +145,7 @@ const CMSExam: React.FC = () => {
         title={selectedRow ? 'Edit Exam' : 'Add Exam'}
         maskClosable={false}
         visible={showModal}
-        onCancel={() => setShowModal(false)}
+        onCancel={onCloseCreatedForm}
         destroyOnClose
         footer={null}
         className="edit-profile-modal"

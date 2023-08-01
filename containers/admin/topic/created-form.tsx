@@ -1,11 +1,11 @@
-import { postCreatedTopic, putEditTopic } from '@api';
+import { getListExamAdmin, postCreatedTopic, putEditTopic } from '@api';
 import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import { styled } from '@styles/theme';
 import { Button } from '@ui';
 import { Message } from '@utils';
-import { Col, Form, Input, Row } from 'antd';
-import { useEffect } from 'react';
+import { Col, Form, Input, Row, Select } from 'antd';
+import { useEffect, useState } from 'react';
 type CreatedFormProps = {
   onClose: () => void;
   formData?: any;
@@ -15,6 +15,32 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
 
   const [{ isLoading }, { start, stop }] = useLoading();
 
+  const [dataList, setDataList] = useState<any[]>([]);
+
+  const fetchDataList = async () => {
+    start();
+    try {
+      const resp: any = await getListExamAdmin();
+      const error = resp.data.error;
+      const respData = resp.data?.responseData;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error!');
+      } else {
+        const listData = respData.exams.map((item) => {
+          return {
+            label: item.name,
+            value: item.id,
+          };
+        });
+        setDataList(listData);
+      }
+    } catch (err) {
+      console.log('onSubmit-error :>> ', err.toString());
+    } finally {
+      stop();
+    }
+  };
   const onSubmit = async (data) => {
     start();
     try {
@@ -47,6 +73,10 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
     }
   }, [formData]);
 
+  useEffect(() => {
+    fetchDataList();
+  }, []);
+
   return (
     <CreatedFromWrap>
       <div className="form-register">
@@ -75,6 +105,17 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                       ]}
                     >
                       <Input placeholder="Enter topic name" />
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item name="examIds" label="List exam">
+                      <Select
+                        mode="multiple"
+                        allowClear
+                        style={{ width: '100%' }}
+                        placeholder="Please select exam"
+                        options={dataList}
+                      />
                     </Form.Item>
                   </Col>
                 </Row>

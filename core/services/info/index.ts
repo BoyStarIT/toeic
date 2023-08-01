@@ -35,6 +35,10 @@ export const getListUser = async () => {
   return get(`${ENDPOINTS.ADMIN_USERS}`);
 };
 
+export const getAdminListCard = async () => {
+  return get(`${ENDPOINTS.ADMIN_CARD}`);
+};
+
 export const postCardImport = async (postData: any) => {
   return post(ENDPOINTS.ADMIN_CARD_IMPORT, postData);
 };

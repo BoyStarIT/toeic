@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { Cookies } from 'react-cookie';
 import { SignInPageWrapper } from './SignIn.style';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 const SignIn: React.FC = () => {
   const [form] = Form.useForm();
@@ -84,7 +85,6 @@ const SignIn: React.FC = () => {
                 requiredMark={false}
               >
                 <Form.Item
-                  label="Email address"
                   name="email"
                   rules={[
                     { required: true, message: 'Please input your email address!' },
@@ -93,16 +93,24 @@ const SignIn: React.FC = () => {
                       message: PATTERN_VALIDATE.email.message,
                     },
                   ]}
+                  className="mb-4"
                 >
-                  <Input placeholder="Email Address" />
+                  <Input
+                    placeholder="Email Address"
+                    prefix={<UserOutlined style={{ fontSize: '28px' }} />}
+                  />
                 </Form.Item>
 
                 <Form.Item
-                  label="Password"
                   name="password"
                   rules={[{ required: true, message: 'Please input your password!' }]}
+                  className="mb-2"
                 >
-                  <InputPassword placeholder="Password" iconRender={iconRender} />
+                  <InputPassword
+                    placeholder="Password"
+                    iconRender={iconRender}
+                    prefix={<LockOutlined style={{ fontSize: '28px' }} />}
+                  />
                 </Form.Item>
 
                 <div className="action-forgotpassword">

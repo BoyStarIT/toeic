@@ -18,6 +18,7 @@ export const ENDPOINTS = {
   RESETPASS: `user/pwd/reset`,
   CHANGEPASS: `user/changepassword`,
   ADMIN_EXAM: `admin/exam`,
+  ADMIN_CARD: `admin/card`,
   ADMIN_SKILL: `admin/skill`,
   ADMIN_TOPIC: `admin/topic`,
   ADMIN_USERS: `admin/users`,
