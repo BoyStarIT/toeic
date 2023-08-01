@@ -1,4 +1,4 @@
-import { postRegister } from '@api';
+import { postRegister, putUpdateUser } from '@api';
 import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import Config from '@root/config';
@@ -11,7 +11,6 @@ import { UserPageWrapper } from './index.style';
 
 const UserPage: React.FC = () => {
   const [form] = Form.useForm();
-  const router = useRouter();
   const UserData = reactLocalStorage.getObject(Config.USER_KEY);
   const [{ isLoading }, { start, stop }] = useLoading();
   const onSubmit = async (data) => {
@@ -27,9 +26,10 @@ const UserPage: React.FC = () => {
         role: 'User',
         dob: moment(data?.dob).format('DD/MM/YYY'),
         gender: data.gender,
+        userId: UserData.userId,
       };
 
-      const resp: any = await postRegister(params);
+      const resp: any = await putUpdateUser(params);
       const error = resp.data.error;
       if (error) {
         stop();
