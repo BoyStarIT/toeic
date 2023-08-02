@@ -189,7 +189,7 @@ const CMSUser: React.FC = () => {
         <CreatedForm formData={selectedRow} onClose={onCloseCreatedForm} />
       </Modal>
       <Modal
-        width={755}
+        width={450}
         bodyStyle={{ height: 'max-content' }}
         title={'Confirm Modal'}
         maskClosable={false}
