@@ -256,7 +256,7 @@ export const globalStyles = (
         font-size: 16px;
         font-weight: 600;
         background-color: var(--menuBackground) !important;
-        color: #fff;
+        color: #fff !important;
         margin-top: auto;
         display: inline-flex;
         &:focus,

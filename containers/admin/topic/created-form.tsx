@@ -87,6 +87,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
           onFinish={onSubmit}
           autoComplete="off"
           requiredMark={false}
+          validateTrigger="onBlur"
         >
           {(values, formInstance) => {
             return (

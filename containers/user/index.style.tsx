@@ -13,6 +13,7 @@ export const UserPageWrapper = styled.div`
     font-size: 36px;
   }
   .css-uc4fey {
+    position: relative;
     display: flex;
     gap: 32px;
     flex-direction: row;
@@ -141,8 +142,11 @@ export const UserPageWrapper = styled.div`
   .icon-date {
     position: absolute;
     z-index: 1;
-    top: 50%;
-    left: 18px;
+    top: 126px;
+    left: 248px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
 `;

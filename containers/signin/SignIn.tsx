@@ -9,16 +9,20 @@ import { Divider, Form } from 'antd';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Cookies } from 'react-cookie';
 import { SignInPageWrapper } from './SignIn.style';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import ModalVerifyOTP from '@containers/modal-verify-otp';
 
 const SignIn: React.FC = () => {
   const [form] = Form.useForm();
   const router = useRouter();
 
   const [{ isLoading }, { start, stop }] = useLoading();
+
+  const [showFormVerify, setShowFormVerify] = useState(false);
+  const [email, setEmail] = useState('');
 
   const onSubmit = async (data) => {
     start();
@@ -29,6 +33,10 @@ const SignIn: React.FC = () => {
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error! Try again later');
+        if (error.code === 1017) {
+          setEmail(data.email);
+          setShowFormVerify(true);
+        }
       } else {
         onLoginSuccess(respData);
       }
@@ -58,6 +66,13 @@ const SignIn: React.FC = () => {
     }
   };
 
+  const onCloseModalVerify = () => {
+    setShowFormVerify(false);
+  };
+  const onOkModalVerify = () => {
+    setShowFormVerify(false);
+  };
+
   return (
     <SignInPageWrapper>
       <div className="login-content">
@@ -74,6 +89,7 @@ const SignIn: React.FC = () => {
                 onFinish={onSubmit}
                 autoComplete="off"
                 requiredMark={false}
+                validateTrigger="onBlur"
               >
                 <Form.Item
                   name="email"
@@ -141,6 +157,12 @@ const SignIn: React.FC = () => {
           </div>
         </div>
       </div>
+      <ModalVerifyOTP
+        show={showFormVerify}
+        onClose={onCloseModalVerify}
+        onOk={onOkModalVerify}
+        email={email}
+      />
     </SignInPageWrapper>
   );
 };

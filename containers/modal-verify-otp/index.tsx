@@ -20,9 +20,13 @@ const ModalVerifyOTP = ({ show, onClose, onOk, email }) => {
       };
       const resp: any = await postVerifyOTP(params);
       const error = resp.data.error;
+      const respData = resp.data;
+      console.log('resp', resp);
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
+      } else if (!respData) {
+        Message.error('OTP code wrong, Try again please!');
       } else {
         onOk();
       }
@@ -56,6 +60,7 @@ const ModalVerifyOTP = ({ show, onClose, onOk, email }) => {
             onFinish={onSubmit}
             autoComplete="off"
             requiredMark={false}
+            validateTrigger="onBlur"
           >
             <Form.Item name="otp" rules={[{ required: true, message: 'Please input OTP code!' }]}>
               <Input placeholder="Enter otp code" />

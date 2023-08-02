@@ -64,6 +64,7 @@ const ForgotPassword: React.FC = () => {
                 onFinish={onSubmit}
                 autoComplete="off"
                 requiredMark={false}
+                validateTrigger="onBlur"
               >
                 <Form.Item
                   name="email"

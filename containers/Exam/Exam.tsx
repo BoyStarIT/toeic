@@ -92,8 +92,39 @@ const Exam = ({ topicCode, examCode }) => {
       if (!topicId) {
         return;
       }
+      let correct = 0;
+      let incorrect = 0;
+      let newAnswer = 0;
+      listQuestion.forEach((question) => {
+        if (question?.answer?.choices?.length === 0) {
+          question?.childCards.forEach((childCard) => {
+            if (!childCard?.userAnswer?.[0].length) {
+              newAnswer = newAnswer + 1;
+            } else if (
+              childCard?.userAnswer?.[0] &&
+              childCard?.userAnswer?.[0] === childCard?.answer?.texts?.[0]
+            ) {
+              correct = correct + 1;
+            } else {
+              incorrect = incorrect + 1;
+            }
+          });
+        } else {
+          if (!question?.userAnswer?.[0].length) {
+            newAnswer = newAnswer + 1;
+          } else if (
+            question?.userAnswer?.[0] &&
+            question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+          ) {
+            correct = correct + 1;
+          } else {
+            incorrect = incorrect + 1;
+          }
+        }
+      });
+      const progress = (correct / (correct + incorrect + newAnswer)) * 100;
       const params = {
-        progress: 80,
+        progress: progress.toFixed(0),
         status: 1,
         examId: examCode,
       };

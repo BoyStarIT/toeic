@@ -81,6 +81,7 @@ const SignUp: React.FC = () => {
                 onFinish={onSubmit}
                 autoComplete="off"
                 requiredMark={false}
+                validateTrigger="onBlur"
               >
                 {(values, formInstance) => {
                   const isValidateCharacterPass =

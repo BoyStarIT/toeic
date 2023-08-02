@@ -1,6 +1,8 @@
 import { getheaderInfo } from '@api';
 import { PUBLIC_ROUTER, ROUTES } from '@constants';
 import Config from '@root/config';
+import { reactLocalStorage } from '@utils';
+import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
@@ -45,7 +47,10 @@ export const ToeicContextProvider = (props) => {
   useEffect(() => {
     const cookies = new Cookies();
     const accessToken = cookies.get(Config.AUTH_TOKEN_KEY);
-    if (!PUBLIC_ROUTER.includes(router.pathname) && !accessToken) {
+    const UserData = reactLocalStorage.getObject(Config.USER_KEY);
+    if (!PUBLIC_ROUTER.includes(router.pathname) && (!accessToken || isEmpty(UserData))) {
+      reactLocalStorage.clear();
+      cookies.remove(Config.AUTH_TOKEN_KEY);
       router.push(ROUTES.WELCOME);
       return;
     }

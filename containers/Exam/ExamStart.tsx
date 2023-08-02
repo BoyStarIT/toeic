@@ -3,7 +3,6 @@ import { Button } from '@ui';
 import { useState } from 'react';
 import ExamLayout from './ExamLayout';
 import QuestionCard from './QuestionCard';
-import { postCollectExam } from '@api';
 
 const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);

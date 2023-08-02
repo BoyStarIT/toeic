@@ -60,6 +60,12 @@ export const HeaderWrap = styled.div`
       color: #ffffff;
     }
   }
+  .ant-menu-item a {
+    background-color: transparent;
+    color: #9bc9ff;
+    border: none;
+    font-size: 16px;
+  }
 `;
 export const FooterWrap = styled.footer`
   .footer-below {
