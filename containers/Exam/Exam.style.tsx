@@ -1734,13 +1734,24 @@ export const ContentWrapper = styled.div`
     flex: 1;
   }
 
-  .game-object-quiz .game-object-view-question-index,
-  .game-object-quiz .game-object-view-question-group-index {
+  .game-object-quiz .game-object-view-question-index {
     border-radius: 10px;
-    height: 30px;
+    min-height: 30px;
     padding-left: 30px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .game-object-quiz .game-object-view-question-group-index {
+    border-radius: 10px;
+    min-height: 30px;
+    padding-left: 30px;
+    display: flex;
+    align-items: baseline;
     justify-content: center;
     margin-right: 4px;
     position: relative;

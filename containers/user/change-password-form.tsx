@@ -83,7 +83,7 @@ const ChangePasswordForm = ({ onClose }: ChangePasswordFormProps) => {
                       rules={[
                         {
                           required: true,
-                          message: 'Please input your password!',
+                          message: 'Please input your new password!',
                         },
                         {
                           pattern: PATTERN_VALIDATE.password.value,

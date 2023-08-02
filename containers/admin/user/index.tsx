@@ -129,9 +129,9 @@ const CMSUser: React.FC = () => {
             <div className="cursor-pointer">
               <FormOutlined className="mr-3" alt="Edit" onClick={() => onClickEdit(record)} />
               {record.accountNonLocked ? (
-                <LockOutlined onClick={() => onClickLock(record)} />
+                <UnlockOutlined onClick={() => onClickLock(record)} />
               ) : (
-                <UnlockOutlined onClick={() => onUnlockRecord(record)} />
+                <LockOutlined onClick={() => onUnlockRecord(record)} />
               )}
             </div>
           )}
@@ -191,7 +191,7 @@ const CMSUser: React.FC = () => {
       <Modal
         width={755}
         bodyStyle={{ height: 'max-content' }}
-        title={'Confirm Delete'}
+        title={'Confirm Modal'}
         maskClosable={false}
         visible={showModalConfirm}
         onCancel={onCancelConfirm}

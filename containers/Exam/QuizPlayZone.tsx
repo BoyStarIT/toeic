@@ -66,7 +66,9 @@ export default function QuizPlayZone(props: QuizPlayZoneProps) {
       <div className="question-index-wrap">
         <div className="game-object-view-question-group-index">
           <span>{props.index}.</span>
-          <span>{props.parentQuestion?.isQuestionGroup ? props.childCard.question.text : ''}</span>
+          {props.parentQuestion?.isQuestionGroup && (
+            <span dangerouslySetInnerHTML={{ __html: props.childCard.question.text }}></span>
+          )}
         </div>
       </div>
       <div className="game-object-quiz-choices">
