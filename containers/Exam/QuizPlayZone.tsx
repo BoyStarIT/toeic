@@ -79,7 +79,7 @@ export default function QuizPlayZone(props: QuizPlayZoneProps) {
                 key={choice.text}
                 isSelected={props?.userAnswer?.length > 0}
               />
-              {props?.userAnswer?.length > 0 && choice?.isAnswer && (
+              {props?.userAnswer?.length > 0 && choice?.isAnswer && props?.answer?.hint && (
                 <Hint hint={props?.answer?.hint} />
               )}
             </>

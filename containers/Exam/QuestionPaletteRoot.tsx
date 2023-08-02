@@ -32,22 +32,46 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
         <div className="question-palette-body">
           <div className="questions-list questions-list-custom" id="question-list-scroll">
             <div className="question-list-row" style={{ gridTemplateColumns: 'repeat(8, 1fr)' }}>
-              {listQuestion?.map((question, index) => (
-                <button
-                  className={`question-item question-palette-item-custom ${
-                    question?.userAnswer?.length > 0
-                      ? question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-                        ? 'p-item-correct'
-                        : 'p-item-incorrect'
-                      : ''
-                  }`}
-                  tabIndex={0}
-                  type="button"
-                  id={`pallete-item-${question?._id}`}
-                  onClick={() => goToQuestion(question?._id)}
-                >
-                  {index + 1}
-                </button>
+              {listQuestion?.map((question) => (
+                <>
+                  {question?.isQuestionGroup ? (
+                    question.childCards.map((childCard) => (
+                      <button
+                        className={`question-item question-palette-item-custom ${
+                          childCard?.userAnswer?.length > 0
+                            ? childCard?.userAnswer?.[0] === childCard?.answer?.texts?.[0]
+                              ? 'p-item-correct'
+                              : 'p-item-incorrect'
+                            : ''
+                        }`}
+                        tabIndex={0}
+                        type="button"
+                        id={`pallete-item-${childCard?._id}`}
+                        onClick={() => goToQuestion(childCard?._id)}
+                      >
+                        {childCard?.questionNo}
+                      </button>
+                    ))
+                  ) : (
+                    <>
+                      <button
+                        className={`question-item question-palette-item-custom ${
+                          question?.userAnswer?.length > 0
+                            ? question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+                              ? 'p-item-correct'
+                              : 'p-item-incorrect'
+                            : ''
+                        }`}
+                        tabIndex={0}
+                        type="button"
+                        id={`pallete-item-${question?._id}`}
+                        onClick={() => goToQuestion(question?._id)}
+                      >
+                        {question?.questionNo}
+                      </button>
+                    </>
+                  )}
+                </>
               ))}
             </div>
           </div>
