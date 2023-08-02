@@ -24,7 +24,7 @@ const UserPage: React.FC = () => {
         // address: 'Da Ton, Gia Lam, Ha Noi',
         phone: data.phone,
         role: 'User',
-        dob: moment(data?.dob).format('DD/MM/YYY'),
+        dob: moment(data?.dob).format('DD/MM/YYYY'),
         gender: data.gender,
         userId: UserData.userId,
       };

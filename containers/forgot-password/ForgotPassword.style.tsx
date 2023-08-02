@@ -5,7 +5,7 @@ export const ForgotPasswordPageWrapper = styled.div`
   display: flex;
   .forgot-password-content {
     flex: 0 0 100%;
-    padding-top: 10vh;
+    padding-top: 15vh;
     padding-left: 10vw;
     padding-right: 8vw;
     @media (max-width: 769px) {

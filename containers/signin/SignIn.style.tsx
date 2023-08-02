@@ -5,7 +5,7 @@ export const SignInPageWrapper = styled.div`
   display: flex;
   .login-content {
     flex: 0 0 100%;
-    padding: 8vh 8vw 8vh 10vw;
+    padding: 15vh 8vw 8vh 10vw;
     @media (max-width: 769px) {
       padding-bottom: 75px;
     }
@@ -20,7 +20,7 @@ export const SignInPageWrapper = styled.div`
     text-transform: uppercase;
   }
   .form-login-wrap {
-    max-width: 660px;
+    max-width: 480px;
     margin: 0 auto;
 
     .header-login-wrap {

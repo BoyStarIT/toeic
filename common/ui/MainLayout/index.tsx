@@ -1,4 +1,4 @@
-import { ROUTES } from '@constants';
+import { PUBLIC_ROUTER, ROUTES } from '@constants';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { HeaderWrap, Layout, FooterWrap } from './index.style';
@@ -79,41 +79,44 @@ const MainLayout = (props) => {
   );
 
   return (
-    <Layout>
-      <HeaderWrap>
-        <div className="container heading-wrap">
-          <Menu className="heading-menu" mode="horizontal">
-            <Menu.Item key="home" onClick={() => onRouterPush(ROUTES.HOME)}>
-              Home
-            </Menu.Item>
-            {topics.map((topic) => (
-              <Menu.SubMenu key={topic.id} title={topic.name}>
-                {topic?.topics?.map((item) => (
-                  <Menu.Item key={item.topicId}>
-                    <Link href={`/practice/${item?.topicId}`}>{item.topicName}</Link>
-                  </Menu.Item>
-                ))}
-              </Menu.SubMenu>
-            ))}
-            <Menu.SubMenu key="test" title="Test">
+    <Layout className={`${PUBLIC_ROUTER.includes(router.pathname) ? 'public-page' : ''}`}>
+      {!PUBLIC_ROUTER.includes(router.pathname) ? (
+        <HeaderWrap>
+          <div className="container heading-wrap">
+            <Menu className="heading-menu" mode="horizontal">
+              <Menu.Item key="home" onClick={() => onRouterPush(ROUTES.HOME)}>
+                Home
+              </Menu.Item>
+              {topics.map((topic) => (
+                <Menu.SubMenu key={topic.id} title={topic.name}>
+                  {topic?.topics?.map((item) => (
+                    <Menu.Item key={item.topicId}>
+                      <Link href={`/practice/${item?.topicId}`}>{item.topicName}</Link>
+                    </Menu.Item>
+                  ))}
+                </Menu.SubMenu>
+              ))}
               <Menu.Item key="test-3">
                 <Link href={ROUTES.MINI_TEST}>{'Mini Test'}</Link>
               </Menu.Item>
-            </Menu.SubMenu>
-          </Menu>
-          {!isEmpty(UserData) ? (
-            <Dropdown overlay={menu}>
-              <span className="user-dropdown-title">
-                <Icon component={IconUser} className="mr-2" /> Hello, {UserData?.displayName}
+            </Menu>
+            {!isEmpty(UserData) ? (
+              <Dropdown overlay={menu}>
+                <span className="user-dropdown-title">
+                  <Icon component={IconUser} className="mr-2" /> Hello, {UserData?.displayName}
+                </span>
+              </Dropdown>
+            ) : (
+              <span className="btn-login">
+                <Link href={ROUTES.SIGNIN}>Login</Link>
               </span>
-            </Dropdown>
-          ) : (
-            <span className="btn-login">
-              <Link href={ROUTES.SIGNIN}>Login</Link>
-            </span>
-          )}
-        </div>
-      </HeaderWrap>
+            )}
+          </div>
+        </HeaderWrap>
+      ) : (
+        <></>
+      )}
+
       <main className={`main-content-layout ${props?.className ?? ''}`}>{props.children}</main>
       <FooterWrap>
         <div className="footer-below ">

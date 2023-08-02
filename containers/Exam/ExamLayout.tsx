@@ -51,8 +51,8 @@ const ExamLayout: React.FC<ExamLayoutProps> = (props: ExamLayoutProps) => {
                   {topicData?.name}
                 </h2>
                 <QuestionPaletteRoot listQuestion={props.listQuestion} />
-                <div className="current-level-list-label">Practices</div>
-                <div id="current-topic-list" className="current-topic-list" style={{ height: 130 }}>
+                {/* <div className="current-level-list-label">Practices</div> */}
+                {/* <div id="current-topic-list" className="current-topic-list" style={{ height: 130 }}>
                   <Row gutter={[8, 8]} className={`mb-2`}>
                     {listTest.map((item) => (
                       <Col span={8} key={item.id}>
@@ -71,7 +71,7 @@ const ExamLayout: React.FC<ExamLayoutProps> = (props: ExamLayoutProps) => {
                       </Col>
                     ))}
                   </Row>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="study-layout-item study-layout-mid">{props.children}</div>

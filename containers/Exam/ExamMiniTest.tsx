@@ -102,10 +102,6 @@ const ExamMiniTest = () => {
     }
   };
 
-  // const onClickRouterPush = (exam) => {
-  //   router.push(`/study/${topicId}/${exam.id}`);
-  // };
-
   useEffect(() => {
     fetchListCard();
   }, [router]);

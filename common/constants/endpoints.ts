@@ -25,4 +25,5 @@ export const ENDPOINTS = {
   ADMIN_USERS: `admin/users`,
   ADMIN_EDIT_USERS: `user/info`,
   ADMIN_CARD_IMPORT: `card/import`,
+  EXAM_COLLECT: `exam/collect`,
 };

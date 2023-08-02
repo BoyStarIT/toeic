@@ -1,6 +1,11 @@
 import { styled } from '@styles/theme';
 
 export const Layout = styled.div`
+  &.public-page {
+    .main-content-layout {
+      min-height: calc(100vh - 121px);
+    }
+  }
   .main-content-layout {
     min-height: calc(100vh - 181px);
   }

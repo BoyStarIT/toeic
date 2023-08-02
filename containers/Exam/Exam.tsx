@@ -6,8 +6,8 @@ import ExamStart from './ExamStart';
 import ExamView from './ExamView';
 import { listQuestions } from './mockData';
 import Config from '@root/config';
-import { Message, reactLocalStorage } from '@utils';
-import { getListCard } from '@api';
+import { Message, reactLocalStorage, sortAnswer } from '@utils';
+import { getListCard, postCollectExam } from '@api';
 
 type ExamStatusType = 'initial' | 'starting' | 'reviewing';
 const Exam = ({ topicCode, examCode }) => {
@@ -86,30 +86,38 @@ const Exam = ({ topicCode, examCode }) => {
     }
   };
 
-  const sortAnswer = (a, b) => {
-    // Remove the double quotes and parentheses from the values for comparison
-    const aValue = a.replace(/["()]/g, '');
-    const bValue = b.replace(/["()]/g, '');
-
-    // Compare the values
-    if (aValue < bValue) {
-      return -1;
-    } else if (aValue > bValue) {
-      return 1;
-    } else {
-      return 0;
+  const onCollectionExam = async () => {
+    try {
+      const topicId = router.query.topicCode;
+      if (!topicId) {
+        return;
+      }
+      const params = {
+        progress: 80,
+        status: 1,
+        examId: examCode,
+      };
+      const resp: any = await postCollectExam(params);
+      const error = resp.data.error;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error!');
+      }
+    } catch (err) {
+      console.log('onSubmit-error :>> ', err.toString());
+    } finally {
+      stop();
     }
   };
-
-  // const onClickRouterPush = (exam) => {
-  //   router.push(`/study/${topicId}/${exam.id}`);
-  // };
 
   useEffect(() => {
     fetchListCard();
   }, [router]);
 
-  const onSetExamStatus = (status: ExamStatusType) => {
+  const onSetExamStatus = async (status: ExamStatusType) => {
+    if (status === 'reviewing') {
+      await onCollectionExam();
+    }
     setExamStatus(status);
   };
 

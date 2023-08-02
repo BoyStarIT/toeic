@@ -12,3 +12,4 @@ export const ROUTES = {
   ADMIN_USER: '/admin/user',
   ADMIN_CARD: '/admin/card',
 };
+export const PUBLIC_ROUTER = [ROUTES.WELCOME, ROUTES.SIGNIN, ROUTES.SIGNUP, ROUTES.FORGOTPASSWORD];

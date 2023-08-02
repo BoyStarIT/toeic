@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import QuizPlayZone from './QuizPlayZone';
-import Config from '@root/config';
 
 export default function QuestionCard({ question, onUpdateQuestion }) {
   const onChoice = (choice) => {

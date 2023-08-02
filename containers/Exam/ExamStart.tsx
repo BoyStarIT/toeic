@@ -3,6 +3,7 @@ import { Button } from '@ui';
 import { useState } from 'react';
 import ExamLayout from './ExamLayout';
 import QuestionCard from './QuestionCard';
+import { postCollectExam } from '@api';
 
 const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -17,6 +18,7 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
       setCurrentQuestionIndex((prev) => (prev === listQuestion.length - 1 ? prev : prev + 1));
       return;
     }
+
     onSetExamStatus('reviewing');
   };
   const onPreviousQuestion = () => {
@@ -53,7 +55,6 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
           </div>
         </div>
       </div>
-      {/* <TopicListView /> */}
     </ExamLayout>
   );
 };

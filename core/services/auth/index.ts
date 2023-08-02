@@ -27,6 +27,10 @@ export const postCreatedExam = async (postData: any) => {
   return post(ENDPOINTS.EXAM, postData);
 };
 
+export const postCollectExam = async (postData: any) => {
+  return post(ENDPOINTS.EXAM_COLLECT, postData);
+};
+
 export const postForgotPassword = async (data) => {
   return post(ENDPOINTS.FORGOTPASS, data);
 };
