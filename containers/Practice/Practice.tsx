@@ -63,7 +63,7 @@ const Practice = () => {
                           >
                             <div className="practice-list-box">
                               <div className="practice-list-box-item--progress progress-none">
-                                {item.percent ?? 0}%
+                                {item.progress ?? 0}%
                               </div>
                               <div className="practice-list-box-item--content">{item.name}</div>
                               {/* <div className="practice-list-box-item--participants">

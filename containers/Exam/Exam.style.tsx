@@ -1734,7 +1734,8 @@ export const ContentWrapper = styled.div`
     flex: 1;
   }
 
-  .game-object-quiz .game-object-view-question-index {
+  .game-object-quiz .game-object-view-question-index,
+  .game-object-quiz .game-object-view-question-group-index {
     border-radius: 10px;
     height: 30px;
     padding-left: 30px;
@@ -1743,6 +1744,8 @@ export const ContentWrapper = styled.div`
     justify-content: center;
     margin-right: 4px;
     position: relative;
+    font-size: 18px;
+    font-weight: 600;
   }
 
   .game-object-quiz .game-object-view-question-index span {

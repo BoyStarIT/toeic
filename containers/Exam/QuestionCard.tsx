@@ -60,11 +60,13 @@ export default function QuestionCard({ question, onUpdateQuestion }) {
                 )}
               </div>
               <div className="question-group-quiz-box">
-                {question.childCards.map((question, index) => (
+                {question.childCards.map((childCard, index) => (
                   <QuizPlayZone
-                    index={question?.questionNo}
-                    answer={question?.answer}
-                    userAnswer={question?.userAnswer}
+                    parentQuestion={question}
+                    childCard={childCard}
+                    index={childCard?.questionNo}
+                    answer={childCard?.answer}
+                    userAnswer={childCard?.userAnswer}
                     onChoice={(choice) => onChoiceQuestionGroup(choice, index)}
                   />
                 ))}

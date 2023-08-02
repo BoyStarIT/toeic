@@ -5,6 +5,8 @@ import Hint from './Hint';
 import QuizPlayItem from './QuizPlayItem';
 
 type QuizPlayZoneProps = {
+  parentQuestion?: any;
+  childCard?: any;
   userAnswer: string[];
   answer: {
     allAnswer: any[];
@@ -62,8 +64,9 @@ export default function QuizPlayZone(props: QuizPlayZoneProps) {
   return (
     <div className="game-object-quiz-playzone">
       <div className="question-index-wrap">
-        <div className="game-object-view-question-index">
+        <div className="game-object-view-question-group-index">
           <span>{props.index}.</span>
+          <span>{props.parentQuestion?.isQuestionGroup ? props.childCard.question.text : ''}</span>
         </div>
       </div>
       <div className="game-object-quiz-choices">
