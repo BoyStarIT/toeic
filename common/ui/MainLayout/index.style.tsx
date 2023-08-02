@@ -30,7 +30,8 @@ export const HeaderWrap = styled.div`
       min-width: 870px;
     }
   }
-  .user-dropdown-title {
+  .user-dropdown-title,
+  .btn-login {
     display: flex;
     align-items: center;
     justify-content: center;

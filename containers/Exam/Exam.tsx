@@ -31,7 +31,7 @@ const Exam = ({ topicCode, examCode }) => {
         let questionNo = 0;
         const _listData = respData?.cards?.map((card) => {
           const localExamCard = localStorageExam?.find((exam) => exam?.id === card?.id);
-          const isQuestionGroup = card?.answer?.choices?.length === 0;
+          const isQuestionGroup = card?.answer?.choices?.join('')?.length === 0;
           if (isQuestionGroup) {
             const _childCards = card?.childCards.map((childCard) => {
               const localExamChildCard = localExamCard?.childCards?.find(
@@ -85,6 +85,7 @@ const Exam = ({ topicCode, examCode }) => {
       stop();
     }
   };
+  console.log('listQuestion', listQuestion);
 
   const onCollectionExam = async () => {
     try {
