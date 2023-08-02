@@ -24,7 +24,9 @@ const CMSCard: React.FC = () => {
     showUploadList: false,
     onChange(info) {
       if (info.file.status === 'done') {
-        message.success(`${info.file.name} file uploaded successfully`);
+        message.success(
+          `${info.file.name} file uploaded successfully, Please wait for a moment to import data!`
+        );
         fetchImportCard(info.file.name);
       } else if (info.file.status === 'error') {
         message.error(`${info.file.name} file upload failed.`);
@@ -47,9 +49,8 @@ const CMSCard: React.FC = () => {
         onSuccess();
       }
     } catch (err) {
-      console.log('onSubmit-error :>> ', err.toString());
-    } finally {
       stop();
+      console.log('onSubmit-error :>> ', err.toString());
     }
   };
 
@@ -65,12 +66,12 @@ const CMSCard: React.FC = () => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
+        message.success(`${fileName} file imported successfully`);
         fetchListCard();
       }
     } catch (err) {
-      console.log('onSubmit-error :>> ', err.toString());
-    } finally {
       stop();
+      console.log('onSubmit-error :>> ', err.toString());
     }
   };
   const fetchListCard = async () => {
@@ -109,9 +110,8 @@ const CMSCard: React.FC = () => {
         fetchListCard();
       }
     } catch (err) {
-      console.log('onSubmit-error :>> ', err.toString());
-    } finally {
       stop();
+      console.log('onSubmit-error :>> ', err.toString());
     }
   };
 
@@ -145,7 +145,9 @@ const CMSCard: React.FC = () => {
       <div className="cms-page-title">Manager Card</div>
       <div className="btn-action-box">
         <Upload {...props} customRequest={fetchUploadCards}>
-          <Button icon={<UploadOutlined />}>Click to Upload</Button>
+          <Button loading={isLoading} icon={<UploadOutlined />}>
+            Click to Upload
+          </Button>
         </Upload>
       </div>
       <Table
