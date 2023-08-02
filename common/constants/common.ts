@@ -53,9 +53,9 @@ export const PATTERN_VALIDATE = {
     message: 'This field is required',
   },
   password: {
-    value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+    value: /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/,
     message:
-      'Password must be at least 8 characters and include a mix of uppercase letters, lowercase letters and numbers',
+      'Password must be at least 8 characters and include a mix of lowercase letters and numbers',
   },
   phoneNumber: {
     value: /^\d+$/,

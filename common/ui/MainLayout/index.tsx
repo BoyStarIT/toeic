@@ -56,16 +56,6 @@ const MainLayout = (props) => {
             </Link>
           ),
         },
-        // {
-        //   key: '3',
-        //   label: (
-        //     <span>
-        //       <Link href={'#'}>
-        //         <span className="sub-title">My Learning</span>
-        //       </Link>
-        //     </span>
-        //   ),
-        // },
         {
           key: '4',
           label: (

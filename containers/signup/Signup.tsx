@@ -64,14 +64,6 @@ const SignUp: React.FC = () => {
     }
   };
 
-  const iconRender = (visible) => {
-    return visible ? (
-      <span className="action-hidden-pass">Hidden</span>
-    ) : (
-      <span className="action-show-pass">Show</span>
-    );
-  };
-
   return (
     <SignUpPageWrapper>
       <div className="register-content">
@@ -142,11 +134,7 @@ const SignUp: React.FC = () => {
                               },
                             ]}
                           >
-                            <InputPassword
-                              key={'reg-password'}
-                              placeholder="Enter your password"
-                              iconRender={iconRender}
-                            />
+                            <InputPassword key={'reg-password'} placeholder="Enter your password" />
                           </Form.Item>
                         </Col>
                         <Col span={24}>
@@ -169,9 +157,9 @@ const SignUp: React.FC = () => {
                             ]}
                           >
                             <InputPassword
+                              prefix
                               key={'reg-confirmPassword'}
                               placeholder="Enter your confirm password"
-                              iconRender={iconRender}
                             />
                           </Form.Item>
                         </Col>

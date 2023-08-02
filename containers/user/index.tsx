@@ -3,16 +3,26 @@ import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import Config from '@root/config';
 import { Message, reactLocalStorage } from '@utils';
-import { Button, Col, DatePicker, Form, Input, Row } from 'antd';
+import { Button, Col, DatePicker, Form, Input, Modal, Row } from 'antd';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserPageWrapper } from './index.style';
+import ChangePasswordForm from './change-password-form';
 
 const UserPage: React.FC = () => {
   const [form] = Form.useForm();
   const UserData = reactLocalStorage.getObject(Config.USER_KEY);
   const [{ isLoading }, { start, stop }] = useLoading();
+
+  const [showChangePassword, setShowChangePassword] = useState<boolean>(false);
+
+  const onShowChangePassword = () => {
+    setShowChangePassword(true);
+  };
+  const onCloseChangePassword = () => {
+    setShowChangePassword(false);
+  };
   const onSubmit = async (data) => {
     start();
     try {
@@ -228,6 +238,18 @@ const UserPage: React.FC = () => {
                       />
                     </Form.Item>
                   </Col>
+                  <Col span={24}>
+                    <div className="btn-change-password-box mt-3">
+                      <Button
+                        className="btn-change-password"
+                        tabIndex={0}
+                        onClick={onShowChangePassword}
+                        loading={isLoading}
+                      >
+                        Change Password
+                      </Button>
+                    </div>
+                  </Col>
                 </Row>
 
                 <div className="btn-update mt-5 text-center">
@@ -245,6 +267,19 @@ const UserPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <Modal
+        width={640}
+        bodyStyle={{ height: 'max-content' }}
+        title={'User Change Password'}
+        maskClosable={false}
+        visible={showChangePassword}
+        onCancel={onCloseChangePassword}
+        destroyOnClose
+        footer={null}
+        className="change-password-modal"
+      >
+        <ChangePasswordForm onClose={onCloseChangePassword} />
+      </Modal>
     </UserPageWrapper>
   );
 };

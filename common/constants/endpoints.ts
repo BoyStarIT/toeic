@@ -2,6 +2,7 @@ export const ENDPOINTS = {
   LOGIN: `app/login`,
   LOGOUT: `app/logout`,
   USER_INFO: `user/info`,
+  CHANGE_PASSWORD: `user/pwd/change`,
   REGISTER: `public/register/user`,
   SKILL: `skill`,
   TOPIC: `topic`,

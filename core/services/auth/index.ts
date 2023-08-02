@@ -11,6 +11,10 @@ export const doLogout = async () => {
   return post(ENDPOINTS.LOGOUT);
 };
 
+export const postChangePassword = async (postData: any) => {
+  return post(ENDPOINTS.CHANGE_PASSWORD, postData);
+};
+
 export const postRegister = async (postData: any) => {
   return post(ENDPOINTS.REGISTER, postData);
 };

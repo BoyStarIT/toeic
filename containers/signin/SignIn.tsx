@@ -58,13 +58,6 @@ const SignIn: React.FC = () => {
     }
   };
 
-  const iconRender = (visible) => {
-    return visible ? (
-      <span className="action-hidden-pass">Hidden</span>
-    ) : (
-      <span className="action-show-pass">Show</span>
-    );
-  };
   return (
     <SignInPageWrapper>
       <div className="login-content">
@@ -106,7 +99,6 @@ const SignIn: React.FC = () => {
                 >
                   <InputPassword
                     placeholder="Password"
-                    iconRender={iconRender}
                     prefix={<LockOutlined style={{ fontSize: '28px' }} />}
                   />
                 </Form.Item>
