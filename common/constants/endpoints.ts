@@ -10,6 +10,7 @@ export const ENDPOINTS = {
   SKILL_DELETE_MULTIPLE: `skill/delete/multiple`,
   TOPIC_DELETE_MULTIPLE: `topic/delete/multiple`,
   EXAM_DELETE_MULTIPLE: `exam/delete/multiple`,
+  CARD_DELETE_MULTIPLE: `card/delete/multiple`,
   SKILL_HEADER: `skill/header`,
   TOPIC_EXAM: `topic/exam`,
   MINI_TEST_CARD: `mini-test`,
@@ -26,6 +27,7 @@ export const ENDPOINTS = {
   ADMIN_USERS: `admin/users`,
   ADMIN_EDIT_USERS: `user/info`,
   ADMIN_CARD_IMPORT: `card/import`,
+  ADMIN_UPLOAD: `upload?type=0`,
   EXAM_COLLECT: `exam/collect`,
   VERIFY_OTP: `notification/verify-otp`,
 };

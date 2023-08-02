@@ -70,6 +70,10 @@ export const putDeleteExam = async (putData: any) => {
   return put(ENDPOINTS.EXAM_DELETE_MULTIPLE, putData);
 };
 
+export const putDeleteCard = async (putData: any) => {
+  return put(ENDPOINTS.CARD_DELETE_MULTIPLE, putData);
+};
+
 export const putEditExam = async (putData: any) => {
   return put(ENDPOINTS.EXAM, putData);
 };
