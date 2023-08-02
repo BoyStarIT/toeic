@@ -21,7 +21,6 @@ const ModalVerifyOTP = ({ show, onClose, onOk, email }) => {
       const resp: any = await postVerifyOTP(params);
       const error = resp.data.error;
       const respData = resp.data;
-      console.log('resp', resp);
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');

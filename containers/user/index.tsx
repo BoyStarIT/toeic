@@ -14,7 +14,6 @@ const UserPage = ({ UserData }) => {
   const [form] = Form.useForm();
 
   const [{ isLoading }, { start, stop }] = useLoading();
-  console.log('UserData', UserData);
   const [showChangePassword, setShowChangePassword] = useState<boolean>(false);
 
   const onShowChangePassword = () => {
@@ -63,7 +62,6 @@ const UserPage = ({ UserData }) => {
       dob: UserData?.dob ? moment(UserData?.dob, 'DD/MM/YYYY') : null,
       phone: UserData?.phone,
     };
-    console.log('formData', formData);
     form.setFieldsValue(formData);
 
     return () => {

@@ -1,13 +1,12 @@
 import { CloseCircleOutlined, FormOutlined, UploadOutlined } from '@ant-design/icons';
+import { getAdminListCard, postCardImport, postUploadFile, putDeleteCard } from '@api';
 import { useLoading } from '@hooks';
-import { Button, Modal, Spin, Table, Upload, UploadProps, message } from 'antd';
-import React, { useEffect, useState } from 'react';
-import { PageWrapper } from './index.style';
-import { getAdminListCard, postCardImport, putDeleteCard } from '@api';
-import { ENDPOINTS } from '@constants';
 import { Message } from '@utils';
+import { Button, Modal, Spin, Table, Upload, UploadProps, message } from 'antd';
 import Column from 'antd/lib/table/Column';
+import React, { useEffect, useState } from 'react';
 import CreatedForm from './created-form';
+import { PageWrapper } from './index.style';
 
 const CMSCard: React.FC = () => {
   const [{ isLoading }, { start, stop }] = useLoading();
@@ -20,18 +19,10 @@ const CMSCard: React.FC = () => {
   const props: UploadProps = {
     name: 'file',
     type: 'select',
-    action: 'https://funnyclass.cloud/upload?type=0',
     accept:
       '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
-    headers: {
-      ['Access-Control-Allow-Origin']: '*',
-      ['Access-Control-Allow-Headers']: 'Origin, X-Requested-With, Content-Type, Accept',
-    },
     showUploadList: false,
     onChange(info) {
-      if (info.file.status !== 'uploading') {
-        console.log('onChange', info.file, info.fileList);
-      }
       if (info.file.status === 'done') {
         message.success(`${info.file.name} file uploaded successfully`);
         fetchImportCard(info.file.name);
@@ -39,6 +30,27 @@ const CMSCard: React.FC = () => {
         message.error(`${info.file.name} file upload failed.`);
       }
     },
+  };
+
+  const fetchUploadCards = async (options) => {
+    start();
+    try {
+      const { file, onSuccess } = options;
+      const formData = new FormData();
+      formData.append('file', file);
+      const resp: any = await postUploadFile(formData);
+      const error = resp.data.error;
+      if (error) {
+        stop();
+        Message.error(error?.message ?? 'Something error!');
+      } else {
+        onSuccess();
+      }
+    } catch (err) {
+      console.log('onSubmit-error :>> ', err.toString());
+    } finally {
+      stop();
+    }
   };
 
   const fetchImportCard = async (fileName) => {
@@ -49,7 +61,6 @@ const CMSCard: React.FC = () => {
       };
       const resp: any = await postCardImport(params);
       const error = resp.data.error;
-      const respData = resp.data?.responseData;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
@@ -68,9 +79,6 @@ const CMSCard: React.FC = () => {
       const resp: any = await getAdminListCard();
       const error = resp.data.error;
       const respData = resp.data?.responseData;
-      console.log('resp', resp);
-      console.log('error', error);
-      console.log('respData', respData);
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
@@ -106,7 +114,6 @@ const CMSCard: React.FC = () => {
       stop();
     }
   };
-  console.log('dataList', dataList);
 
   const onClickDelete = (record) => {
     setShowModalConfirm(true);
@@ -137,7 +144,7 @@ const CMSCard: React.FC = () => {
     <PageWrapper>
       <div className="cms-page-title">Manager Card</div>
       <div className="btn-action-box">
-        <Upload {...props}>
+        <Upload {...props} customRequest={fetchUploadCards}>
           <Button icon={<UploadOutlined />}>Click to Upload</Button>
         </Upload>
       </div>
