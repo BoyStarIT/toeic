@@ -9,15 +9,19 @@ import { Message, reactLocalStorage } from '@utils';
 import { Col, Form, Row } from 'antd';
 import moment from 'moment';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { Cookies } from 'react-cookie';
 import { SignUpPageWrapper } from './Signup.style';
 import { useRouter } from 'next/router';
+import ModalVerifyOTP from '@containers/modal-verify-otp';
 
 const SignUp: React.FC = () => {
   const [form] = Form.useForm();
   const router = useRouter();
   const [{ isLoading }, { start, stop }] = useLoading();
+
+  const [showFormVerify, setShowFormVerify] = useState(false);
+  const [email, setEmail] = useState('');
 
   const onSubmit = async (data) => {
     start();
@@ -36,12 +40,12 @@ const SignUp: React.FC = () => {
 
       const resp: any = await postRegister(params);
       const error = resp.data.error;
-      const respData = resp.data?.responseData;
       if (error) {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        onSuccess(data);
+        setShowFormVerify(true);
+        setEmail(data.email);
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -49,19 +53,16 @@ const SignUp: React.FC = () => {
       stop();
     }
   };
-  const onSuccess = (data) => {
-    const cookies = new Cookies();
-    const user = data.examUser;
-    const accessToken = data.access_token;
 
-    if (accessToken && typeof accessToken === 'string') {
-      cookies.set(Config.AUTH_TOKEN_KEY, accessToken, {
-        expires: moment().add(60, 'day').toDate(),
-        path: '/',
-      });
-      reactLocalStorage.setObject(Config.USER_KEY, user);
-      router.push(ROUTES.HOME);
-    }
+  const onCloseModalVerify = () => {
+    setShowFormVerify(false);
+    form.resetFields();
+    router.push(ROUTES.HOME);
+  };
+  const onOkModalVerify = () => {
+    setShowFormVerify(false);
+    form.resetFields();
+    router.push(ROUTES.HOME);
   };
 
   return (
@@ -207,6 +208,12 @@ const SignUp: React.FC = () => {
           </div>
         </div>
       </div>
+      <ModalVerifyOTP
+        show={showFormVerify}
+        onClose={onCloseModalVerify}
+        onOk={onOkModalVerify}
+        email={email}
+      />
     </SignUpPageWrapper>
   );
 };

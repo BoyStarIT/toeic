@@ -225,6 +225,45 @@ export const globalStyles = (
         padding-bottom: 18px;
         background: #f5f6f8;
       }
+      .css-1g93nl3 {
+        display: inline-flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        outline: 0px;
+        border: 0px;
+        margin: 0px;
+        cursor: pointer;
+        user-select: none;
+        vertical-align: middle;
+        appearance: none;
+        text-decoration: none;
+        font-family: inherit;
+        text-transform: unset;
+        line-height: 1.75;
+        min-width: 64px;
+        padding: 6px 8px;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        border-radius: 50px;
+        width: 180px;
+        height: 45px;
+        font-size: 16px;
+        font-weight: 600;
+        background-color: var(--menuBackground) !important;
+        color: #fff;
+        margin-top: auto;
+        display: inline-flex;
+        &:focus,
+        &:hover {
+          opacity: 0.6;
+        }
+      }
     `}
   />
 );

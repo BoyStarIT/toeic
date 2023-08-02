@@ -38,6 +38,9 @@ export const postCollectExam = async (postData: any) => {
 export const postForgotPassword = async (data) => {
   return post(ENDPOINTS.FORGOTPASS, data);
 };
+export const postVerifyOTP = async (data) => {
+  return post(`${ENDPOINTS.VERIFY_OTP}?email=${data.email}&otp=${data.code}`, {});
+};
 
 export const postBlockUser = async (data) => {
   return post(`${ENDPOINTS.USER_BLOCK}`, data);

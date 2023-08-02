@@ -27,4 +27,5 @@ export const ENDPOINTS = {
   ADMIN_EDIT_USERS: `user/info`,
   ADMIN_CARD_IMPORT: `card/import`,
   EXAM_COLLECT: `exam/collect`,
+  VERIFY_OTP: `notification/verify-otp`,
 };
