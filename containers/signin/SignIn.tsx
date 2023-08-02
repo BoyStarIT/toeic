@@ -14,11 +14,12 @@ import { Cookies } from 'react-cookie';
 import { SignInPageWrapper } from './SignIn.style';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import ModalVerifyOTP from '@containers/modal-verify-otp';
+import { useToeicContext } from '@contexts/toeicContext';
 
 const SignIn: React.FC = () => {
   const [form] = Form.useForm();
   const router = useRouter();
-
+  const { setUserInfos } = useToeicContext();
   const [{ isLoading }, { start, stop }] = useLoading();
 
   const [showFormVerify, setShowFormVerify] = useState(false);
@@ -58,6 +59,7 @@ const SignIn: React.FC = () => {
         path: '/',
       });
       reactLocalStorage.setObject(Config.USER_KEY, user);
+      setUserInfos(user);
       if (user.roles.includes(ROLE.ADMIN)) {
         router.push(ROUTES.ADMIN_USER);
       } else {

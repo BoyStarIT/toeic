@@ -1,18 +1,18 @@
-import { postRegister, putUpdateUser } from '@api';
+import { putUpdateUser } from '@api';
 import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import Config from '@root/config';
 import { Message, reactLocalStorage } from '@utils';
 import { Button, Col, DatePicker, Form, Input, Modal, Row } from 'antd';
 import moment from 'moment';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { UserPageWrapper } from './index.style';
+import { useEffect, useState } from 'react';
 import ChangePasswordForm from './change-password-form';
+import { UserPageWrapper } from './index.style';
+import { useToeicContext } from '@contexts/toeicContext';
 
-const UserPage = ({ UserData }) => {
+const UserPage = () => {
   const [form] = Form.useForm();
-
+  const { userInfos, setUserInfos } = useToeicContext();
   const [{ isLoading }, { start, stop }] = useLoading();
   const [showChangePassword, setShowChangePassword] = useState<boolean>(false);
 
@@ -36,7 +36,7 @@ const UserPage = ({ UserData }) => {
         role: 'User',
         dob: moment(data?.dob).format('DD/MM/YYYY'),
         gender: data.gender,
-        userId: UserData.userId,
+        userId: userInfos.userId,
       };
 
       const resp: any = await putUpdateUser(params);
@@ -48,6 +48,7 @@ const UserPage = ({ UserData }) => {
       } else {
         Message.success('Successfully!');
         reactLocalStorage.setObject(Config.USER_KEY, respData);
+        setUserInfos(respData);
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -57,10 +58,10 @@ const UserPage = ({ UserData }) => {
   };
   useEffect(() => {
     const formData = {
-      email: UserData?.email,
-      username: UserData?.displayName,
-      dob: UserData?.dob ? moment(UserData?.dob, 'DD/MM/YYYY') : null,
-      phone: UserData?.phone,
+      email: userInfos?.email,
+      username: userInfos?.displayName,
+      dob: userInfos?.dob ? moment(userInfos?.dob, 'DD/MM/YYYY') : null,
+      phone: userInfos?.phone,
     };
     form.setFieldsValue(formData);
 
@@ -103,12 +104,12 @@ const UserPage = ({ UserData }) => {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
                 </svg>
               </span>
-              <p className="css-c9z8ga">{UserData?.displayName}</p>
+              <p className="css-c9z8ga">{userInfos?.displayName}</p>
             </div>
             <div className=" css-p6esn3">
               <div className="user-account-info">
                 <b>Account: </b>
-                {UserData?.email}
+                {userInfos?.email}
               </div>
               <Form
                 form={form}

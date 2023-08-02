@@ -8,6 +8,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Cookies } from 'react-cookie';
 interface ToeicContextProps {
   topics: Array<TopicType>;
+  setUserInfos: (data) => void;
+  userInfos: any;
 }
 type TopicItemType = {
   topicId: string;
@@ -22,11 +24,14 @@ type TopicType = {
 
 export const ToeicContext = React.createContext<ToeicContextProps>({
   topics: [],
+  userInfos: {},
+  setUserInfos: () => {},
 });
 
 export const ToeicContextProvider = (props) => {
   const router = useRouter();
   const [topics, setTopics] = useState([]);
+  const [userInfos, setUserInfos] = useState([]);
 
   const fetchHeaderInfo = async () => {
     try {
@@ -48,7 +53,10 @@ export const ToeicContextProvider = (props) => {
     const cookies = new Cookies();
     const accessToken = cookies.get(Config.AUTH_TOKEN_KEY);
     const UserData = reactLocalStorage.getObject(Config.USER_KEY);
-    if (!PUBLIC_ROUTER.includes(router.pathname) && (!accessToken || isEmpty(UserData))) {
+    if (
+      !PUBLIC_ROUTER.includes(router.pathname) &&
+      (!accessToken || isEmpty(UserData) || isEmpty(userInfos))
+    ) {
       reactLocalStorage.clear();
       cookies.remove(Config.AUTH_TOKEN_KEY);
       router.push(ROUTES.WELCOME);
@@ -59,6 +67,8 @@ export const ToeicContextProvider = (props) => {
     <ToeicContext.Provider
       value={{
         topics,
+        userInfos,
+        setUserInfos,
       }}
     >
       {React.Children.toArray(props.children)}

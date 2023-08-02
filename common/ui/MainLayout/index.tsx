@@ -15,8 +15,8 @@ import { useToeicContext } from '@contexts/toeicContext';
 
 const MainLayout = (props) => {
   const router = useRouter();
-  const UserData = reactLocalStorage.getObject(Config.USER_KEY);
-  const { topics } = useToeicContext();
+
+  const { userInfos, topics } = useToeicContext();
 
   const onLogoutClick = async () => {
     try {
@@ -49,7 +49,7 @@ const MainLayout = (props) => {
         {
           key: '2',
           label: (
-            <Link href={`${ROUTES.USER}/${UserData?.userId}`}>
+            <Link href={`${ROUTES.USER}/${userInfos?.userId}`}>
               <div>
                 <span className="sub-title">View Profile</span>
               </div>
@@ -90,10 +90,10 @@ const MainLayout = (props) => {
                 <Link href={ROUTES.MINI_TEST}>{'Mini Test'}</Link>
               </Menu.Item>
             </Menu>
-            {!isEmpty(UserData) ? (
+            {!isEmpty(userInfos) ? (
               <Dropdown overlay={menu}>
                 <span className="user-dropdown-title">
-                  <Icon component={IconUser} className="mr-2" /> Hello, {UserData?.displayName}
+                  <Icon component={IconUser} className="mr-2" /> Hello, {userInfos?.displayName}
                 </span>
               </Dropdown>
             ) : (
