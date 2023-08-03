@@ -30,7 +30,7 @@ const ExamMiniTest = () => {
         const newAcc = [...acc, ...newCards];
         return newAcc;
       } else {
-        const newAcc = acc.push(question);
+        const newAcc = [...acc, question];
         return newAcc;
       }
     }, []);
