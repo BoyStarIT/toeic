@@ -3,7 +3,7 @@ import { useLoading } from '@hooks';
 import Config from '@root/config';
 import { Message, reactLocalStorage } from '@utils';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ExamResult from './ExamResult';
 import ExamStart from './ExamStart';
 import ExamView from './ExamView';
@@ -16,6 +16,37 @@ const ExamMiniTest = () => {
 
   const [examStatus, setExamStatus] = useState<ExamStatusType>('initial');
   const [listQuestion, setListQuestion] = useState([]);
+
+  const answerInfos = useMemo(() => {
+    const flatListQuestion = listQuestion.reduce((acc, question) => {
+      if (question?.isQuestionGroup) {
+        const newCards = question.childCards.map((childCard, index) => {
+          return {
+            ...question,
+            ...childCard,
+            childCardIndex: index,
+          };
+        });
+        const newAcc = [...acc, ...newCards];
+        return newAcc;
+      } else {
+        const newAcc = acc.push(question);
+        return newAcc;
+      }
+    }, []);
+    const newAnswerCount = flatListQuestion.filter((question) => !question?.userAnswer?.[0]).length;
+    const correctAnswerCount = flatListQuestion.filter(
+      (question) =>
+        question?.userAnswer?.[0] && question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+    )?.length;
+    const incorrectAnswerCount = flatListQuestion?.length - newAnswerCount - correctAnswerCount;
+    return {
+      total: newAnswerCount + correctAnswerCount + incorrectAnswerCount,
+      newAnswerCount,
+      correctAnswerCount,
+      incorrectAnswerCount,
+    };
+  }, [listQuestion]);
 
   const fetchListCard = async () => {
     start();
@@ -122,16 +153,22 @@ const ExamMiniTest = () => {
           listQuestion={listQuestion}
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
+          answerInfos={answerInfos}
         />
       )}
       {examStatus === 'initial' && (
-        <ExamView listQuestion={listQuestion} onSetExamStatus={onSetExamStatus} />
+        <ExamView
+          listQuestion={listQuestion}
+          onSetExamStatus={onSetExamStatus}
+          answerInfos={answerInfos}
+        />
       )}
       {examStatus === 'starting' && (
         <ExamStart
           listQuestion={listQuestion}
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
+          answerInfos={answerInfos}
         />
       )}
     </div>

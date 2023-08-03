@@ -45,6 +45,7 @@ const Exam = ({ topicCode, examCode }) => {
       incorrectAnswerCount,
     };
   }, [listQuestion]);
+
   const fetchListCard = async () => {
     start();
     try {
