@@ -70,8 +70,8 @@ const LeftContent: React.FC = () => {
         <Menu.Item key="card">
           <Link href={ROUTES.ADMIN_CARD}>Card</Link>
         </Menu.Item>
-        <Menu.Item key="logout" onClick={onLogoutClick}>
-          <div>
+        <Menu.Item key="logout">
+          <div onClick={onLogoutClick}>
             Logout <LogoutOutlined className="ml-1" style={{ fontSize: '15px' }} />
           </div>
         </Menu.Item>

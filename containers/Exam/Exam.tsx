@@ -1,13 +1,11 @@
+import { getListCard, postCollectExam } from '@api';
 import { useLoading } from '@hooks';
+import { Message, sortAnswer } from '@utils';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ExamResult from './ExamResult';
 import ExamStart from './ExamStart';
 import ExamView from './ExamView';
-import { listQuestions } from './mockData';
-import Config from '@root/config';
-import { Message, reactLocalStorage, sortAnswer } from '@utils';
-import { getListCard, postCollectExam } from '@api';
 
 type ExamStatusType = 'initial' | 'starting' | 'reviewing';
 const Exam = ({ topicCode, examCode }) => {
@@ -17,6 +15,36 @@ const Exam = ({ topicCode, examCode }) => {
   const [examStatus, setExamStatus] = useState<ExamStatusType>('initial');
   const [listQuestion, setListQuestion] = useState([]);
 
+  const answerInfos = useMemo(() => {
+    const flatListQuestion = listQuestion.reduce((acc, question) => {
+      if (question?.isQuestionGroup) {
+        const newCards = question.childCards.map((childCard, index) => {
+          return {
+            ...question,
+            ...childCard,
+            childCardIndex: index,
+          };
+        });
+        const newAcc = [...acc, ...newCards];
+        return newAcc;
+      } else {
+        const newAcc = acc.push(question);
+        return newAcc;
+      }
+    }, []);
+    const newAnswerCount = flatListQuestion.filter((question) => !question?.userAnswer?.[0]).length;
+    const correctAnswerCount = flatListQuestion.filter(
+      (question) =>
+        question?.userAnswer?.[0] && question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+    )?.length;
+    const incorrectAnswerCount = flatListQuestion?.length - newAnswerCount - correctAnswerCount;
+    return {
+      total: newAnswerCount + correctAnswerCount + incorrectAnswerCount,
+      newAnswerCount,
+      correctAnswerCount,
+      incorrectAnswerCount,
+    };
+  }, [listQuestion]);
   const fetchListCard = async () => {
     start();
     try {
@@ -85,7 +113,6 @@ const Exam = ({ topicCode, examCode }) => {
       stop();
     }
   };
-  console.log('listQuestion', listQuestion);
 
   const onCollectionExam = async () => {
     try {
@@ -165,16 +192,22 @@ const Exam = ({ topicCode, examCode }) => {
           listQuestion={listQuestion}
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
+          answerInfos={answerInfos}
         />
       )}
       {examStatus === 'initial' && (
-        <ExamView listQuestion={listQuestion} onSetExamStatus={onSetExamStatus} />
+        <ExamView
+          listQuestion={listQuestion}
+          onSetExamStatus={onSetExamStatus}
+          answerInfos={answerInfos}
+        />
       )}
       {examStatus === 'starting' && (
         <ExamStart
           listQuestion={listQuestion}
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
+          answerInfos={answerInfos}
         />
       )}
     </div>

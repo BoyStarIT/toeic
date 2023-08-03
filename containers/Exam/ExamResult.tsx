@@ -5,7 +5,8 @@ import QuizPlayZone from './QuizPlayZone';
 import { Progress } from 'antd';
 import QuestionCard from './QuestionCard';
 
-const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
+const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus, answerInfos }) => {
+  const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
   const onClickReview = () => {
     const question = document.getElementById(`review-${listQuestion?.[0]?._id}`);
     if (!question) return;
@@ -27,15 +28,9 @@ const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => 
     onSetExamStatus('starting');
   };
 
-  const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
-  const correctAnswerCount = listQuestion.filter(
-    (question) =>
-      question?.userAnswer?.[0] && question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-  ).length;
-  const incorrectAnswerCount = listQuestion.length - newAnswerCount - correctAnswerCount;
-  const percent = (correctAnswerCount / listQuestion.length) * 100;
+  const percent = (correctAnswerCount / total) * 100;
   return (
-    <ExamLayout listQuestion={listQuestion}>
+    <ExamLayout listQuestion={listQuestion} answerInfos={answerInfos}>
       <div id="game-view-container" className="game-view-container-main">
         <div id="main-game-view" className="">
           <div id="main-game-scroll-panel" className="main-game-object">
@@ -76,7 +71,7 @@ const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => 
                         >
                           <circle cx="6.28342" cy="6.48361" r="5.68967" fill="#849BB6" />
                         </svg>
-                        {listQuestion.length}
+                        {total}
                       </div>
                       <div className="questions-stat-item-label">Total</div>
                     </div>
@@ -161,7 +156,7 @@ const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => 
                         tabIndex={0}
                         type="button"
                       >
-                        {listQuestion.length}
+                        {total}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-gu1cw0">Total</span>

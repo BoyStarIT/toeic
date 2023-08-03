@@ -122,21 +122,21 @@ const CMSTopic: React.FC = () => {
           key="id"
           className="column-id"
           width="6rem"
-          render={(record) => <div>{record.id}</div>}
+          render={(record) => <div>{record?.id}</div>}
         />
         <Column
           title="Topic Name"
           key="name"
           dataIndex=""
           className="column-name"
-          render={(record) => <div>{record.name}</div>}
+          render={(record) => <div>{record?.name}</div>}
         />
         <Column
           title="Exam count"
           key="exam-count"
           dataIndex=""
           className="column-name"
-          render={(record) => <div>{record.examIds.length}</div>}
+          render={(record) => <div>{record?.examIds?.length}</div>}
         />
       </Table>
       <Modal

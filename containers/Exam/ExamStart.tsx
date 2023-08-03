@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ExamLayout from './ExamLayout';
 import QuestionCard from './QuestionCard';
 
-const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
+const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus, answerInfos }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const onUpdateQuestion = (newQuestion, index) => {
     const newListQuestion = [...listQuestion];
@@ -25,7 +25,7 @@ const ExamStart = ({ listQuestion, onUpdateListQuestion, onSetExamStatus }) => {
   };
 
   return (
-    <ExamLayout listQuestion={listQuestion}>
+    <ExamLayout listQuestion={listQuestion} answerInfos={answerInfos}>
       <div id="game-view-container" className="game-view-container-main">
         <div id="main-game-view" className="">
           <div id="main-game-scroll-panel" className="main-game-object">

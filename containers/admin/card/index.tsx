@@ -184,6 +184,13 @@ const CMSCard: React.FC = () => {
           render={(value, record, index) => <div>{index}</div>}
         />
         <Column
+          title="ID"
+          key="id"
+          dataIndex=""
+          className="column-question"
+          render={(record) => <div>{record?.id}</div>}
+        />
+        <Column
           title="Question"
           key="question"
           dataIndex=""

@@ -3,10 +3,19 @@ import { useEffect, useState } from 'react';
 type QuestionPaletteRootProps = {
   listQuestion?: any[];
   children?: React.ReactNode;
+  answerInfos: {
+    total: number;
+    newAnswerCount: number;
+    correctAnswerCount: number;
+    incorrectAnswerCount: number;
+  };
 };
 const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
   listQuestion,
+  answerInfos,
 }: QuestionPaletteRootProps) => {
+  const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
+
   const goToQuestion = (id) => {
     const question = document.getElementById(`review-${id}`);
     if (!question) return;
@@ -16,12 +25,6 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
     });
   };
 
-  const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
-  const correctAnswerCount = listQuestion.filter(
-    (question) =>
-      question?.userAnswer?.[0] && question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-  ).length;
-  const incorrectAnswerCount = listQuestion.length - newAnswerCount - correctAnswerCount;
   return (
     <div className="jss27 question-palette-root">
       <div className="current-topic-label question-palette-game-title">Test 1</div>
@@ -88,7 +91,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   <rect y="0.5" width={10} height={10} rx={3} fill="#4caf50" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {correctAnswerCount}/{listQuestion?.length} Correct
+                  {correctAnswerCount}/{total} Correct
                 </span>
               </div>
               <div className="questions-stat-item">
@@ -102,7 +105,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   <rect y="0.5" width={10} height={10} rx={3} fill="#FF5252" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {incorrectAnswerCount}/{listQuestion?.length} Incorrect
+                  {incorrectAnswerCount}/{total} Incorrect
                 </span>
               </div>
             </div>

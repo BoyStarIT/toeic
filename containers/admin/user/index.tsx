@@ -110,9 +110,9 @@ const CMSUser: React.FC = () => {
     <PageWrapper>
       <div className="cms-page-title">Manager User</div>
       <div className="btn-action-box">
-        <Button onClick={() => setShowModal(true)} className="btn-add">
+        {/* <Button onClick={() => setShowModal(true)} className="btn-add">
           <PlusOutlined /> Add User
-        </Button>
+        </Button> */}
       </div>
       <Table
         dataSource={dataList}

@@ -1,16 +1,11 @@
 import { Progress } from 'antd';
 import ExamLayout from './ExamLayout';
 
-const ExamView = ({ listQuestion, onSetExamStatus }) => {
-  const newAnswerCount = listQuestion.filter((question) => !question?.userAnswer?.[0]).length;
-  const correctAnswerCount = listQuestion.filter(
-    (question) =>
-      question?.userAnswer?.[0] && question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-  ).length;
-  const incorrectAnswerCount = listQuestion.length - newAnswerCount - correctAnswerCount;
+const ExamView = ({ listQuestion, onSetExamStatus, answerInfos }) => {
+  const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
 
   return (
-    <ExamLayout listQuestion={listQuestion}>
+    <ExamLayout listQuestion={listQuestion} answerInfos={answerInfos}>
       <div id="game-view-container" className="game-view-container-main">
         <div id="main-game-view" className="">
           <div id="main-game-scroll-panel" className="main-game-object">
@@ -46,7 +41,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         >
                           <circle cx="6.28342" cy="6.48361" r="5.68967" fill="#849BB6" />
                         </svg>
-                        {listQuestion.length}
+                        {total}
                       </div>
                       <div className="questions-stat-item-label">Total</div>
                     </div>
@@ -111,7 +106,7 @@ const ExamView = ({ listQuestion, onSetExamStatus }) => {
                         tabIndex={0}
                         type="button"
                       >
-                        {listQuestion.length}
+                        {total}
                       </button>
                     </div>
                     <span className="MuiTypography-root MuiTypography-body1 css-gu1cw0">Total</span>

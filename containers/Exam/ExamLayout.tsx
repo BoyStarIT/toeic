@@ -9,6 +9,12 @@ import { useRouter } from 'next/router';
 type ExamLayoutProps = {
   children: React.ReactNode;
   listQuestion?: any[];
+  answerInfos: {
+    total: number;
+    newAnswerCount: number;
+    correctAnswerCount: number;
+    incorrectAnswerCount: number;
+  };
 };
 type TopicType = {
   id: string;
@@ -50,7 +56,10 @@ const ExamLayout: React.FC<ExamLayoutProps> = (props: ExamLayoutProps) => {
                 <h2 className="MuiTypography-root MuiTypography-body1 root-topic-name css-100vuwi">
                   {topicData?.name}
                 </h2>
-                <QuestionPaletteRoot listQuestion={props.listQuestion} />
+                <QuestionPaletteRoot
+                  listQuestion={props.listQuestion}
+                  answerInfos={props.answerInfos}
+                />
                 {/* <div className="current-level-list-label">Practices</div> */}
                 {/* <div id="current-topic-list" className="current-topic-list" style={{ height: 130 }}>
                   <Row gutter={[8, 8]} className={`mb-2`}>
