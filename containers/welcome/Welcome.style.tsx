@@ -78,8 +78,8 @@ export const BannerWrap = styled.div`
     padding-left: 16px;
     padding-right: 16px;
     position: fixed;
-    bottom: 5vh;
-    right: 0;
+    bottom: 70px;
+    right: 100px;
     max-width: 540px;
   }
 

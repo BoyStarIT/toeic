@@ -10,10 +10,10 @@ const Welcome = () => {
         <BannerWrap>
           <div className="banner-content-wrap">
             <div className="app-platform">
-              <div className="download-app">
+              {/* <div className="download-app">
                 <IconGoogleApp />
                 <IconAppStore />
-              </div>
+              </div> */}
               <div className="welcome-join-now">
                 <Link href={ROUTES.SIGNIN}>
                   <div className="btn-join-now">Join now</div>
