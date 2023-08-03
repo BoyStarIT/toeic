@@ -183,7 +183,7 @@ const CMSCard: React.FC = () => {
           title="No"
           key="stt"
           className="column-id"
-          width="6rem"
+          width="2rem"
           render={(value, record, index) => <div>{index}</div>}
         />
         <Column
@@ -191,7 +191,32 @@ const CMSCard: React.FC = () => {
           key="id"
           dataIndex=""
           className="column-question"
+          width="6rem"
           render={(record) => <div>{record?.id}</div>}
+        />
+        <Column
+          title="Answer"
+          key="answer"
+          dataIndex=""
+          className="column-answer"
+          width="15rem"
+          render={(record) => {
+            const isQuestionGroup =
+              record?.isQuestionGroup !== undefined
+                ? record?.isQuestionGroup
+                : record?.answer?.choices?.join('')?.length === 0;
+            if (isQuestionGroup) {
+              return record?.childCards?.map((card, index) => {
+                return (
+                  <div key={card.id}>
+                    <b>Card {index + 1}: </b>
+                    {card?.answer?.texts?.[0]}
+                  </div>
+                );
+              });
+            }
+            return <div>{record?.answer?.texts?.[0]}</div>;
+          }}
         />
         <Column
           title="Question"
@@ -200,16 +225,23 @@ const CMSCard: React.FC = () => {
           className="column-question"
           render={(record) => (
             <div>
-              {record?.question?.sound ?? record?.question?.image ?? record?.question?.text}
+              {record?.question?.sound && (
+                <div>
+                  <b>Sound:</b> {record?.question?.sound}
+                </div>
+              )}
+              {record?.question?.image && (
+                <div>
+                  <b>Image:</b> {record?.question?.image}
+                </div>
+              )}
+              {record?.question?.text && (
+                <div>
+                  <b>Text:</b> {record?.question?.text}
+                </div>
+              )}
             </div>
           )}
-        />
-        <Column
-          title="Answer"
-          key="answer"
-          dataIndex=""
-          className="column-answer"
-          render={(record) => <div>{record?.answer?.texts?.[0]}</div>}
         />
       </Table>
       <Modal

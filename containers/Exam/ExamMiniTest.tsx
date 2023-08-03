@@ -1,7 +1,7 @@
 import { getListCardMiniTest } from '@api';
 import { useLoading } from '@hooks';
 import Config from '@root/config';
-import { Message, reactLocalStorage } from '@utils';
+import { Message, reactLocalStorage, sortAnswer } from '@utils';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import ExamResult from './ExamResult';
@@ -104,22 +104,6 @@ const ExamMiniTest = () => {
       console.log('onSubmit-error :>> ', err.toString());
     } finally {
       stop();
-    }
-  };
-  console.log('listQuestion', listQuestion);
-
-  const sortAnswer = (a, b) => {
-    // Remove the double quotes and parentheses from the values for comparison
-    const aValue = a.replace(/["()]/g, '');
-    const bValue = b.replace(/["()]/g, '');
-
-    // Compare the values
-    if (aValue < bValue) {
-      return -1;
-    } else if (aValue > bValue) {
-      return 1;
-    } else {
-      return 0;
     }
   };
 

@@ -4,7 +4,7 @@ import { PATTERN_VALIDATE } from '@constants';
 import { useLoading } from '@hooks';
 import { styled } from '@styles/theme';
 import { Button } from '@ui';
-import { Message } from '@utils';
+import { Message, sortAnswer } from '@utils';
 import { Checkbox, Col, Form, Input, Row, Select, Space } from 'antd';
 import { FormListFieldData, FormListOperation } from 'antd/lib/form/FormList';
 import { useEffect, useState } from 'react';
@@ -17,30 +17,39 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
 
   const [{ isLoading }, { start, stop }] = useLoading();
 
-  const [dataList, setDataList] = useState<any[]>([]);
+  const [isInit, setIsInit] = useState<boolean>(true);
 
-  const fetchDataList = async () => {
-    start();
-    try {
-      const resp: any = await getAdminListCard();
-      const error = resp.data.error;
-      const respData = resp.data?.responseData;
-      if (error) {
-        stop();
-        Message.error(error?.message ?? 'Something error!');
-      } else {
-        const listData = respData.cards.map((card) => {
-          return {
-            label: card.id,
-            value: card.id,
-          };
-        });
-        setDataList(listData);
-      }
-    } catch (err) {
-      console.log('onSubmit-error :>> ', err.toString());
-    } finally {
-      stop();
+  const isQuestionGroupField = Form.useWatch('isQuestionGroup', form);
+
+  const onClickIsQuestionGroup = () => {
+    if (isQuestionGroupField) {
+      form.setFieldsValue({
+        childCards: [
+          {
+            answer: ['', '', '', ''],
+            question: { text: '' },
+            hint: '',
+          },
+        ],
+      });
+    } else {
+      form.setFieldsValue({
+        answer: [
+          {
+            choice: '',
+          },
+          {
+            choice: '',
+          },
+          {
+            choice: '',
+          },
+          {
+            choice: '',
+          },
+        ],
+        hint: '',
+      });
     }
   };
 
@@ -48,7 +57,8 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
     start();
     try {
       const params = {
-        question: data.question,
+        ...(formData ? { id: formData?.id } : {}),
+        question: data?.question,
         isQuestionGroup: data?.isQuestionGroup ?? false,
         ...(data?.isQuestionGroup
           ? {
@@ -101,52 +111,56 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
 
   useEffect(() => {
     if (formData) {
+      const isQuestionGroup =
+        formData?.isQuestionGroup !== undefined
+          ? formData?.isQuestionGroup
+          : formData?.answer?.choices?.join('')?.length === 0;
       form.setFieldsValue({
-        name: formData.name,
-        cardIds: formData.cardIds,
+        name: formData?.name,
+        cardIds: formData?.cardIds,
+        question: formData?.question,
+        isQuestionGroup: isQuestionGroup,
       });
+      if (isQuestionGroup) {
+        form.setFieldsValue({
+          childCards: formData?.childCards.map((item) => {
+            const allAnswer = [
+              ...(item?.answer?.choices ?? []),
+              ...(item?.answer?.texts ?? []),
+            ].sort(sortAnswer);
+            return {
+              question: item?.question,
+              hint: item?.answer?.hint,
+              answer: allAnswer?.map((item) => {
+                return {
+                  isCorrectAnswer: item?.answer?.texts?.includes?.(item),
+                  choice: item,
+                };
+              }),
+            };
+          }),
+        });
+      } else {
+        const allAnswer = [
+          ...(formData?.answer?.choices ?? []),
+          ...(formData?.answer?.texts ?? []),
+        ].sort(sortAnswer);
+        form.setFieldsValue({
+          answer: allAnswer?.map((item) => {
+            return {
+              isCorrectAnswer: formData?.answer?.texts?.includes?.(item),
+              choice: item,
+            };
+          }),
+
+          hint: formData?.answer?.hint,
+        });
+      }
     } else {
       form.resetFields();
     }
+    setIsInit(false);
   }, [formData]);
-
-  useEffect(() => {
-    fetchDataList();
-  }, []);
-
-  const isQuestionGroupField = Form.useWatch('isQuestionGroup', form);
-  useEffect(() => {
-    if (isQuestionGroupField) {
-      form.setFieldsValue({
-        childCards: [
-          {
-            answer: ['', '', '', ''],
-            question: { text: '' },
-            hint: '',
-          },
-        ],
-      });
-    } else {
-      form.setFieldsValue({
-        answer: [
-          {
-            choice: '',
-          },
-          {
-            choice: '',
-          },
-          {
-            choice: '',
-          },
-          {
-            choice: '',
-          },
-        ],
-        hint: '',
-      });
-    }
-  }, [isQuestionGroupField]);
-  console.log('form.get', form.getFieldsValue());
 
   return (
     <CreatedFromWrap>
@@ -184,7 +198,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                   </Col>
                   <Col span={24}>
                     <Form.Item name="isQuestionGroup" valuePropName="checked">
-                      <Checkbox>Is question group?</Checkbox>
+                      <Checkbox onClick={onClickIsQuestionGroup}>Is question group?</Checkbox>
                     </Form.Item>
                   </Col>
                 </Row>
@@ -218,12 +232,16 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                                         operationChildCardAnswer: FormListOperation
                                       ) => (
                                         <>
-                                          {fieldsChildCardAnswer.map(
+                                          {fieldsChildCardAnswer?.map(
                                             ({ key, name, ...restField }) => {
                                               return (
                                                 <Space
                                                   key={key}
-                                                  style={{ display: 'flex', marginBottom: 8 }}
+                                                  style={{
+                                                    display: 'flex',
+                                                    marginBottom: 8,
+                                                    marginLeft: 16,
+                                                  }}
                                                   align="baseline"
                                                 >
                                                   <Form.Item
@@ -237,6 +255,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                                                     ]}
                                                   >
                                                     <Input
+                                                      style={{ width: '580px' }}
                                                       placeholder={`Enter answer ${name + 1}`}
                                                     />
                                                   </Form.Item>
@@ -249,7 +268,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                                                   </Form.Item>
                                                   <MinusCircleOutlined
                                                     onClick={() =>
-                                                      operationChildCardAnswer.remove(name)
+                                                      operationChildCardAnswer?.remove(name)
                                                     }
                                                   />
                                                 </Space>
@@ -259,7 +278,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                                           <Form.Item>
                                             <Button
                                               type="dashed"
-                                              onClick={() => operationChildCardAnswer.add()}
+                                              onClick={() => operationChildCardAnswer?.add()}
                                               block
                                               icon={<PlusOutlined />}
                                               className="btn-add-answer"
@@ -313,7 +332,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                             {fields.map(({ key, name, ...restField }) => (
                               <Space
                                 key={key}
-                                style={{ display: 'flex', marginBottom: 8 }}
+                                style={{ display: 'flex', marginBottom: 8, marginLeft: 16 }}
                                 align="baseline"
                               >
                                 <Form.Item
@@ -321,7 +340,10 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
                                   name={[name, 'choice']}
                                   rules={[{ required: true, message: 'Missing answer name' }]}
                                 >
-                                  <Input placeholder={`Enter answer ${name + 1}`} />
+                                  <Input
+                                    style={{ width: '580px' }}
+                                    placeholder={`Enter answer ${name + 1}`}
+                                  />
                                 </Form.Item>
                                 <Form.Item
                                   {...restField}
