@@ -2,7 +2,7 @@ import { styled, theme } from '@styles/theme';
 
 export const WelcomePageWrapper = styled.section`
   position: relative;
-  background: url('/static/images/bg-hero-section.webp');
+  background: url('https://scontent.fhan5-11.fna.fbcdn.net/v/t1.15752-9/363811344_3532087043737994_1950080423033328477_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=QaHctk1AbZYAX9cxlRj&_nc_oc=AQnaT6mch0fHq2BLopKfWuKi0q27rgx4TN2RzWXqY1OfptCxqXxe9c7utDFmxU729XY&_nc_ht=scontent.fhan5-11.fna&oh=03_AdQ6bD7PrZfUv4OpAvxaAqzRzQY3sIOoJRSNx3O_-hCAgg&oe=64F2A54A');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -40,14 +40,6 @@ export const WelcomePageWrapper = styled.section`
   }
 `;
 export const BannerWrap = styled.div`
-  min-height: 750px;
-  background-color: transparent;
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  padding: 0 10px;
   .banner-img-wrap {
     box-sizing: border-box;
     display: block;
@@ -82,26 +74,15 @@ export const BannerWrap = styled.div`
   }
   .banner-content-wrap {
     width: 100%;
-    margin-left: auto;
-    box-sizing: border-box;
-    margin-right: auto;
     display: block;
     padding-left: 16px;
     padding-right: 16px;
+    position: fixed;
+    bottom: 5vh;
+    right: 0;
+    max-width: 540px;
   }
 
-  @media (min-width: 576px) {
-    .banner-content-wrap {
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-  }
-
-  @media (min-width: 1170px) {
-    .banner-content-wrap {
-      max-width: 1170px;
-    }
-  }
   .app-info {
     display: flex;
     column-gap: 16px;
