@@ -7,6 +7,7 @@ export const ENDPOINTS = {
   SKILL: `skill`,
   TOPIC: `topic`,
   EXAM: `exam`,
+  CARD: `card`,
   SKILL_DELETE_MULTIPLE: `skill/delete/multiple`,
   TOPIC_DELETE_MULTIPLE: `topic/delete/multiple`,
   EXAM_DELETE_MULTIPLE: `exam/delete/multiple`,

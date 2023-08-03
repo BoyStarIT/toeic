@@ -32,6 +32,7 @@ const Exam = ({ topicCode, examCode }) => {
         return newAcc;
       }
     }, []);
+
     const newAnswerCount = flatListQuestion.filter((question) => !question?.userAnswer?.[0]).length;
     const correctAnswerCount = flatListQuestion.filter(
       (question) =>
@@ -56,16 +57,11 @@ const Exam = ({ topicCode, examCode }) => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        // const localStorageExam = reactLocalStorage.getArray(Config.EXAM_KEY);
         let questionNo = 0;
         const _listData = respData?.cards?.map((card) => {
-          // const localExamCard = localStorageExam?.find((exam) => exam?.id === card?.id);
           const isQuestionGroup = card?.answer?.choices?.join('')?.length === 0;
           if (isQuestionGroup) {
             const _childCards = card?.childCards.map((childCard) => {
-              // const localExamChildCard = localExamCard?.childCards?.find(
-              //   (exam) => exam.id === childCard?.id
-              // );
               questionNo = questionNo + 1;
               return {
                 ...childCard,
@@ -77,9 +73,6 @@ const Exam = ({ topicCode, examCode }) => {
                   ].sort(sortAnswer),
                 },
                 questionNo: questionNo,
-                // ...(localExamChildCard?.userAnswer?.length > 0
-                //   ? { userAnswer: localExamChildCard?.userAnswer }
-                //   : {}),
               };
             });
             return {
@@ -98,15 +91,11 @@ const Exam = ({ topicCode, examCode }) => {
                 ),
               },
               questionNo: questionNo,
-              // ...(localExamCard?.userAnswer?.length > 0
-              //   ? { userAnswer: localExamCard?.userAnswer }
-              //   : {}),
             };
           }
         });
 
         setListQuestion(_listData);
-        // reactLocalStorage.setObject(Config.EXAM_KEY, _listData);
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -121,37 +110,8 @@ const Exam = ({ topicCode, examCode }) => {
       if (!topicId) {
         return;
       }
-      let correct = 0;
-      let incorrect = 0;
-      let newAnswer = 0;
-      listQuestion.forEach((question) => {
-        if (question?.answer?.choices?.length === 0) {
-          question?.childCards.forEach((childCard) => {
-            if (!childCard?.userAnswer?.[0].length) {
-              newAnswer = newAnswer + 1;
-            } else if (
-              childCard?.userAnswer?.[0] &&
-              childCard?.userAnswer?.[0] === childCard?.answer?.texts?.[0]
-            ) {
-              correct = correct + 1;
-            } else {
-              incorrect = incorrect + 1;
-            }
-          });
-        } else {
-          if (!question?.userAnswer?.[0].length) {
-            newAnswer = newAnswer + 1;
-          } else if (
-            question?.userAnswer?.[0] &&
-            question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-          ) {
-            correct = correct + 1;
-          } else {
-            incorrect = incorrect + 1;
-          }
-        }
-      });
-      const progress = (correct / (correct + incorrect + newAnswer)) * 100;
+      const { total, correctAnswerCount } = answerInfos;
+      const progress = (correctAnswerCount / total) * 100;
       const params = {
         progress: progress.toFixed(0),
         status: 1,

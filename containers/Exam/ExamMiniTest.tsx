@@ -34,6 +34,7 @@ const ExamMiniTest = () => {
         return newAcc;
       }
     }, []);
+
     const newAnswerCount = flatListQuestion.filter((question) => !question?.userAnswer?.[0]).length;
     const correctAnswerCount = flatListQuestion.filter(
       (question) =>
@@ -59,16 +60,11 @@ const ExamMiniTest = () => {
         stop();
         Message.error(error?.message ?? 'Something error!');
       } else {
-        // const localStorageExam = reactLocalStorage.getArray(Config.EXAM_KEY);
         let questionNo = 0;
         const _listData = respData?.cards?.map((card) => {
-          // const localExamCard = localStorageExam?.find((exam) => exam?.id === card?.id);
           const isQuestionGroup = card?.answer?.choices?.join('')?.length === 0;
           if (isQuestionGroup) {
             const _childCards = card?.childCards.map((childCard) => {
-              // const localExamChildCard = localExamCard?.childCards?.find(
-              //   (exam) => exam.id === childCard?.id
-              // );
               questionNo = questionNo + 1;
               return {
                 ...childCard,
@@ -80,9 +76,6 @@ const ExamMiniTest = () => {
                   ].sort(sortAnswer),
                 },
                 questionNo: questionNo,
-                // ...(localExamChildCard?.userAnswer?.length > 0
-                //   ? { userAnswer: localExamChildCard?.userAnswer }
-                //   : {}),
               };
             });
             return {
@@ -101,15 +94,11 @@ const ExamMiniTest = () => {
                 ),
               },
               questionNo: questionNo,
-              // ...(localExamCard?.userAnswer?.length > 0
-              //   ? { userAnswer: localExamCard?.userAnswer }
-              //   : {}),
             };
           }
         });
 
         setListQuestion(_listData);
-        // reactLocalStorage.setObject(Config.EXAM_KEY, _listData);
       }
     } catch (err) {
       console.log('onSubmit-error :>> ', err.toString());
@@ -117,6 +106,7 @@ const ExamMiniTest = () => {
       stop();
     }
   };
+  console.log('listQuestion', listQuestion);
 
   const sortAnswer = (a, b) => {
     // Remove the double quotes and parentheses from the values for comparison

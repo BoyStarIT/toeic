@@ -1,4 +1,4 @@
-import { CloseCircleOutlined, FormOutlined, UploadOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, FormOutlined, PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { getAdminListCard, postCardImport, postUploadFile, putDeleteCard } from '@api';
 import { useLoading } from '@hooks';
 import { Message } from '@utils';
@@ -143,12 +143,15 @@ const CMSCard: React.FC = () => {
   return (
     <PageWrapper>
       <div className="cms-page-title">Manager Card</div>
-      <div className="btn-action-box">
+      <div className="btn-action-box d-flex">
         <Upload {...props} customRequest={fetchUploadCards}>
           <Button loading={isLoading} icon={<UploadOutlined />}>
             Click to Upload
           </Button>
         </Upload>
+        <Button onClick={() => setShowModal(true)} className="btn-add ml-3">
+          <PlusOutlined /> Add Card
+        </Button>
       </div>
       <Table
         dataSource={dataList}
@@ -212,7 +215,7 @@ const CMSCard: React.FC = () => {
       <Modal
         width={755}
         bodyStyle={{ height: 'max-content' }}
-        title={selectedRow ? 'Edit Exam' : 'Add Exam'}
+        title={selectedRow ? 'Edit Card' : 'Add Card'}
         maskClosable={false}
         visible={showModal}
         onCancel={onCloseCreatedForm}

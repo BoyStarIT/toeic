@@ -31,6 +31,10 @@ export const postCreatedExam = async (postData: any) => {
   return post(ENDPOINTS.EXAM, postData);
 };
 
+export const postCreatedCard = async (postData: any) => {
+  return post(ENDPOINTS.CARD, postData);
+};
+
 export const postCollectExam = async (postData: any) => {
   return post(ENDPOINTS.EXAM_COLLECT, postData);
 };
@@ -76,6 +80,10 @@ export const putDeleteCard = async (putData: any) => {
 
 export const putEditExam = async (putData: any) => {
   return put(ENDPOINTS.EXAM, putData);
+};
+
+export const putEditCard = async (putData: any) => {
+  return put(ENDPOINTS.CARD, putData);
 };
 
 export const putEditSkill = async (putData: any) => {
