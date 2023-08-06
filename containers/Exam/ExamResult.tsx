@@ -5,7 +5,14 @@ import QuizPlayZone from './QuizPlayZone';
 import { Progress } from 'antd';
 import QuestionCard from './QuestionCard';
 
-const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus, answerInfos }) => {
+const ExamResult = ({
+  listQuestion,
+  onUpdateListQuestion,
+  onSetExamStatus,
+  onClickTryAgain,
+  answerInfos,
+  isMiniTest = false,
+}) => {
   const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
   const onClickReview = () => {
     const question = document.getElementById(`review-${listQuestion?.[0]?._id}`);
@@ -17,14 +24,6 @@ const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus, answe
   };
 
   const onClickContinue = () => {
-    onSetExamStatus('starting');
-  };
-  const onClickAgain = () => {
-    const newListQuestion = listQuestion.map((question) => {
-      delete question.userAnswer;
-      return question;
-    });
-    onUpdateListQuestion(newListQuestion);
     onSetExamStatus('starting');
   };
 
@@ -137,7 +136,7 @@ const ExamResult = ({ listQuestion, onUpdateListQuestion, onSetExamStatus, answe
                       className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-lv9ort"
                       tabIndex={0}
                       type="button"
-                      onClick={onClickAgain}
+                      onClick={onClickTryAgain}
                     >
                       TRY AGAIN
                     </button>

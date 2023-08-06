@@ -146,6 +146,11 @@ const Exam = ({ topicCode, examCode }) => {
     // reactLocalStorage.setObject(Config.EXAM_KEY, questions);
   };
 
+  const onClickTryAgain = async () => {
+    await fetchListCard();
+    onSetExamStatus('starting');
+  };
+
   return (
     <div className="main-exam">
       {examStatus === 'reviewing' && (
@@ -154,6 +159,7 @@ const Exam = ({ topicCode, examCode }) => {
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
+          onClickTryAgain={onClickTryAgain}
         />
       )}
       {examStatus === 'initial' && (

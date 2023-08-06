@@ -4304,6 +4304,7 @@ export const ContentWrapper = styled.div`
   #main-study-view .main-study-layout {
     display: flex;
     margin-top: 20px;
+    position: relative;
   }
 
   #main-study-view .main-study-layout.tablet {
@@ -5386,6 +5387,23 @@ export const ContentWrapper = styled.div`
       > .anticon {
         font-size: 14px;
       }
+    }
+  }
+  .mini-test-count-down {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    z-index: 1;
+    .ant-statistic-title {
+      margin-right: 9px;
+      font-size: 24px;
+    }
+    .ant-statistic-content {
+      color: rgb(38, 192, 72);
     }
   }
 `;

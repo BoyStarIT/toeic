@@ -6,10 +6,14 @@ import { Col, Row } from 'antd';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { ContentWrapper, IntroWrap, TestWrap } from './Practice.style';
+import { useToeicContext } from '@contexts/toeicContext';
+import Link from 'next/link';
 
 const Practice = () => {
   const router = useRouter();
   const topicId = router.query.slugTopic;
+  const { userInfos, topics } = useToeicContext();
+
   const [{ isLoading }, { start, stop }] = useLoading();
 
   const [examData, setExamData] = useState(undefined);
@@ -44,7 +48,9 @@ const Practice = () => {
   return (
     <ContentWrapper className="container">
       <div id="practice-list-view" className="practice-detail-view">
-        <div className="practice-list-view-title">Luyện nghe TOEIC Part 1 online miễn phí</div>
+        <div className="practice-list-view-title">
+          Luyện nghe TOEIC {examData?.name} online miễn phí
+        </div>
         <div className="practice-list-view-main">
           <div className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1h77wgb">
             <Row gutter={[16, 0]}>
@@ -84,78 +90,18 @@ const Practice = () => {
                   <div id="other-practices-list">
                     <div className="title">Other Practices</div>
                     <div className="list">
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 1: Mô tả tranh</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 2: Hỏi - Đáp</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 3: Đoạn hội thoại</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 4: Bài nói ngắn</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 5: Hoàn thành câu</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 6: Hoàn thành đoạn văn</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 7: Đoạn đơn</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 7: Đoạn kép</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
-                      <a href="#">
-                        <div className="list-item">
-                          <div className="list-item-name">Phần 7: Đoạn ba</div>
-                          <div className="list-item-icon">
-                            <RightOutlined />
-                          </div>
-                        </div>
-                      </a>
+                      {topics.map((topic) =>
+                        topic?.topics?.map((item) => (
+                          <Link href={`/practice/${item?.topicId}`}>
+                            <div className="list-item cursor-pointer">
+                              <div className="list-item-name">{item.topicName}</div>
+                              <div className="list-item-icon">
+                                <RightOutlined />
+                              </div>
+                            </div>
+                          </Link>
+                        ))
+                      )}
                     </div>
                   </div>
                 </div>

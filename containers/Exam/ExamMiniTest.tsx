@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from 'react';
 import ExamResult from './ExamResult';
 import ExamStart from './ExamStart';
 import ExamView from './ExamView';
+import Countdown from 'antd/lib/statistic/Countdown';
 
 type ExamStatusType = 'initial' | 'starting' | 'reviewing';
 
@@ -120,6 +121,11 @@ const ExamMiniTest = () => {
     reactLocalStorage.setObject(Config.EXAM_KEY, questions);
   };
 
+  const onClickTryAgain = async () => {
+    await fetchListCard();
+    onSetExamStatus('starting');
+  };
+
   return (
     <div className="main-exam">
       {examStatus === 'reviewing' && (
@@ -128,6 +134,8 @@ const ExamMiniTest = () => {
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
+          onClickTryAgain={onClickTryAgain}
+          isMiniTest={true}
         />
       )}
       {examStatus === 'initial' && (
@@ -135,6 +143,7 @@ const ExamMiniTest = () => {
           listQuestion={listQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
+          isMiniTest={true}
         />
       )}
       {examStatus === 'starting' && (
@@ -143,6 +152,7 @@ const ExamMiniTest = () => {
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
+          isMiniTest={true}
         />
       )}
     </div>

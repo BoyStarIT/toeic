@@ -46,6 +46,7 @@ const CreatedForm = ({ onClose, formData }: CreatedFormProps) => {
     try {
       const params = {
         name: data.name,
+        examIds: data.examIds,
         ...(formData ? { id: formData.id } : {}),
       };
 
