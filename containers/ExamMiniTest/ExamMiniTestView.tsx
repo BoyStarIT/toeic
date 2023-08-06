@@ -1,7 +1,7 @@
 import { Progress } from 'antd';
-import ExamLayout from './ExamLayout';
+import ExamLayout from './ExamMiniTestLayout';
 
-const ExamView = ({ listQuestion, onSetExamStatus, answerInfos, isMiniTest = false }) => {
+const ExamView = ({ listQuestion, onSetExamStatus, answerInfos }) => {
   const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
 
   return (

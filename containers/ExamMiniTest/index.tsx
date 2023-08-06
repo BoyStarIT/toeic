@@ -4,10 +4,12 @@ import Config from '@root/config';
 import { Message, reactLocalStorage, sortAnswer } from '@utils';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import ExamResult from './ExamResult';
-import ExamStart from './ExamStart';
-import ExamView from './ExamView';
+import ExamResult from './ExamMiniTestResult';
+import ExamStart from './ExamMiniTestStart';
+import ExamView from './ExamMiniTestView';
 import Countdown from 'antd/lib/statistic/Countdown';
+import { ClockCircleOutlined } from '@ant-design/icons';
+import { ExamMainWrap } from './MiniTest.style';
 
 type ExamStatusType = 'initial' | 'starting' | 'reviewing';
 
@@ -127,15 +129,13 @@ const ExamMiniTest = () => {
   };
 
   return (
-    <div className="main-exam">
+    <ExamMainWrap className="main-exam">
       {examStatus === 'reviewing' && (
         <ExamResult
           listQuestion={listQuestion}
-          onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
           onClickTryAgain={onClickTryAgain}
-          isMiniTest={true}
         />
       )}
       {examStatus === 'initial' && (
@@ -143,7 +143,6 @@ const ExamMiniTest = () => {
           listQuestion={listQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
-          isMiniTest={true}
         />
       )}
       {examStatus === 'starting' && (
@@ -152,10 +151,10 @@ const ExamMiniTest = () => {
           onUpdateListQuestion={onUpdateListQuestion}
           onSetExamStatus={onSetExamStatus}
           answerInfos={answerInfos}
-          isMiniTest={true}
+          examStatus={examStatus}
         />
       )}
-    </div>
+    </ExamMainWrap>
   );
 };
 

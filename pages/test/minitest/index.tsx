@@ -1,4 +1,4 @@
-import ExamMiniTest from '@containers/Exam/ExamMiniTest';
+import ExamMiniTest from '@containers/ExamMiniTest';
 import MainLayout from '@ui/MainLayout';
 
 const MiniTestPage = () => {

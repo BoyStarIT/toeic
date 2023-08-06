@@ -1,9 +1,23 @@
 import { Progress } from 'antd';
-import ExamLayout from './ExamLayout';
+import ExamLayout from './ExamMiniTestLayout';
+import QuestionCard from './QuestionCard';
 
-const ExamView = ({ listQuestion, onSetExamStatus, answerInfos, isMiniTest = false }) => {
+const ExamResult = ({ listQuestion, onSetExamStatus, onClickTryAgain, answerInfos }) => {
   const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
+  const onClickReview = () => {
+    const question = document.getElementById(`review-${listQuestion?.[0]?._id}`);
+    if (!question) return;
+    window.scrollTo({
+      top: question.offsetTop,
+      behavior: 'smooth',
+    });
+  };
 
+  const onClickContinue = () => {
+    onSetExamStatus('starting');
+  };
+
+  const percent = (correctAnswerCount / total) * 100;
   return (
     <ExamLayout listQuestion={listQuestion} answerInfos={answerInfos}>
       <div id="game-view-container" className="game-view-container-main">
@@ -22,7 +36,12 @@ const ExamView = ({ listQuestion, onSetExamStatus, answerInfos, isMiniTest = fal
                   <div className="main-progress-box" />
                   <div className="box-layer-2" />
                   <div className="box-layer-3">
-                    <Progress type="circle" percent={0} width={130} />
+                    <Progress
+                      type="circle"
+                      percent={percent}
+                      width={130}
+                      format={(percent) => <span>{percent.toFixed(0)}%</span>}
+                    />
                   </div>
                 </div>
                 <div className="main-statistics">
@@ -84,12 +103,21 @@ const ExamView = ({ listQuestion, onSetExamStatus, answerInfos, isMiniTest = fal
                   </div>
                   <div className="main-statistics-questions-button">
                     <button
-                      className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-bktioj"
+                      className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1bya90x"
                       tabIndex={0}
                       type="button"
-                      onClick={() => onSetExamStatus('starting')}
+                      onClick={onClickReview}
                     >
-                      START
+                      REVIEW
+                    </button>
+
+                    <button
+                      className="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-lv9ort"
+                      tabIndex={0}
+                      type="button"
+                      onClick={onClickTryAgain}
+                    >
+                      TRY AGAIN
                     </button>
                   </div>
                 </div>
@@ -204,9 +232,21 @@ const ExamView = ({ listQuestion, onSetExamStatus, answerInfos, isMiniTest = fal
             </div>
           </div>
         </div>
+        <div id="main-game-review-section" className="">
+          {listQuestion.map((question, index) => (
+            <div id={`review-${question?._id}`} key={question?._id}>
+              <QuestionCard
+                question={listQuestion[index]}
+                onUpdateQuestion={(newQuestion) => newQuestion}
+                key={`QuestionCard-${listQuestion[index]?._id}`}
+              />
+              <hr className="MuiDivider-root MuiDivider-fullWidth css-39bbo6" />
+            </div>
+          ))}
+        </div>
       </div>
     </ExamLayout>
   );
 };
 
-export default ExamView;
+export default ExamResult;
