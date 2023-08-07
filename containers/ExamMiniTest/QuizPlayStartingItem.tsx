@@ -1,5 +1,5 @@
 import Icon from '@ant-design/icons/lib/components/Icon';
-import { IconCheckCircle, IconChoiceCircle, IconCloseCircle } from '@ui/Svgs';
+import { IconCheckCircle, IconChoiceCircle, IconCloseCircle, IconSelectedCircle } from '@ui/Svgs';
 
 type QuizPlayItemProps = {
   choice: {
@@ -11,7 +11,7 @@ type QuizPlayItemProps = {
   onChoice: (choice) => void;
   isSelected?: boolean;
 };
-export default function QuizPlayResultItem({
+export default function QuizPlayStartingItem({
   choice,
   onChoice,
   isSelected = false,
@@ -27,9 +27,8 @@ export default function QuizPlayResultItem({
           <Icon component={IconChoiceCircle} />
         ) : (
           <>
-            {choice.isAnswer && <Icon component={IconCheckCircle} />}
-            {!choice.isAnswer && choice.isChecked && <Icon component={IconCloseCircle} />}
-            {!choice.isAnswer && !choice.isChecked && <Icon component={IconChoiceCircle} />}
+            {choice.isChecked && <Icon component={IconSelectedCircle} />}
+            {!choice.isChecked && <Icon component={IconChoiceCircle} />}
           </>
         )}
       </div>

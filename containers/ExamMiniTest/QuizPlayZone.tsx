@@ -3,7 +3,7 @@ import { IconCheckCircle, IconChoiceCircle, IconCloseCircle } from '@ui/Svgs';
 import React, { useEffect, useState } from 'react';
 import Hint from './Hint';
 import QuizPlayItem from './QuizPlayItem';
-import QuizPlayResultItem from './QuizPlayResultItem';
+import QuizPlayStartingItem from './QuizPlayStartingItem';
 
 type QuizPlayZoneProps = {
   parentQuestion?: any;
@@ -76,7 +76,7 @@ export default function QuizPlayZone(props: QuizPlayZoneProps) {
         {choices.length > 0 &&
           choices.map((choice) =>
             props.isStarting ? (
-              <QuizPlayResultItem
+              <QuizPlayStartingItem
                 choice={choice}
                 onChoice={onChoice}
                 key={choice.text}

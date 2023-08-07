@@ -41,11 +41,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                     question.childCards.map((childCard) => (
                       <button
                         className={`question-item question-palette-item-custom ${
-                          childCard?.userAnswer?.length > 0
-                            ? childCard?.userAnswer?.[0] === childCard?.answer?.texts?.[0]
-                              ? 'p-item-correct'
-                              : 'p-item-incorrect'
-                            : ''
+                          childCard?.userAnswer?.length > 0 ? 'p-item-selected' : ''
                         }`}
                         tabIndex={0}
                         type="button"
@@ -59,11 +55,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                     <>
                       <button
                         className={`question-item question-palette-item-custom ${
-                          question?.userAnswer?.length > 0
-                            ? question?.userAnswer?.[0] === question?.answer?.texts?.[0]
-                              ? 'p-item-correct'
-                              : 'p-item-incorrect'
-                            : ''
+                          question?.userAnswer?.length > 0 ? 'p-item-selected' : ''
                         }`}
                         tabIndex={0}
                         type="button"
@@ -91,7 +83,7 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   <rect y="0.5" width={10} height={10} rx={3} fill="#4caf50" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {correctAnswerCount}/{total} Correct
+                  {correctAnswerCount + incorrectAnswerCount}/{total} Selected
                 </span>
               </div>
               <div className="questions-stat-item">
@@ -102,10 +94,10 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect y="0.5" width={10} height={10} rx={3} fill="#FF5252" />
+                  <rect y="0.5" width={10} height={10} rx={3} fill="#a3a3a3" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {incorrectAnswerCount}/{total} Incorrect
+                  {newAnswerCount}/{total} New
                 </span>
               </div>
             </div>

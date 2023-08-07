@@ -4821,6 +4821,11 @@ export const ContentWrapper = styled.div`
     border: none !important;
     background-color: #4caf50 !important;
   }
+  .question-palette-root .question-palette-body .question-item.p-item-selected {
+    color: #fff !important;
+    border: none !important;
+    background-color: #4caf50 !important;
+  }
   .question-palette-root .question-palette-body .question-item.p-item-played {
     color: #fff !important;
     border: none !important;
