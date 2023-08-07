@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-type QuestionPaletteRootProps = {
+type QuestionPaletteRootResultProps = {
   listQuestion?: any[];
   children?: React.ReactNode;
   answerInfos: {
@@ -10,11 +10,20 @@ type QuestionPaletteRootProps = {
     incorrectAnswerCount: number;
   };
 };
-const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
+const QuestionPaletteRootResult: React.FC<QuestionPaletteRootResultProps> = ({
   listQuestion,
   answerInfos,
-}: QuestionPaletteRootProps) => {
+}: QuestionPaletteRootResultProps) => {
   const { total, newAnswerCount, correctAnswerCount, incorrectAnswerCount } = answerInfos;
+
+  const goToQuestion = (id) => {
+    const question = document.getElementById(`review-${id}`);
+    if (!question) return;
+    window.scrollTo({
+      top: question.offsetTop,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <div className="jss27 question-palette-root">
@@ -32,11 +41,16 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                     question.childCards.map((childCard) => (
                       <button
                         className={`question-item question-palette-item-custom ${
-                          childCard?.userAnswer?.length > 0 ? 'p-item-selected' : ''
+                          childCard?.userAnswer?.length > 0
+                            ? childCard?.userAnswer?.[0] === childCard?.answer?.texts?.[0]
+                              ? 'p-item-correct'
+                              : 'p-item-incorrect'
+                            : ''
                         }`}
                         tabIndex={0}
                         type="button"
                         id={`pallete-item-${childCard?._id}`}
+                        onClick={() => goToQuestion(childCard?._id)}
                       >
                         {childCard?.questionNo}
                       </button>
@@ -45,11 +59,16 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                     <>
                       <button
                         className={`question-item question-palette-item-custom ${
-                          question?.userAnswer?.length > 0 ? 'p-item-selected' : ''
+                          question?.userAnswer?.length > 0
+                            ? question?.userAnswer?.[0] === question?.answer?.texts?.[0]
+                              ? 'p-item-correct'
+                              : 'p-item-incorrect'
+                            : ''
                         }`}
                         tabIndex={0}
                         type="button"
                         id={`pallete-item-${question?._id}`}
+                        onClick={() => goToQuestion(question?._id)}
                       >
                         {question?.questionNo}
                       </button>
@@ -69,10 +88,10 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect y="0.5" width={10} height={10} rx={3} fill="#007aff" />
+                  <rect y="0.5" width={10} height={10} rx={3} fill="#4caf50" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {correctAnswerCount + incorrectAnswerCount}/{total} Selected
+                  {correctAnswerCount}/{total} Correct
                 </span>
               </div>
               <div className="questions-stat-item">
@@ -83,10 +102,10 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <rect y="0.5" width={10} height={10} rx={3} fill="#a3a3a3" />
+                  <rect y="0.5" width={10} height={10} rx={3} fill="#FF5252" />
                 </svg>
                 <span className="questions-stat-item-text">
-                  {newAnswerCount}/{total} New
+                  {incorrectAnswerCount}/{total} Incorrect
                 </span>
               </div>
             </div>
@@ -98,4 +117,4 @@ const QuestionPaletteRoot: React.FC<QuestionPaletteRootProps> = ({
   );
 };
 
-export default QuestionPaletteRoot;
+export default QuestionPaletteRootResult;

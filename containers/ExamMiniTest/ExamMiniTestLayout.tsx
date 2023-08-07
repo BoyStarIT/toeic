@@ -5,6 +5,7 @@ import { getListExam } from '@api';
 import { Message } from '@utils';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import QuestionPaletteRootResult from './QuestionPaletteRootResult';
 
 type ExamLayoutProps = {
   children: React.ReactNode;
@@ -57,10 +58,17 @@ const ExamLayout: React.FC<ExamLayoutProps> = (props: ExamLayoutProps) => {
                 <h2 className="MuiTypography-root MuiTypography-body1 root-topic-name css-100vuwi">
                   {topicData?.name}
                 </h2>
-                <QuestionPaletteRoot
-                  listQuestion={props.listQuestion}
-                  answerInfos={props.answerInfos}
-                />
+                {props.examStatus === 'reviewing' ? (
+                  <QuestionPaletteRootResult
+                    listQuestion={props.listQuestion}
+                    answerInfos={props.answerInfos}
+                  />
+                ) : (
+                  <QuestionPaletteRoot
+                    listQuestion={props.listQuestion}
+                    answerInfos={props.answerInfos}
+                  />
+                )}
               </div>
             </div>
             <div className="study-layout-item study-layout-mid">{props.children}</div>
